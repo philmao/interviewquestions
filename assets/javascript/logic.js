@@ -12,51 +12,51 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 //Setup linkedIn login
-    var liLogin = function() { // Setup an event listener to make an API call once auth is complete
-        IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
-        IN.Event.on(IN, 'auth', getProfileData);
+var liLogin = function() { // Setup an event listener to make an API call once auth is complete
+    IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
+    IN.Event.on(IN, 'auth', getProfileData);
+}
+
+var getProfileData = function() { // Use the API call wrapper to request the member's basic profile data
+    IN.API.Profile("me").fields("id,firstName,lastName,email-address,picture-urls::(original),public-profile-url,location:(name)").result(function (me) {
+        var profile = me.values[0];
+        var id = profile.id;
+        var firstName = profile.firstName;
+        var lastName = profile.lastName;
+        var emailAddress = profile.emailAddress;
+        var pictureUrl = profile.pictureUrls.values[0];
+        var profileUrl = profile.publicProfileUrl;
+        var country = profile.location.name;
+
+        /*var user = {
+          emailId: emailAddress,
+          profile: {
+            fName: firstName,
+            lName: lastName,
+            pUrl: profileUrl
+          }
+        };*/
+
+    });
+}
+// Handle the successful return from the API call
+function onSuccess(data) {
+    console.log(data);
+}
+
+// Handle an error response from the API call
+function onError(error) {
+    console.log(error);
+}
+
+//function to logout from the session
+var liLogout = function() {
+    IN.User.logout(callbackFunction);
     }
 
-    var getProfileData = function() { // Use the API call wrapper to request the member's basic profile data
-        IN.API.Profile("me").fields("id,firstName,lastName,email-address,picture-urls::(original),public-profile-url,location:(name)").result(function (me) {
-            var profile = me.values[0];
-            var id = profile.id;
-            var firstName = profile.firstName;
-            var lastName = profile.lastName;
-            var emailAddress = profile.emailAddress;
-            var pictureUrl = profile.pictureUrls.values[0];
-            var profileUrl = profile.publicProfileUrl;
-            var country = profile.location.name;
-
-            /*var user = {
-              emailId: emailAddress,
-              profile: {
-                fName: firstName,
-                lName: lastName,
-                pUrl: profileUrl
-              }
-            };*/
-
-        });
+function callbackFunction() {
+    alert("You have successfully logged out.")
     }
-    // Handle the successful return from the API call
-    function onSuccess(data) {
-        console.log(data);
-    }
-
-    // Handle an error response from the API call
-    function onError(error) {
-        console.log(error);
-    }
-
-    //function to logout from the session
-    var liLogout = function() {
-        IN.User.logout(callbackFunction);
-        }
-
-    function callbackFunction() {
-        alert("You have successfully logged out.")
-        }
 
 
 var questionArray = [];
@@ -83,6 +83,8 @@ var questions = [{
     choices: [ "Texas", "New York", "California", "Florida" ],
     correctAnswer: 3,
 }];
+
+var myData;
 
 var interviewQuestions = {
 
@@ -120,7 +122,7 @@ var interviewQuestions = {
                 answerChoice.attr("class", "radioButtons");
                 $("#mainArea").append(answerChoice);
                 $("#mainArea").append("<b>" + questions[j].choices[i] + "</b><br>");
-                console.log(questions[j].choices[i]);
+                // console.log(questions[j].choices[i]);
             }
         }
         $("#mainArea").append("<button id='doneButton'>Done</button>");
@@ -225,13 +227,14 @@ function processSubject(event) {
         console.log("Unable to get data");
     },
     success: function(data){
-        var myData = jQuery.parseJSON(data);
+        myData = jQuery.parseJSON(data);
         //do something with data
         console.log(data);   
         console.log(myData);          
 
     }
     });
+    console.log(myData[0]);
 }
 
 $("body").on("click", "#signin", function(event){
