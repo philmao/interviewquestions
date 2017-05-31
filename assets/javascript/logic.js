@@ -220,21 +220,23 @@ function processSubject(event) {
     var temp = $('input[name="subject"]:checked').val();
     console.log(temp);
 
-    $.ajax({
-    url: 'assets/json/html.json',
-    type: 'get',
-    error: function(data){
-        console.log("Unable to get data");
-    },
-    success: function(data){
-        myData = jQuery.parseJSON(data);
-        //do something with data
-        console.log(data);   
-        console.log(myData);          
+    var queryURL = "./assets/json/" + temp;
+    console.log(queryURL);
 
-    }
+    $.ajax({
+        type: "GET",
+        url: queryURL,
+        dataType: "json",
+        success: function(result) {
+            // myData = jQuery.parseJSON(result);
+            console.log(result);
+            // console.log(myData);
+        },
+        error: function(result){
+            console.log("Unable to get data");
+        }
     });
-    console.log(myData[0]);
+    // console.log(myData[0]);
 }
 
 $("body").on("click", "#signin", function(event){
@@ -255,5 +257,4 @@ $("body").on("click", "#submitSubject", function(event){
 
 
 }); //closing onclick start-button event after generating new HTML page
-
 
