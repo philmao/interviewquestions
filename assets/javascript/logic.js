@@ -50,6 +50,15 @@ var database = firebase.database();
         console.log(error);
     }
 
+    //function to logout from the session
+    var liLogout = function() {
+        IN.User.logout(callbackFunction);
+        }
+
+    function callbackFunction() {
+        alert("You have successfully logged out.")
+        }
+
 $(document).ready(function() {
 
 
