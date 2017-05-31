@@ -1,4 +1,4 @@
-
+//Setup linkedIn login
     var liLogin = function() { // Setup an event listener to make an API call once auth is complete
         IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
         IN.Event.on(IN, 'auth', getProfileData);
