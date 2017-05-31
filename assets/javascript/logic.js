@@ -1,3 +1,17 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyD15_MQCpSIeLmOaujqowZkF-djMIi0UlY",
+    authDomain: "interviewquestions-ca991.firebaseapp.com",
+    databaseURL: "https://interviewquestions-ca991.firebaseio.com",
+    projectId: "interviewquestions-ca991",
+    storageBucket: "interviewquestions-ca991.appspot.com",
+    messagingSenderId: "139540148275"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+
 //Setup linkedIn login
     var liLogin = function() { // Setup an event listener to make an API call once auth is complete
         IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
@@ -35,20 +49,6 @@
     function onError(error) {
         console.log(error);
     }
-
-
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyD15_MQCpSIeLmOaujqowZkF-djMIi0UlY",
-    authDomain: "interviewquestions-ca991.firebaseapp.com",
-    databaseURL: "https://interviewquestions-ca991.firebaseio.com",
-    projectId: "interviewquestions-ca991",
-    storageBucket: "interviewquestions-ca991.appspot.com",
-    messagingSenderId: "139540148275"
-};
-firebase.initializeApp(config);
-
-var database = firebase.database();
 
 $(document).ready(function() {
 
