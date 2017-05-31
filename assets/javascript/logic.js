@@ -11,6 +11,54 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+//Setup linkedIn login
+    var liLogin = function() { // Setup an event listener to make an API call once auth is complete
+        IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
+        IN.Event.on(IN, 'auth', getProfileData);
+    }
+
+    var getProfileData = function() { // Use the API call wrapper to request the member's basic profile data
+        IN.API.Profile("me").fields("id,firstName,lastName,email-address,picture-urls::(original),public-profile-url,location:(name)").result(function (me) {
+            var profile = me.values[0];
+            var id = profile.id;
+            var firstName = profile.firstName;
+            var lastName = profile.lastName;
+            var emailAddress = profile.emailAddress;
+            var pictureUrl = profile.pictureUrls.values[0];
+            var profileUrl = profile.publicProfileUrl;
+            var country = profile.location.name;
+
+            /*var user = {
+              emailId: emailAddress,
+              profile: {
+                fName: firstName,
+                lName: lastName,
+                pUrl: profileUrl
+              }
+            };*/
+
+        });
+    }
+    // Handle the successful return from the API call
+    function onSuccess(data) {
+        console.log(data);
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+
+    //function to logout from the session
+    var liLogout = function() {
+        IN.User.logout(callbackFunction);
+        }
+
+    function callbackFunction() {
+        alert("You have successfully logged out.")
+        }
+
+
 var questionArray = [];
 var intervalId;
 
@@ -123,9 +171,7 @@ var interviewQuestions = {
     // }
 }
 
-
 // function created for initial start screen
-
 function initialScreen() {
     startScreen = "<div class='container'><form class='form-signin'>";
     startScreen += "<h2 class='form-signin-heading'>Please sign in</h2>";
@@ -141,6 +187,7 @@ function initialScreen() {
     startScreen += "<label><input type='checkbox' value='remember-me'> Remember me</label>";
     startScreen += "</div>";
     startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    // startScreen += "<script type='in/Login'></script>";
     $(".mainArea").html(startScreen);
 
 // original text deleted from above

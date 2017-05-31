@@ -1,6 +1,5 @@
 {
-    "interview": {
-        [     
+    "interview": [     
             {
                 "question": "What is the output of '10'+20+30 in JavaScript?",
                 "choices": ["102030", "1050", "60", "5010"],
