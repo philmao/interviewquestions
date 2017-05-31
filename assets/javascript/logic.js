@@ -93,15 +93,18 @@ function generateHTML() {
 
 }});
 
-$.ajax({
-	url: 'assets/json/html.json',
-	type: 'get',
-	error: function(data){
 
-	},
-	success: function(data){
-		data = jQuery.parseJSON(data);
-		//do something with data
-		console.log(data);          
-	}
+$.ajax({
+    type: "GET",
+    url: "./assets/json/html.json",
+    dataType: "json",
+    success: function(result) {
+        console.log(result);
+    }
+
 });
+
+
+// $.getJSON("html.json", function(json) {
+//     console.log(json); // this will show the info it in firebug console
+// });
