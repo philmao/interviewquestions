@@ -1,103 +1,99 @@
 {
     "interview": [     
-            {
-                "question": "What does HTML mean?",
-                "choices": ["Hyper Text Markup Language", "Hidden Text Markup Langauge", "Hyper Text Manage Language", "How To Make Lasagna"],
-                "correct": "0"
-            },
-            {
-                "question": "< br/>What type of tag is this?",
-                "choices": ["break tag", "broken tag", "body tag", "bad tag"],
-                "correct": "0"
-            },
-            {
-                "question": "Which of the following is an example of an empty element?",
-                "choices": ["</img>", "<img></img>", "<img>", "<img>empty</img>"],
-                "correct": "1"
-            },
-            {
-                "question": "How does an HTML document start?",
-                "choices": ["<DOCTYPE! html>", "<HTML doctype!>", "<HTML! doctype>", "<!DOCTYPE html>"],
-                "correct": "3"
-            },
-            {
-                "question": "How do you size your HTML to fit any size viewport?",
-                "choices": ["With a <script> tag", "With a media query", "With firebase", "It automatically sizes"],
-                "correct": "1"
-            },
-            {
-                "question": "What symbol is associated with class?",
-                "choices": ["#", "$", ".", "%"],
-                "correct": "2"
-            },
-            {
-                "question": "How many HTML headings are there?",
-                "choices": ["5", "7", "6", "8"],
-                "correct": "2"
-            },
-            {
-                "question": "How do you add a script tag?",
-                "choices": ["add <script", "<script>", "<scriptto>", "<scripts>"],
-                "correct": "1"
-            },
-            {
-                "question": "What's the name of the new HTML5 element that begins with the letter K?",
-                "choices": ["keys", "kit", "kygo", "keygen"],
-                "correct": "3"
-            },
-            {
-                "question": "What file extension should hml files have",
-                "choices": ["html", "web", "page", "site"],
-                "correct": "0"
-            },
-            {
-                "question": "Who is making the Web standards?",
-                "choices": ["Google", "World Internt Committee", "World Wide Web Consortium", "International Web Authority (IWA)"],
-                "correct": "1"
-            },
-            {
-                "question": "Which tag is used to create paragraphs?",
-                "choices": ["<par>", "<p>", "<pg>", "<p."],
-                "correct": "1"
-            },
-            {
-                "question": "To create a link to an anchor, which property in <a> tag is used?",
-                "choices": ["src", "link", "name", "href"],
-                "correct": "3"
-            },
-            {
-                "question": "Choose the correct HTML tag for the most important heading",
-                "choices": ["h6", "head", "h1", "title"],
-                "correct": "2"
-            },
-            {
-                "question": "How can you make a list that lists the items with numbers?",
-                "choices": ["<ul>", "<li>", "<wn>", "<ol>"],
-                "correct": "3"
-            },
-            {
-                "question": "Where do you link to your css file?",
-                "choices": ["in the <body>", "in the ,<head>", "before the <head> ", "after the <body>"],
-                "correct": "1"
-            },
-            {
-                "question": "Choose the correct HTML tag for the most important heading",
-                "choices": ["h6", "head", "h1", "title"],
-                "correct": "2"
-            },
-            {
-                "question": "What HTML version is in current use?",
-                "choices": ["HTML5", "HTML4", "HTML7", "HTML3"],
-                "correct": "0"
-            },
-            {
-                "question": "Which is correct?",
-                "choices": ["<b/>hi<b>", "<b = hi/>", "hi<b>", "<b>hi</b>"],
-                "correct": "3"
-            }
-
-
-
-
-        ]
-    }
+        {
+            "question": "What does HTML mean?",
+            "choices": ["Hyper Text Markup Language", "Hidden Text Markup Langauge", "Hyper Text Manage Language", "How To Make Lasagna"],
+            "correct": "0"
+        },
+        {
+            "question": "< br/>What type of tag is this?",
+            "choices": ["break tag", "broken tag", "body tag", "bad tag"],
+            "correct": "0"
+        },
+        {
+            "question": "Which of the following is an example of an empty element?",
+            "choices": ["</img>", "<img></img>", "<img>", "<img>empty</img>"],
+            "correct": "1"
+        },
+        {
+            "question": "How does an HTML document start?",
+            "choices": ["<DOCTYPE! html>", "<HTML doctype!>", "<HTML! doctype>", "<!DOCTYPE html>"],
+            "correct": "3"
+        },
+        {
+            "question": "How do you size your HTML to fit any size viewport?",
+            "choices": ["With a <script> tag", "With a media query", "With firebase", "It automatically sizes"],
+            "correct": "1"
+        },
+        {
+            "question": "What symbol is associated with class?",
+            "choices": ["#", "$", ".", "%"],
+            "correct": "2"
+        },
+        {
+            "question": "How many HTML headings are there?",
+            "choices": ["5", "7", "6", "8"],
+            "correct": "2"
+        },
+        {
+            "question": "How do you add a script tag?",
+            "choices": ["add <script", "<script>", "<scriptto>", "<scripts>"],
+            "correct": "1"
+        },
+        {
+            "question": "What's the name of the new HTML5 element that begins with the letter K?",
+            "choices": ["keys", "kit", "kygo", "keygen"],
+            "correct": "3"
+        },
+        {
+            "question": "What file extension should hml files have",
+            "choices": ["html", "web", "page", "site"],
+            "correct": "0"
+        },
+        {
+            "question": "Who is making the Web standards?",
+            "choices": ["Google", "World Internt Committee", "World Wide Web Consortium", "International Web Authority (IWA)"],
+            "correct": "1"
+        },
+        {
+            "question": "Which tag is used to create paragraphs?",
+            "choices": ["<par>", "<p>", "<pg>", "<p."],
+            "correct": "1"
+        },
+        {
+            "question": "To create a link to an anchor, which property in <a> tag is used?",
+            "choices": ["src", "link", "name", "href"],
+            "correct": "3"
+        },
+        {
+            "question": "Choose the correct HTML tag for the most important heading",
+            "choices": ["h6", "head", "h1", "title"],
+            "correct": "2"
+        },
+        {
+            "question": "How can you make a list that lists the items with numbers?",
+            "choices": ["<ul>", "<li>", "<wn>", "<ol>"],
+            "correct": "3"
+        },
+        {
+            "question": "Where do you link to your css file?",
+            "choices": ["in the <body>", "in the ,<head>", "before the <head> ", "after the <body>"],
+            "correct": "1"
+        },
+        {
+            "question": "Choose the correct HTML tag for the most important heading",
+            "choices": ["h6", "head", "h1", "title"],
+            "correct": "2"
+        },
+        {
+            "question": "What HTML version is in current use?",
+            "choices": ["HTML5", "HTML4", "HTML7", "HTML3"],
+            "correct": "0"
+        },
+        {
+            "question": "Which is correct?",
+            "choices": ["<b/>hi<b>", "<b = hi/>", "hi<b>", "<b>hi</b>"],
+            "correct": "3"
+        }
+    ]
+}
