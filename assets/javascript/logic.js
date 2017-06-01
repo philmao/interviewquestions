@@ -97,37 +97,7 @@ var interviewQuestions = {
     timer: 0,
     state: 0,
 
-    startGame: function() {
 
-        $("#mainArea").empty();
-        console.log("started");
-
-        // timer = interviewQuestions.maxTime;
-        // intervalId = setInterval(interviewQuestions.decrement, 1000);
-
-        // $("#timer").text("Time Remaining: " + interviewQuestions.maxTime + " secs");
-
-        for(var j = 0; j < questions.length; j++) {
-
-            var questionLine = $("<p>");
-            questionLine.text(questions[j].question);
-            $("#mainArea").append(questionLine);
-            console.log(questions[j].question);
-
-            for(var i = 0; i < questions[j].choices.length; i++) {
-                var answerChoice = $("<input>");
-                answerChoice.attr("value", i + 1);  // value '0' is unanswered
-                answerChoice.attr("type","radio");
-                answerChoice.attr("name","question" + j);
-                answerChoice.attr("class", "radioButtons");
-                $("#mainArea").append(answerChoice);
-                $("#mainArea").append("<b>" + questions[j].choices[i] + "</b><br>");
-                // console.log(questions[j].choices[i]);
-            }
-        }
-        $("#mainArea").append("<button id='doneButton'>Done</button>");
-
-    },
     doneGame: function() {
         $("#doneButton").hide();
 
@@ -228,15 +198,34 @@ function processSubject(event) {
         url: queryURL,
         dataType: "json",
         success: function(result) {
-            // myData = jQuery.parseJSON(result);
-            console.log(result);
-            // console.log(myData);
+            myData = result.interview;
+
+            $(".mainArea").empty();
+
+            for(var j = 0; j < result.interview.length; j++) {
+
+                var questionLine = $("<p>");
+                questionLine.text(result.interview[j].question);
+                $(".mainArea").append(questionLine);
+                console.log(result.interview[j].question);
+
+                for(var i = 0; i < result.interview[j].choices.length; i++) {
+                    var answerChoice = $("<input>");
+                    answerChoice.attr("value", i + 1);  // value '0' is unanswered
+                    answerChoice.attr("type","radio");
+                    answerChoice.attr("name","question" + j);
+                    answerChoice.attr("class", "radioButtons");
+                    $(".mainArea").append(answerChoice);
+                    $(".mainArea").append("<b>" + result.interview[j].choices[i] + "</b><br>");
+                    console.log(result.interview[j].choices[i]);
+                }
+            }
         },
         error: function(result){
             console.log("Unable to get data");
         }
-    });
-    // console.log(myData[0]);
+
+    });    
 }
 
 $("body").on("click", "#signin", function(event){
@@ -252,8 +241,8 @@ $("body").on("click", "#signin", function(event){
 $("body").on("click", "#submitSubject", function(event){
 
     event.preventDefault();
+
     processSubject(event); 
-    interviewQuestions.startGame();
 
 
 }); //closing onclick start-button event after generating new HTML page
