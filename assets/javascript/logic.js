@@ -62,28 +62,6 @@ function callbackFunction() {
 var questionArray = [];
 var intervalId;
 
-var questions = [{
-    question: "Who was the second US president?",
-    choices: [ "John Adams", "George Washington", "John Quincy Adams", "Thomas Jefferson" ],
-    correctAnswer: 1,
-}, {
-    question: "In the 1951 science fiction movie, The Day The Earth Stood Still, what was the name of the robot?",
-    choices: [ "Gort", "Klaatu", "Robby" ],
-    correctAnswer: 2,
-}, {
-    question: "In the Dirty Harry movies starring Clint Eastwood as Dirty Harry, what was Harry's last name?",
-    choices: [ "Callahan", "Flint", "Harrigan", "Steele" ],
-    correctAnswer: 1,
-}, {
-    question: "What is the state capital of California?",
-    choices: [ "Sacramento", "Reno", "Portland", "Fresno" ],
-    correctAnswer: 1,
-}, {
-    question: "Which state has the most population?",
-    choices: [ "Texas", "New York", "California", "Florida" ],
-    correctAnswer: 3,
-}];
-
 var myData;
 
 var interviewQuestions = {
@@ -99,20 +77,24 @@ var interviewQuestions = {
 
 
     doneGame: function() {
-        $("#doneButton").hide();
 
         // clearInterval(intervalId);
         // $("#timer").text("");
+        console.log(myData);
 
-        for(i = 0; i < questions.length; i++) {
+        console.log(myData.length);
+
+        for(i = 0; i < myData.length; i++) {
 
             var name = "question" + i;
-            var temp = parseInt($('input[name="' + name + '"]:checked').val());
+            var temp = $('input[name="' + name + '"]:checked').val();
+            console.log(temp);
+            console.log(myData[i].correct);
 
             if(isNaN(temp)) {
                 interviewQuestions.unansweredCount++;
             }
-            else if (temp === questions[i].correctAnswer) {
+            else if (temp === myData[i].correct) {
                 interviewQuestions.correctCount++;
             }
             else {
@@ -120,13 +102,14 @@ var interviewQuestions = {
             }
         }
 
-        $("#mainArea").empty();
+        $(".mainArea").empty();
         console.log("done");
 
-        $("#mainArea").append("<h2>All Done!</h2>");
-        $("#mainArea").append("<h2>Correct Answers: " + interviewQuestions.correctCount + "</h2>");
-        $("#mainArea").append("<h2>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h2>");
-        $("#mainArea").append("<h2>Unanswered: " + interviewQuestions.unansweredCount + "</h2>");
+        $(".mainArea").append("<h2>All Done!</h2>");
+        $(".mainArea").append("<h2>Correct Answers: " + interviewQuestions.correctCount + "</h2>");
+        $(".mainArea").append("<h2>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h2>");
+        $(".mainArea").append("<h2>Unanswered: " + interviewQuestions.unansweredCount + "</h2>");
+        $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
 
 
     },
@@ -220,6 +203,8 @@ function processSubject(event) {
                     console.log(result.interview[j].choices[i]);
                 }
             }
+            $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
+
         },
         error: function(result){
             console.log("Unable to get data");
@@ -247,3 +232,24 @@ $("body").on("click", "#submitSubject", function(event){
 
 }); //closing onclick start-button event after generating new HTML page
 
+$("body").on("click", "#doneButton", function(event){
+
+    event.preventDefault();
+
+    interviewQuestions.doneGame();
+
+
+}); //closing onclick start-button event after generating new HTML page
+
+$("body").on("click", "#resetButton", function(event){
+
+    event.preventDefault();
+
+    interviewQuestions.unansweredCount = 0;
+    interviewQuestions.correctCount = 0;
+    interviewQuestions.incorrectCount = 0;
+
+    generateHTML();
+
+
+}); //closing onclick start-button event after generating new HTML page
