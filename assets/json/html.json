@@ -6,14 +6,14 @@
             "correct": "1"
         },
         {
-            "question": "'< br/>' is what type of tag is this?",
+            "question": "What type of tag is '< br/>'?",
             "choices": ["break tag", "broken tag", "body tag", "bad tag"],
             "correct": "1"
         },
         {
             "question": "Which of the following is an example of an empty element?",
-            "choices": ["</img>", "<img></img>", "<img>", "<img>empty</img>"],
-            "correct": "2"
+            "choices": ["'</img>'", "'<img></img>'", "'<img>'", "'<img>empty</img>'"],
+                        "correct": "2"
         },
         {
             "question": "How does an HTML document start?",
