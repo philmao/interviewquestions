@@ -1,0 +1,104 @@
+{
+    "interview": [     
+        {
+            "question": "jQuery is a ...",
+            "choices": [ "JavaScript Library", "JavaScript Language", "JavaScript Method", "PHP Method" ],
+            "correct": "1"
+        },
+        {
+            "question": "jQuery uses CSS selectors to select elements?",
+            "choices": [ "False", "True" ],
+            "correct": "2"
+        },
+        {
+            "question": "Which sign does jQuery use as a shortcut for jQuery?",
+            "choices": [ "the % sign", "the ? Sign", "the $ sign" ],
+            "correct": "3"
+        },
+        {
+            "question": "With jQuery, look at the following selector: $('div'). What does it select?",
+            "choices": [ "All div elements", "The first div element" ],
+            "correct": "1"
+        },
+        {
+            "question": "Is jQuery a library for client scripting or server scripting?",
+            "choices": [ "Client scripting", "Server scripting" ],
+            "correct": "1"
+        },
+        {
+            "question": "Is it possible to use jQuery together with AJAX?",
+            "choices": [ "No", "Yes"],
+            "correct": "2"
+        },
+        {
+            "question": "The jQuery html() method works for both HTML and XML documents",
+            "choices": [ "False", "True" ],
+            "correct": "2"
+        },
+        {
+            "question": "What is the correct jQuery code to set the background color of all p elements to red?",
+            "choices": [ "$('p').layout('background-color','red');", "$('p').manipulate('background-color','red');", "$('p').css('background-color','red');", "$('p').style('background-color','red');" ],
+            "correct": "3"
+        },
+        {
+            "question": "With jQuery, look at the following selector: $('div.intro'). What does it select?",
+            "choices": [ "The first div element with class='intro'", "The first div element with id='intro'", "All div elements with class='intro'", "All div elements with id='intro'" ],
+            "correct": "3"
+        },
+        {
+            "question": "Which jQuery method is used to hide selected elements?",
+            "choices": [ "hidden()", "hide()", "visible(false)", "display(none)" ],
+            "correct": "2"
+        },
+        {
+            "question": "Which jQuery method is used to set one or more style properties for selected elements?",
+            "choices": [ "css()", "html()", "style()" ],
+            "correct": "1"
+        },
+        {
+            "question": "Which jQuery method is used to perform an asynchronous HTTP request?",
+            "choices": [ "jQuery.ajaxAsync()", "jQuery.ajax()", "jQuery.ajaxSetup()" ],
+            "correct": "2"
+        },
+        {
+            "question": "What is the correct jQuery code for making all div elements 100 pixels high?",
+            "choices": [ "$('div').height='100'", "$('div').height(100)", "$('div').yPos(100)" ],
+            "correct": "2"
+        },
+        {
+            "question": "Which statement is true?",
+            "choices": [ "To use jQuery, you must buy the jQuery library at www.jquery.com", "To use jQuery, you do not have to do anything. Most browsers (Internet Explorer, Chrome, Firefox and Opera) have the jQuery library built in the browser", "To use jQuery, you can refer to a hosted jQuery library at Google", "To use jQuery, you do not have to do anything but add link to jquery library in your html" ],
+            "correct": "4"
+        },
+        {
+            "question": "What scripting language is jQuery written in?",
+            "choices": [ "VBScript", "JavaScript", "C#", "C++" ],
+            "correct": "2"
+        },
+        {
+            "question": "Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?",
+            "choices": [ "toggleClass()", "switch()", "altClass()", "switchClass()" ],
+            "correct": "4"
+        },
+        {
+            "question": "Look at the following jQuery selector: $('div#intro .head'). What does it select?",
+            "choices": [ "The first element with id='head' inside any div element with class='intro'", "All elements with class='head' inside the first div element with id='intro'", "All div elements with id='intro' or class='head'" ],
+            "correct": "3"
+        },
+        {
+            "question": "Which of these is NOT a valid comment in JavaScript?",
+            "choices": [ "// This is a comment", "/* This is a comment. */", "/* This is a comment", "<!-- This is a comment." ],
+            "correct": "2"
+        },
+        {
+            "question": "What is the difference between Hover and Mouseover?T",
+            "choices": [ "Mouseover allows you to specify an optional function to use for the mouseout event", "Hover allows you to specify an optional function to use for the mouseout event", "No Difference; Mouseover and Hover are the same" ],
+            "correct": "2"
+        },
+        {
+            "question": "Which of the following jQuery syntax uses the class selector?",
+            "choices": [ "$(‘#temp’)", "$(‘.temp’)", "$(‘class’)", "$(‘temp’).class" ],
+            "correct": "2"
+        }
+    ]
+}
