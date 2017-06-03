@@ -24,8 +24,6 @@ $(document).ready(function() {
         console.log("index3.html ready");
         interviewQuestions.displayQuestion();
 
-
-        // interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
     };
 });
 
@@ -184,7 +182,6 @@ var interviewQuestions = {
     currentQuestion: 0,
     userAnswers: [],
     maxQuestions: 10,
-    queryURL: "",
 
 
     // initialScreen: function() {
@@ -237,12 +234,12 @@ var interviewQuestions = {
             console.log("temp is undefined");
             return false;
         }
-
-        queryURL = "./assets/json/" + temp;
+        var queryURL = './assets/json/' + temp;
+        sessionStorage.setItem('queryURL', queryURL);
         console.log(queryURL);
         return true;
     },
-    displayQuestion: function(questionNum) {
+    displayQuestion: function() {
         // $(".mainArea2").empty();
         // console.log(myData);
         // console.log(questionNum);
@@ -274,6 +271,8 @@ var interviewQuestions = {
         //     $(".mainArea2").append("<button id='nextButton' class='btn btn-sm btn-primary btn-block'>Next</button>");
         // }
 
+        queryURL = sessionStorage.getItem('queryURL');
+        console.log(queryURL);
         $.ajax({
             type: "GET",
             url: queryURL,
