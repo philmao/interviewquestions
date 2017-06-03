@@ -7,7 +7,8 @@ $(document).ready(function() {
 
   function initialScreen() {
     startScreen = "<div class='container'><form class='form-signin'>"
-    startScreen += "<h2 class='form-signin-heading'>Please sign in</h2>"
+    startScreen += "<div class='welcome'>Welcome!</div>"
+    startScreen += "<h4 class='form-signin-heading'>Please sign in</h4>"
     startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
     startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
     startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
