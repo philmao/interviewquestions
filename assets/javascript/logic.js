@@ -28,7 +28,7 @@ $(document).ready(function() {
 });
 
 // on mouseclick the new HTML screen is generated
-$('body').on('click', '.btn-block', function(event){
+$('body').on('click', '#signin', function(event){
 
     // $('.mainArea').hide();
     generateSecondHTML();
@@ -46,7 +46,7 @@ function initialScreen() {
     startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
     startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
     startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
-    startScreen += "<button class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
     $('.mainArea').html(startScreen);
 
 }
@@ -75,7 +75,6 @@ $('body').on('click', '.selector', function(event){
 function generateThirdHTML() {
 
     window.location.href = "index3.html";
-    console.log("switch to index3");
 
     // $('.jumbotron').hide();
 
@@ -312,13 +311,13 @@ var interviewQuestions = {
                 // }
 
                 $(".mainArea").empty();
-                console.log(result.interview.length);
+
                 for(var j = 0; j < result.interview.length; j++) {
 
                     var questionLine = $("<p>");
                     questionLine.text(result.interview[j].question);
                     $(".mainArea").append(questionLine);
-                    // console.log(result.interview[j].question);
+                    console.log(result.interview[j].question);
 
                     for(var i = 0; i < result.interview[j].choices.length; i++) {
 
@@ -330,7 +329,7 @@ var interviewQuestions = {
                         $(".mainArea").append(answerChoice);
                         $(".mainArea").append("<b> " + result.interview[j].choices[i] + "</b><br>");
 
-                        // console.log(result.interview[j].choices[i]);
+                        console.log(result.interview[j].choices[i]);
                     }
                 }
                 $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
@@ -397,27 +396,27 @@ var interviewQuestions = {
 
 
 
-// $("body").on("click", "#doneButton", function(event){
+$("body").on("click", "#doneButton", function(event){
 
-//     event.preventDefault();
-
-//     interviewQuestions.displayResults();
-
-
-// }); 
-
-// $("body").on("click", "#resetButton", function(event){
-
-//     event.preventDefault();
-
-//     interviewQuestions.unansweredCount = 0;
-//     interviewQuestions.correctCount = 0;
-//     interviewQuestions.incorrectCount = 0;
-
-//     interviewQuestions.displaySubject();
+    event.preventDefault();
+    sessionStorage.setItem("queryURL", "");
+    interviewQuestions.displayResults();
 
 
-// }); 
+}); 
+
+$("body").on("click", "#resetButton", function(event){
+
+    event.preventDefault();
+
+    interviewQuestions.unansweredCount = 0;
+    interviewQuestions.correctCount = 0;
+    interviewQuestions.incorrectCount = 0;
+
+    generateSecondHTML();
+
+
+}); 
 
 $("body").on("click", ".subjectBtn", function(event){
 

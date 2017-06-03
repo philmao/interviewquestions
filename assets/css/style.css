@@ -86,7 +86,7 @@ html, body {
 body {
   margin: 0;
  /* background: linear-gradient(#eee, #ccc);*/
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .selector {
