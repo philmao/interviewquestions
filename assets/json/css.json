@@ -1,0 +1,100 @@
+
+{
+    "interview": [     
+        {
+            "question": "What does CSS mean?",
+            "choices": ["Creative Style Sheet", "Cascading Style Sheet", "Computer Style Sheet", "Colorful Style Sheet"],
+            "correct": "2"
+        },
+        {
+            "question": "Where in an HTML document is the correct place to refer to an external style sheet?",
+            "choices": ["At the top of the document", "In the section", "At the end of the document", "In the body"],
+            "correct": "1"
+        },
+        {
+            "question": "Which is the correct CSS syntax?",
+            "choices": ["{body:color=black(body}", "{body;color:black}", "Body:color=black", "Body {color: black}"],
+            "correct": "2"
+        },
+        {
+            "question": "Which property is used to change the background color?",
+            "choices": ["color:", "background:", "bground:", "background-color"],
+            "correct": "4"
+        },
+        {
+            "question": "Which CSS property controls the text size?",
+            "choices": ["Text-size", "Text-color", "Front-size", "Font-style"],
+            "correct": "3"
+        },
+        {
+            "question": "Which of the following is NOT a valid border-style property value?",
+            "choices": ["dotted", "inset", "glazed", "solid"],
+            "correct": "3"
+        },
+        {
+            "question": "Which of the following is NOT a valid CSS length unit?",
+            "choices": ["cm", "dm", "em", "mm"],
+            "correct": "2"
+        },
+        {
+            "question": "There are 16 basic color keywords in CSS. Which of the following are NOT basic color keywords?",
+            "choices": ["cyan", "olive", "fuchsia", "aqua"],
+            "correct": "1"
+        },
+        {
+            "question": "When using media queries, which of the following is NOT a valid media type?",
+            "choices": ["tv", "print", "braille", "voice"],
+            "correct": "4"
+        },
+        {
+            "question": "Which of the following color keywords has NOT yet been proposed in a W3C specification?",
+            "choices": ["blanchedalmond", "orchidblack", "navajowhite", "dodgerblue"],
+            "correct": "2"
+        },
+        {
+            "question": "Which is not a va;ue for the position attribute?",
+            "choices": ["relative", "fixed", "dynamic", "absolute"],
+            "correct": "3"
+        },
+        {
+            "question": "What is the CSS selector which allows you to target every element in a web page?Hide the answer",
+            "choices": ["*", "$", "~", "&"],
+            "correct": "1"
+        },
+        {
+            "question": "Which of the following CSS properties DOES NOT influence the box model?",
+            "choices": ["content", "outline", "margin", "border"],
+            "correct": "2"
+        },
+        {
+            "question": "There are five generic font family values that can be assigned to the font-family property. Which of the following is one of them?",
+            "choices": ["fantasy", "softened", "curly", "modern"],
+            "correct": "1"
+        },
+        {
+            "question": "Which of the following is NOT a valid CSS unit?",
+            "choices": ["hz", "px", "s", "ems"],
+            "correct": "4"
+        },
+        {
+            "question": "What does RGB stand for?",
+            "choices": ["Run Giga Bytes", "Run Grab Break", "Red Green Blue", "Right Gear Break"],
+            "correct": "3"
+        },
+        {
+            "question": "What is the CSS at-rule that can allow you to define the character encoding of a stylesheet?",
+            "choices": ["@char", "@charset", "@chset", "@cset"],
+            "correct": "2"
+        },
+        {
+            "question": "Where do you link to the CSS file?",
+            "choices": ["On the HTML doc", "On the Javascript doc", "On the CSS doc", "Through a Google CDN?"],
+            "correct": "1"
+        },
+        {
+            "question": "How do you end a style declration?",
+            "choices": ["with a .", "with a :", "with a ~", "with a ;"],
+            "correct": "4"
+        }
+    ]
+}
