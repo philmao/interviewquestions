@@ -9,6 +9,19 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//set the database and then set a refernece to the databse
+var database = firebase.database();
+var usersRef = database.ref('/users');
+var id;
+
+var startTime;
+var endTime;
+var duration;
+var profilePic;
+var photo;
+var score;
+var hScore = 0;
+
 // START COPY OF LOGIC.JS FILE
 // ******************************************************************
 $(document).ready(function() {
@@ -112,9 +125,66 @@ $('.selector button').click(function(e) {
 
 setTimeout(function() { toggleOptions('.selector'); }, 100);
 
-
+//function to calculate the highest score
+function highScore(lScore) {
+  console.log("Just came to highScore function");
+  if(lScore > hScore)
+    hScore = lScore;
+  $("#hScore").html(hScore);
+}
 //Setup linkedIn login
-var liLogin = function() { // Setup an event listener to make an API call once auth is complete
+//linkedIn functions, attaching auth eventhandler
+function OnLinkedInFrameworkLoad() {
+  IN.Event.on(IN, "auth", OnLinkedInAuth);
+}
+
+//retrieving user profile
+function OnLinkedInAuth() {
+    IN.API.Profile("me").result(getProfileData);
+}
+
+function getProfileData(profiles) {
+
+    var member = profiles.values[0];
+    id = member.id;
+    console.log('set id', id);
+
+    var firstName = member.firstName; 
+    var lastName = member.lastName; 
+    photo = member.pictureUrl; 
+    var headline = member.headline; 
+    
+    //use information captured above
+    console.log("First name:", firstName);
+    console.log("Last Name:", lastName);
+    console.log("Picture", photo);
+    console.log("Member Id:",member.id);
+
+    initRefreshScoreData();
+}
+
+//this function, gets user details based on member id
+function initRefreshScoreData() {
+    //usersRef.orderByChild("memberId").equalTo(id).on("child_added", function(snapshot) {
+    usersRef.orderByChild("memberId").equalTo(id).on("child_added", function(snapshot) {
+        console.log(snapshot.val());
+
+        //get the snapshot of user's score, duration and testDate based on member id
+        var localScore = snapshot.val().score;
+        var localDuration = snapshot.val().duration;
+        var localTestDate = snapshot.val().testDate;
+
+        //highest score
+        highScore(localScore);
+        console.log("Came back to orderByChild");
+
+        // Add user's score data into the table
+        $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
+        localTestDate + "</td></tr>");
+    });
+}
+
+/*var liLogin = function() { // Setup an event listener to make an API call once auth is complete
     IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
     IN.Event.on(IN, 'auth', getProfileData);
 }
@@ -130,17 +200,9 @@ var getProfileData = function() { // Use the API call wrapper to request the mem
         var profileUrl = profile.publicProfileUrl;
         var country = profile.location.name;
 
-        /*var user = {
-          emailId: emailAddress,
-          profile: {
-            fName: firstName,
-            lName: lastName,
-            pUrl: profileUrl
-          }
-        };*/
-
     });
-}
+}*/
+
 // Handle the successful return from the API call
 function onSuccess(data) {
     console.log(data);
@@ -157,9 +219,56 @@ var liLogout = function() {
     }
 
 function callbackFunction() {
-    alert("You have successfully logged out.")
+    alert("You have successfully logged out.");
+    init();
+    globalInit();
     }
 
+//set all the global variables to zero
+function globalInit() {
+  $("#name").val("");
+  startTime = 0;
+  endTime = 0;
+  duration = 0;
+  profilePic = "";
+
+}
+
+//on submit button click, the data gathered from the user is pushed to the database
+$("#submit").on("click", function() {
+
+      console.log("Submit button clicked: ");
+      endTime = moment();
+      console.log("End time is: ", endTime);
+
+      var temp = endTime.diff(startTime);
+      console.log("Temp time: ",temp);
+      duration = moment(temp).format('mm:ss');
+
+      console.log("Duration is: ", duration);
+
+      //creating an object to hold the data, which will be sent to firebase 
+      var data = {
+        name: $("#name").val(),
+        memberId: id,
+        score: score,
+        duration: duration,
+        testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
+      }
+    
+      console.log("Data ", data);
+      usersRef.push(data);
+
+  });
+//on restart, hide results page and show subject selection page and call its handler to increase the count
+$("#rst").on("click", function() {
+  $("#page3").css({ visibility: "hidden"});
+  $("#page2").css({ visibility: "visible"});
+  init();
+  //note down the starting time
+  startTime = moment();
+
+});
 
 var questionArray = [];
 var intervalId;
