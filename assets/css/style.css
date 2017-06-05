@@ -191,10 +191,25 @@ body {
   font-size: 14px;
 }
 
-
-
-
-
+/* settings for questions */
+.answerBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
+.prevBtn {
+  float: left;
+}
+.nextBtn {
+  float: right;
+}
+.doneBtn {
+  float: right;
+}
+p {
+  color: black;
+  font-size: 24px;
+}
 
 /*end SECOND PAGE*/
 

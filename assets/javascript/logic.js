@@ -22,7 +22,7 @@ $(document).ready(function() {
     };
     if (window.location.href.match('index3.html') != null) {
         console.log("index3.html ready");
-        interviewQuestions.displayQuestion();
+        interviewQuestions.getJsonData();
 
     };
 });
@@ -165,6 +165,8 @@ var questionArray = [];
 var intervalId;
 
 var myData;
+var queryURL;
+var subject;
 
 var interviewQuestions = {
 
@@ -180,6 +182,7 @@ var interviewQuestions = {
     // Question var
     currentQuestion: 0,
     userAnswers: [],
+    correctAnswers: [],
     maxQuestions: 10,
 
 
@@ -225,20 +228,55 @@ var interviewQuestions = {
 
     processSubject: function() {
 
+        var name = $('input[type="checkbox"]:checked').next("label").html();
         var temp = $('input[type="checkbox"]:checked').val();
-        // var temp = $(".subjectBtn.active").val();
+
+        console.log(name);
         console.log(temp);
 
         if(typeof temp == 'undefined') {
             console.log("temp is undefined");
             return false;
         }
-        var queryURL = './assets/json/' + temp;
-        sessionStorage.setItem('queryURL', queryURL);
-        console.log(queryURL);
+
+        var url = './assets/json/' + temp;
+        sessionStorage.setItem('subject', name);
+        sessionStorage.setItem('queryURL', url);
+        console.log(url);
+
         return true;
     },
-    displayQuestion: function() {
+    getJsonData: function() {
+
+        subject = sessionStorage.getItem('subject');
+        queryURL = sessionStorage.getItem('queryURL');
+
+        console.log(subject);
+        console.log(queryURL);
+
+        $.ajax({
+            type: "GET",
+            url: queryURL,
+            dataType: "json",
+            success: function(result) {
+                myData = result.interview;
+
+                userAnswers = [];
+                correctAnswers = [];
+                for(var i = 0; i < myData.length; i++) {
+                    userAnswers[i] = 0;
+                }
+
+                interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
+            },
+            error: function(result){
+                console.log("Unable to get data");
+            }
+                
+        });
+
+    },
+    displayQuestion: function(questionNum) {
         // $(".mainArea2").empty();
         // console.log(myData);
         // console.log(questionNum);
@@ -270,96 +308,120 @@ var interviewQuestions = {
         //     $(".mainArea2").append("<button id='nextButton' class='btn btn-sm btn-primary btn-block'>Next</button>");
         // }
 
-        queryURL = sessionStorage.getItem('queryURL');
-        console.log(queryURL);
-        $.ajax({
-            type: "GET",
-            url: queryURL,
-            dataType: "json",
-            success: function(result) {
-                myData = result.interview;
+        $(".mainArea").empty();
+        console.log(myData);
+        // console.log(questionNum);
 
-                // $(".mainArea2").empty();
-                // console.log(myData);
-                // console.log(interviewQuestions.currentQuestion);
-                // var questionLine = $("<p>");
-                // questionLine.text(myData[interviewQuestions.currentQuestion].question);
-                // $(".mainArea2").append(questionLine);
-                // console.log(myData[interviewQuestions.currentQuestion].question);
+        var titleLine = $("<h1>");
+        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        $(".mainArea").append(titleLine);
+        // console.log(titleLine);
 
-                // $(".mainArea2").append("<div class='btn-group-vertical' role='question'>");
+        var questionLine = $("<p>");
+        questionLine.text(myData[questionNum].question);
+        $(".mainArea").append(questionLine);
+        // console.log(myData[questionNum].question);
 
-                // for(var i = 0; i < myData[interviewQuestions.currentQuestion].choices.length; i++) {
+        var answerChoice = "<div class='btn-group-vertical' role='question'>";
 
+        for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
-                //     var answerChoice = "<button type='button' class='btn btn-default btn-lg addressBtn' ";
-                //     answerChoice += "value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
-                //     answerChoice += " name='question" + parseInt(interviewQuestions.currentQuestion) + "'>";
-                //     answerChoice += myData[interviewQuestions.currentQuestion].choices[i];
-                //     answerChoice += "</button>";
-                //     $(".mainArea2").append(answerChoice);
-                //     console.log(answerChoice);
-                //     console.log(myData[interviewQuestions.currentQuestion].choices[i]);
-                // }
-                // $(".mainArea2").append("</div>");
+            answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+            answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+            answerChoice += " id=" + parseInt(i + 1);
+            answerChoice += " name='question" + parseInt(questionNum) + "'>";
+            answerChoice += myData[questionNum].choices[i];
+            answerChoice += "</button>";
+            // console.log(answerChoice);
+            // console.log(myData[questionNum].choices[i]);
 
-                // if(interviewQuestions.currentQuestion === "0") {
-                //     $(".mainArea2").append("<button id='prevButton' class='btn btn-sm btn-primary btn-block'>Prev</button>");
-                // }
-                // if(interviewQuestions.currentQuestion === myData.length) {
-                //     $(".mainArea2").append("<button id='nextButton' class='btn btn-sm btn-primary btn-block'>Next</button>");
-                // }
+        }
+        $(".mainArea").append(answerChoice);
 
-                $(".mainArea").empty();
-
-                for(var j = 0; j < result.interview.length; j++) {
-
-                    var questionLine = $("<p>");
-                    questionLine.text(result.interview[j].question);
-                    $(".mainArea").append(questionLine);
-                    console.log(result.interview[j].question);
-
-                    for(var i = 0; i < result.interview[j].choices.length; i++) {
-
-                        var answerChoice = $("<input>");
-                        answerChoice.attr("value", i + 1);  // value '0' is unanswered
-                        answerChoice.attr("type","radio");
-                        answerChoice.attr("name","question" + j);
-                        answerChoice.attr("class", "radioButtons");
-                        $(".mainArea").append(answerChoice);
-                        $(".mainArea").append("<b> " + result.interview[j].choices[i] + "</b><br>");
-
-                        console.log(result.interview[j].choices[i]);
-                    }
-                }
-                $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
-
-            },
-            error: function(result){
-                console.log("Unable to get data");
+        if(userAnswers[questionNum] != 0) {
+            switch (parseInt(userAnswers[questionNum])) {
+                case 1: 
+                    $('#1').addClass('active');
+                    break;
+                case 2:
+                    $('#2').addClass('active');
+                    break;
+                case 3:
+                    $('#3').addClass('active');
+                    break;
+                case 4: 
+                    $('#4').addClass('active');
+                    break;
+                default:
             }
-            
-        });
+        }
+        correctAnswers[questionNum] = myData[questionNum].correct;
+
+        $(".buttonArea").empty();
+        if(questionNum > 0) {
+            $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
+        }
+        if(questionNum < (myData.length - 1)) {
+            $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
+        }
+        else {
+            $(".buttonArea").append("<button id='doneButton' class='btn btn-sm btn-primary doneBtn'>Done</button>");
+        }
+
+        // $(".mainArea").empty();
+
+        // for(var j = 0; j < result.interview.length; j++) {
+
+        //     var questionLine = $("<p>");
+        //     questionLine.text(result.interview[j].question);
+        //     $(".mainArea").append(questionLine);
+        //     console.log(result.interview[j].question);
+
+        //     for(var i = 0; i < result.interview[j].choices.length; i++) {
+
+        //         var answerChoice = $("<input>");
+        //         answerChoice.attr("value", i + 1);  // value '0' is unanswered
+        //         answerChoice.attr("type","radio");
+        //         answerChoice.attr("name","question" + j);
+        //         answerChoice.attr("class", "radioButtons");
+        //         $(".mainArea").append(answerChoice);
+        //         $(".mainArea").append("<b> " + result.interview[j].choices[i] + "</b><br>");
+
+        //         console.log(result.interview[j].choices[i]);
+        //     }
+        // }
+        // $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
+
+
     },
     displayResults: function() {
 
         // clearInterval(intervalId);
         // $("#timer").text("");
-        console.log(myData);
-
-        console.log(myData.length);
+        console.log(userAnswers);
+        console.log(correctAnswers);
 
         for(i = 0; i < myData.length; i++) {
 
-            var name = "question" + i;
-            var temp = $('input[name="' + name + '"]:checked').val();
-            console.log(temp);
-            console.log(myData[i].correct);
+            // var name = "question" + i;
+            // var temp = $('input[name="' + name + '"]:checked').val();
+            // console.log(temp);
+            // console.log(myData[i].correct);
 
-            if(isNaN(temp)) {
+            // if(isNaN(temp)) {
+            //     interviewQuestions.unansweredCount++;
+            // }
+            // else if (temp === myData[i].correct) {
+            //     interviewQuestions.correctCount++;
+            // }
+            // else {
+            //     interviewQuestions.incorrectCount++;
+            // }
+
+            if(parseInt(userAnswers[i]) === 0) {
                 interviewQuestions.unansweredCount++;
             }
-            else if (temp === myData[i].correct) {
+            else if(parseInt(userAnswers[i]) === parseInt(correctAnswers[i])) {
                 interviewQuestions.correctCount++;
             }
             else {
@@ -368,6 +430,7 @@ var interviewQuestions = {
         }
 
         $(".mainArea").empty();
+        $(".buttonArea").empty();
         console.log("done");
 
         $(".mainArea").append("<h2>All Done!</h2>");
@@ -422,30 +485,46 @@ $("body").on("click", ".subjectBtn", function(event){
 
     $('.btn-group-vertical > .btn').removeClass('active');
     $(this).addClass('active');
-    console.log("subject button selected");
+    // console.log("subject button selected");
 
 });
 
-$("body").on("click", ".addressBtn", function(event){
+$("body").on("click", ".answerBtn", function(event){
 
-    $('.btn-group-vertical > .btn').removeClass('active');
+    $('.btn-group-vertical > .answerBtn').removeClass('active');
     $(this).addClass('active');
-    console.log("address button selected");
+    userAnswers[interviewQuestions.currentQuestion] = $(this).val();
+    // console.log(userAnswers);
+    // console.log("answer button selected");
 
 });
 
-$("body").on("click", ".prevButton", function(event){
+$("body").on("click", ".prevBtn", function(event){
+    // console.log(userAnswers);
+    // console.log(correctAnswers);
 
-    interviewQuestions.currentQuestion--;
+    if(interviewQuestions.currentQuestion > 0) {
+        interviewQuestions.currentQuestion--;
+    }
+    else {
+        interviewQuestions.currentQuestion = 0;
+    }
     interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
-    console.log("prev button pressed");
+    // console.log("prev button pressed");
 
 });
 
-$("body").on("click", ".nextButton", function(event){
+$("body").on("click", ".nextBtn", function(event){
+    // console.log(userAnswers);
+    // console.log(correctAnswers);
 
-    interviewQuestions.currentQuestion++;
+    if(interviewQuestions.currentQuestion <= myData.length) {
+        interviewQuestions.currentQuestion++;
+    }
+    else {
+        interviewQuestions.currentQuestion = myData.length;
+    }
     interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
-    console.log("next button pressed");
+    // console.log("next button pressed");
 
 });
