@@ -20,10 +20,12 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
+
      <script type="text/javascript" src="https://platform.linkedin.com/in.js">
             api_key:78rln9tbzgak39
             onLoad: OnLinkedInFrameworkLoad
             authorize:true
+
     </script>
 
   </head>
@@ -31,10 +33,10 @@
     <body>
 
     <!--placeholder to display user name, picture and logout button-->
-    <div id = 'profile'>
-      <p><span id = 'name'></span></p>
-      <img id = "pic"></img>
-      <button id = "lt" type="logout" onclick="liLogout()">Logout</button>
+    <div id='profile'>
+      <p><span id='name'></span></p>
+      <img id="pic"></img>
+      <button id="lt" type="logout" onclick="liLogout()">Logout</button>
     </div>
 
     <div class="mainArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
@@ -59,7 +61,7 @@
             <div class="panel-heading">
               <h3 class="panel-title"><strong>Your score board</strong></h3>
             </div>
-            <div id ="pic"></div>
+            <div id="pic"></div>
             <div class="panel-body">
               <table class="table table-hover" id='score-table'>
                 <thead>
@@ -78,7 +80,7 @@
         </div>
 
       </div>
-      <button id = "restart" type="submit">Restart</button>
+      <button id="restart" class='btn btn-lg btn-primary btn-block' type="submit">Restart</button>
       </div>
     
 
