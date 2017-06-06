@@ -137,8 +137,8 @@ function highScore(lScore) {
 }
 
 function getProfileInfo() {
-    photo = sessionStorage.setItem('Picture');
-    id = sessionStorage.setItem('MemberId');
+    photo = sessionStorage.getItem('Picture');
+    id = sessionStorage.getItem('MemberId');
     firstName = sessionStorage.setItem('firstName');
     $("#name").append(firstName);
     $('img').attr("src", photo);
