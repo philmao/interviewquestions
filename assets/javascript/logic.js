@@ -728,7 +728,7 @@ $("body").on("click", ".answerBtn", function(event){
 $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);
     // console.log(correctAnswers);
-    console.log(interviewQuestions.reviewFlag);
+    // console.log(interviewQuestions.reviewFlag);
 
     if(interviewQuestions.currentQuestion > 0) {
         interviewQuestions.currentQuestion--;
@@ -742,14 +742,14 @@ $("body").on("click", ".prevBtn", function(event){
     else {
         interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
     }
-    console.log("prev button pressed");
+    // console.log("prev button pressed");
 
 });
 
 $("body").on("click", ".nextBtn", function(event){
     // console.log(userAnswers);
     // console.log(correctAnswers);
-    console.log(interviewQuestions.reviewFlag);
+    // console.log(interviewQuestions.reviewFlag);
 
     if(interviewQuestions.currentQuestion <= myData.length) {
         interviewQuestions.currentQuestion++;
@@ -763,6 +763,6 @@ $("body").on("click", ".nextBtn", function(event){
     else {
         interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
     }
-    console.log("next button pressed");
+    // console.log("next button pressed");
 
 });

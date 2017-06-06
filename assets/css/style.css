@@ -215,7 +215,7 @@ p {
   color: black;
   font-size: 24px;
 }
-#profile, #name, #pic, #lt {
+#profile {
   float: right;
 }
 /*end SECOND PAGE*/
