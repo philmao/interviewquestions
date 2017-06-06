@@ -197,6 +197,11 @@ body {
   background-color: lightblue;
   color: black;
 }
+.reviewBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
 .prevBtn {
   float: left;
 }
@@ -210,7 +215,9 @@ p {
   color: black;
   font-size: 24px;
 }
-
+#profile, #name, #pic, #lt {
+  float: right;
+}
 /*end SECOND PAGE*/
 
 

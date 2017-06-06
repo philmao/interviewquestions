@@ -297,6 +297,7 @@ var interviewQuestions = {
     userAnswers: [],
     correctAnswers: [],
     maxQuestions: 10,
+    reviewFlag: 0,
 
 
     // initialScreen: function() {
@@ -423,7 +424,7 @@ var interviewQuestions = {
         // }
 
         $(".mainArea").empty();
-        console.log(myData);
+        // console.log(myData);
         // console.log(questionNum);
 
         var titleLine = $("<h1>");
@@ -508,38 +509,114 @@ var interviewQuestions = {
 
 
     },
+    reviewQuestion: function(questionNum) {
+
+        $("#page3").css({ visibility: "hidden"}); 
+
+        $(".mainArea").empty();
+        console.log(myData);
+        // console.log(questionNum);
+
+        var titleLine = $("<h1>");
+        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        $(".mainArea").append(titleLine);
+        // console.log(titleLine);
+
+        var questionLine = $("<p>");
+        questionLine.text(myData[questionNum].question);
+        $(".mainArea").append(questionLine);
+        // console.log(myData[questionNum].question);
+
+        var answerChoice = "<div class='btn-group-vertical' role='question'>";
+
+        for(var i = 0; i < myData[questionNum].choices.length; i++) {
+
+            answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+            answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+            answerChoice += " id=" + parseInt(i + 1);
+            answerChoice += " name='question" + parseInt(questionNum) + "'>";
+            answerChoice += myData[questionNum].choices[i];
+            answerChoice += "</button>";
+            // console.log(answerChoice);
+            // console.log(myData[questionNum].choices[i]);
+
+        }
+        $(".mainArea").append(answerChoice);
+
+        if(userAnswers[questionNum] != 0) {
+            switch (parseInt(userAnswers[questionNum])) {
+                case 1: 
+                    $('#1').addClass('active');
+                    break;
+                case 2:
+                    $('#2').addClass('active');
+                    break;
+                case 3:
+                    $('#3').addClass('active');
+                    break;
+                case 4: 
+                    $('#4').addClass('active');
+                    break;
+                default:
+            }
+        }
+        // correctAnswers[questionNum] = myData[questionNum].correct;
+
+        var correctChoice = "<p>Correct answer:</p>";
+        correctChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+        // correctChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+        // correctChoice += " id=" + parseInt(i + 1);
+        correctChoice += " name='question" + parseInt(questionNum) + "'>";
+        correctChoice += myData[questionNum].choices[correctAnswers[questionNum]];
+        correctChoice += "</button>";
+        $(".mainArea").append(correctChoice);
+
+        $(".buttonArea").empty();
+        if(questionNum > 0) {
+            $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
+        }
+        if(questionNum < (myData.length - 1)) {
+            $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
+        }
+        else {
+            $(".buttonArea").append("<button id='doneButton' class='btn btn-sm btn-primary doneBtn'>Done</button>");
+        }
+
+    },
     displayResults: function() {
 
         // clearInterval(intervalId);
         // $("#timer").text("");
         console.log(userAnswers);
         console.log(correctAnswers);
+        if(!interviewQuestions.reviewFlag) {
 
-        for(i = 0; i < myData.length; i++) {
+            for(i = 0; i < myData.length; i++) {
 
-            // var name = "question" + i;
-            // var temp = $('input[name="' + name + '"]:checked').val();
-            // console.log(temp);
-            // console.log(myData[i].correct);
+                // var name = "question" + i;
+                // var temp = $('input[name="' + name + '"]:checked').val();
+                // console.log(temp);
+                // console.log(myData[i].correct);
 
-            // if(isNaN(temp)) {
-            //     interviewQuestions.unansweredCount++;
-            // }
-            // else if (temp === myData[i].correct) {
-            //     interviewQuestions.correctCount++;
-            // }
-            // else {
-            //     interviewQuestions.incorrectCount++;
-            // }
+                // if(isNaN(temp)) {
+                //     interviewQuestions.unansweredCount++;
+                // }
+                // else if (temp === myData[i].correct) {
+                //     interviewQuestions.correctCount++;
+                // }
+                // else {
+                //     interviewQuestions.incorrectCount++;
+                // }
 
-            if(parseInt(userAnswers[i]) === 0) {
-                interviewQuestions.unansweredCount++;
-            }
-            else if(parseInt(userAnswers[i]) === parseInt(correctAnswers[i])) {
-                interviewQuestions.correctCount++;
-            }
-            else {
-                interviewQuestions.incorrectCount++;
+                if(parseInt(userAnswers[i]) === 0) {
+                    interviewQuestions.unansweredCount++;
+                }
+                else if(parseInt(userAnswers[i]) === parseInt(correctAnswers[i])) {
+                    interviewQuestions.correctCount++;
+                }
+                else {
+                    interviewQuestions.incorrectCount++;
+                }
             }
         }
 
@@ -552,7 +629,7 @@ var interviewQuestions = {
         $(".mainArea").append("<h3>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h3>");
         $(".mainArea").append("<h3>Unanswered: " + interviewQuestions.unansweredCount + "</h3>");
         // $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
-        // $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
+        $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary btn-block'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
     }
@@ -581,23 +658,37 @@ $("body").on("click", "#doneButton", function(event){
     sessionStorage.setItem("queryURL", "");
     interviewQuestions.displayResults();
 
-    var temp = endTime.diff(startTime);
-    console.log("Temp time: ",temp);
-    duration = moment(temp).format('mm:ss');
+    if(!interviewQuestions.reviewFlag) {
 
-    console.log("Duration is: ", duration);
+        var temp = endTime.diff(startTime);
+        console.log("Temp time: ",temp);
+        duration = moment(temp).format('mm:ss');
 
-      //creating an object to hold the data, which will be sent to firebase 
-      var data = {
-        name: $("#name").val(),
-        memberId: id,
-        score: interviewQuestions.correctCount,
-        duration: duration,
-        testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
-      }
-    
-    console.log("Data ", data);
-    usersRef.push(data);
+        console.log("Duration is: ", duration);
+
+
+        //creating an object to hold the data, which will be sent to firebase 
+        var data = {
+            name: $("#name").val(),
+            memberId: id,
+            score: interviewQuestions.correctCount,
+            duration: duration,
+            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
+        }
+        
+        console.log("Data ", data);
+        usersRef.push(data);
+    }
+
+
+}); 
+
+$("body").on("click", "#review", function(event){
+
+    event.preventDefault();
+    interviewQuestions.currentQuestion = 0;
+    interviewQuestions.reviewFlag = 1;
+    interviewQuestions.reviewQuestion(interviewQuestions.currentQuestion);
 
 
 }); 
@@ -609,6 +700,7 @@ $("body").on("click", "#restart", function(event){
     interviewQuestions.unansweredCount = 0;
     interviewQuestions.correctCount = 0;
     interviewQuestions.incorrectCount = 0;
+    interviewQuestions.reviewFlag = 0;
 
     generateSecondHTML();
 
@@ -636,6 +728,7 @@ $("body").on("click", ".answerBtn", function(event){
 $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);
     // console.log(correctAnswers);
+    console.log(interviewQuestions.reviewFlag);
 
     if(interviewQuestions.currentQuestion > 0) {
         interviewQuestions.currentQuestion--;
@@ -643,14 +736,20 @@ $("body").on("click", ".prevBtn", function(event){
     else {
         interviewQuestions.currentQuestion = 0;
     }
-    interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
-    // console.log("prev button pressed");
+    if(interviewQuestions.reviewFlag) {
+        interviewQuestions.reviewQuestion(interviewQuestions.currentQuestion);
+    }
+    else {
+        interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
+    }
+    console.log("prev button pressed");
 
 });
 
 $("body").on("click", ".nextBtn", function(event){
     // console.log(userAnswers);
     // console.log(correctAnswers);
+    console.log(interviewQuestions.reviewFlag);
 
     if(interviewQuestions.currentQuestion <= myData.length) {
         interviewQuestions.currentQuestion++;
@@ -658,7 +757,12 @@ $("body").on("click", ".nextBtn", function(event){
     else {
         interviewQuestions.currentQuestion = myData.length;
     }
-    interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
-    // console.log("next button pressed");
+    if(interviewQuestions.reviewFlag) {
+        interviewQuestions.reviewQuestion(interviewQuestions.currentQuestion);
+    }
+    else {
+        interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
+    }
+    console.log("next button pressed");
 
 });
