@@ -44,8 +44,10 @@ $(document).ready(function() {
 
         //function to display user's name, pic and logout button
         getProfileInfo();
+        startTime = moment();
 
         $("#page3").css({ visibility: "hidden"}); 
+        // $("#page3").hide();
         interviewQuestions.getJsonData();
 
     };
@@ -85,7 +87,6 @@ $('body').on('click', '.selector', function(event){
 
     console.log("click subject");
     if(interviewQuestions.processSubject()){
-        startTime = moment();
         generateThirdHTML();
     }
   });
@@ -137,9 +138,9 @@ function highScore(lScore) {
 }
 
 function getProfileInfo() {
-    photo = sessionStorage.setItem('Picture');
-    id = sessionStorage.setItem('MemberId');
-    firstName = sessionStorage.setItem('firstName');
+    photo = sessionStorage.getItem('Picture');
+    id = sessionStorage.getItem('MemberId');
+    firstName = sessionStorage.getItem('firstName');
     $("#name").append(firstName);
     $('img').attr("src", photo);
     $("#pic").append(profilePic); 
@@ -541,11 +542,12 @@ var interviewQuestions = {
         $(".buttonArea").empty();
         console.log("done");
 
-        $(".mainArea").append("<h2>All Done!</h2>");
-        $(".mainArea").append("<h2>Correct Answers: " + interviewQuestions.correctCount + "</h2>");
-        $(".mainArea").append("<h2>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h2>");
-        $(".mainArea").append("<h2>Unanswered: " + interviewQuestions.unansweredCount + "</h2>");
-        $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
+        $(".mainArea").append("<h3>All Done!</h3>");
+        $(".mainArea").append("<h3>Correct Answers: " + interviewQuestions.correctCount + "</h3>");
+        $(".mainArea").append("<h3>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h3>");
+        $(".mainArea").append("<h3>Unanswered: " + interviewQuestions.unansweredCount + "</h3>");
+        // $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
+        // $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
         $("#page3").css({ visibility: "visible"}); 
 
     }
@@ -595,7 +597,7 @@ $("body").on("click", "#doneButton", function(event){
 
 }); 
 
-$("body").on("click", "#resetButton", function(event){
+$("body").on("click", "#restart", function(event){
 
     event.preventDefault();
 
