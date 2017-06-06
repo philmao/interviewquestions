@@ -17,9 +17,51 @@
 
   </head>
 
+    <body>
+
+    <!--placeholder to display user name, picture and logout button-->
+    <div id = 'profile'>
+      <p><span id = 'name'></span></p>
+      <img id = "pic"></img>
+      <button id = "lt" type="logout" onclick="liLogout()">Logout</button>
+    </div>
 
     <div class="mainArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
     <div class="buttonArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
+    <h2> Your highest score so far :<span id ="hScore"></span></h2>
+
+    <div class="container" id="page3">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+        <!-- Current Employees-->
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Your score board</strong></h3>
+            </div>
+            <div id ="pic"></div>
+            <div class="panel-body">
+              <table class="table table-hover" id='score-table'>
+                <thead>
+                  <tr>
+                    <th>Score</th>
+                    <th>Duration (mins:secs)</th>
+                    <th>Test Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+    
+
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

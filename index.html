@@ -13,6 +13,7 @@
 
         <script type="text/javascript" src="https://platform.linkedin.com/in.js">
             api_key:78rln9tbzgak39
+            onLoad: OnLinkedInFrameworkLoad
             authorize:true
         </script>
 
@@ -45,8 +46,16 @@
 
 
         <!-- LinkedIn login -->
-        <script type="in/Login"></script><br>
-        <button type="logout" onclick="liLogout()">Logout</button>
+        <script type="in/Login"></script><br><br>
+        <button id = "st" type="submit">Start</button>
+     
+
+        <!--If the user wants to take another test, displayed in the final page-->
+        <!--<button id = "rst" type="submit">Restart</button>-->
+     
+        <!--logout of the linkedIn account -->
+        <!--<button id = "lt" type="logout" onclick="liLogout()">Logout</button>-->
+        
 
     </body>
 </html>
