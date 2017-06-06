@@ -191,7 +191,7 @@ function initRefreshScoreData() {
     console.log(snapshot.val());
 
     //get the snapshot of user's score, duration and testDate based on member id
-    var localScore = snapshot.val().interviewQuestions.correctCount;
+    var localScore = snapshot.val().score;
     var localDuration = snapshot.val().duration;
     var localTestDate = snapshot.val().testDate;
 
@@ -238,31 +238,31 @@ function globalInit() {
     }
 
 //on submit button click, the data gathered from the user is pushed to the database
-$("#submit").on("click", function() {
+// $("#submit").on("click", function() {
 
-    console.log("Submit button clicked: ");
-    endTime = moment();
-    console.log("End time is: ", endTime);
+//     console.log("Submit button clicked: ");
+//     endTime = moment();
+//     console.log("End time is: ", endTime);
 
-    var temp = endTime.diff(startTime);
-    console.log("Temp time: ",temp);
-    duration = moment(temp).format('mm:ss');
+//     var temp = endTime.diff(startTime);
+//     console.log("Temp time: ",temp);
+//     duration = moment(temp).format('mm:ss');
 
-    console.log("Duration is: ", duration);
+//     console.log("Duration is: ", duration);
 
-      //creating an object to hold the data, which will be sent to firebase 
-      var data = {
-        name: firstName,
-        memberId: id,
-        score: interviewQuestions.correctCount,
-        duration: duration,
-        testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
-      }
+//       //creating an object to hold the data, which will be sent to firebase 
+//       var data = {
+//         name: firstName,
+//         memberId: id,
+//         score: interviewQuestions.correctCount,
+//         duration: duration,
+//         testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
+//       }
     
-    console.log("Data ", data);
-    usersRef.push(data);
+//     console.log("Data ", data);
+//     usersRef.push(data);
 
-  });
+//   });
 
 //on restart, hide results page and show subject selection page and call its handler to increase the count
 /*$("#rst").on("click", function() {
