@@ -60,7 +60,12 @@ $('body').on('click', '#signin', function(event){
     generateSecondHTML();
 
 });
-    
+$('body').on('click', '#st', function(event){
+
+    // $('.mainArea').hide();
+    generateSecondHTML();
+
+});   
 
 // function for creation of initial start screen
 function initialScreen() {
