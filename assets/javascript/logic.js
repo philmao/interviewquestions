@@ -44,8 +44,10 @@ $(document).ready(function() {
 
         //function to display user's name, pic and logout button
         getProfileInfo();
+        startTime = moment();
 
         $("#page3").css({ visibility: "hidden"}); 
+        // $("#page3").hide();
         interviewQuestions.getJsonData();
 
     };
@@ -58,7 +60,12 @@ $('body').on('click', '#signin', function(event){
     generateSecondHTML();
 
 });
-    
+$('body').on('click', '#st', function(event){
+
+    // $('.mainArea').hide();
+    generateSecondHTML();
+
+});   
 
 // function for creation of initial start screen
 function initialScreen() {
@@ -85,7 +92,6 @@ $('body').on('click', '.selector', function(event){
 
     console.log("click subject");
     if(interviewQuestions.processSubject()){
-        startTime = moment();
         generateThirdHTML();
     }
   });
@@ -140,6 +146,7 @@ function getProfileInfo() {
     photo = sessionStorage.getItem('Picture');
     id = sessionStorage.getItem('MemberId');
     firstName = sessionStorage.setItem('firstName');
+
     $("#name").append(firstName);
     $('img').attr("src", photo);
     $("#pic").append(profilePic); 
@@ -232,31 +239,31 @@ function globalInit() {
     }
 
 //on submit button click, the data gathered from the user is pushed to the database
-$("#submit").on("click", function() {
+// $("#submit").on("click", function() {
 
-    console.log("Submit button clicked: ");
-    endTime = moment();
-    console.log("End time is: ", endTime);
+//     console.log("Submit button clicked: ");
+//     endTime = moment();
+//     console.log("End time is: ", endTime);
 
-    var temp = endTime.diff(startTime);
-    console.log("Temp time: ",temp);
-    duration = moment(temp).format('mm:ss');
+//     var temp = endTime.diff(startTime);
+//     console.log("Temp time: ",temp);
+//     duration = moment(temp).format('mm:ss');
 
-    console.log("Duration is: ", duration);
+//     console.log("Duration is: ", duration);
 
-      //creating an object to hold the data, which will be sent to firebase 
-      var data = {
-        name: firstName,
-        memberId: id,
-        score: interviewQuestions.correctCount,
-        duration: duration,
-        testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
-      }
+//       //creating an object to hold the data, which will be sent to firebase 
+//       var data = {
+//         name: firstName,
+//         memberId: id,
+//         score: interviewQuestions.correctCount,
+//         duration: duration,
+//         testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
+//       }
     
-    console.log("Data ", data);
-    usersRef.push(data);
+//     console.log("Data ", data);
+//     usersRef.push(data);
 
-  });
+//   });
 
 //on restart, hide results page and show subject selection page and call its handler to increase the count
 /*$("#rst").on("click", function() {
@@ -541,11 +548,12 @@ var interviewQuestions = {
         $(".buttonArea").empty();
         console.log("done");
 
-        $(".mainArea").append("<h2>All Done!</h2>");
-        $(".mainArea").append("<h2>Correct Answers: " + interviewQuestions.correctCount + "</h2>");
-        $(".mainArea").append("<h2>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h2>");
-        $(".mainArea").append("<h2>Unanswered: " + interviewQuestions.unansweredCount + "</h2>");
-        $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
+        $(".mainArea").append("<h3>All Done!</h3>");
+        $(".mainArea").append("<h3>Correct Answers: " + interviewQuestions.correctCount + "</h3>");
+        $(".mainArea").append("<h3>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h3>");
+        $(".mainArea").append("<h3>Unanswered: " + interviewQuestions.unansweredCount + "</h3>");
+        // $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
+        // $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
         $("#page3").css({ visibility: "visible"}); 
 
     }
@@ -595,7 +603,7 @@ $("body").on("click", "#doneButton", function(event){
 
 }); 
 
-$("body").on("click", "#resetButton", function(event){
+$("body").on("click", "#restart", function(event){
 
     event.preventDefault();
 
