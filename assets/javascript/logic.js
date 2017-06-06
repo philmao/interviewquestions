@@ -37,13 +37,13 @@ $(document).ready(function() {
         console.log("index2.html ready");
 
         //function to display user's name, pic and logout button
-        getProfileInfo();
+        displayProfileInfo();
     };
     if (window.location.href.match('index3.html') != null) {
         console.log("index3.html ready");
 
         //function to display user's name, pic and logout button
-        getProfileInfo();
+        displayProfileInfo();
         startTime = moment();
 
         $("#page3").css({ visibility: "hidden"}); 
@@ -54,13 +54,13 @@ $(document).ready(function() {
 });
 
 // on mouseclick the new HTML screen is generated
-$('body').on('click', '#signin', function(event){
+$('body').on('click', '#signin', function(event) {
 
     // $('.mainArea').hide();
     generateSecondHTML();
 
 });
-$('body').on('click', '#st', function(event){
+$('body').on('click', '#st', function(event) {
 
     // $('.mainArea').hide();
     generateSecondHTML();
@@ -88,13 +88,13 @@ function generateSecondHTML() {
     window.location.href = "index2.html";
 }
 
-$('body').on('click', '.selector', function(event){
+$('body').on('click', '.selector', function(event) {
 
     console.log("click subject");
-    if(interviewQuestions.processSubject()){
+    if(interviewQuestions.processSubject()) {
         generateThirdHTML();
     }
-  });
+});
 
 function generateThirdHTML() {
 
@@ -142,7 +142,7 @@ function highScore(lScore) {
     $("#hScore").html(hScore);
 }
 
-function getProfileInfo() {
+function displayProfileInfo() {
     photo = sessionStorage.getItem('Picture');
     id = sessionStorage.getItem('MemberId');
     firstName = sessionStorage.setItem('firstName');
@@ -210,23 +210,23 @@ function initRefreshScoreData() {
 // Handle the successful return from the API call
 function onSuccess(data) {
     console.log(data);
-    }   
+}   
 
 // Handle an error response from the API call
 function onError(error) {
     console.log(error);
-    }
+}
 
 //function to logout from the session
 var liLogout = function() {
     IN.User.logout(callbackFunction);
-    }
+}
 
 function callbackFunction() {
     alert("You have successfully logged out.");
     //init();
     globalInit();
-    }
+}
 
 //set all the global variables to zero
 function globalInit() {
@@ -236,44 +236,8 @@ function globalInit() {
     duration = 0;
     profilePic = "";
 
-    }
+}
 
-//on submit button click, the data gathered from the user is pushed to the database
-// $("#submit").on("click", function() {
-
-//     console.log("Submit button clicked: ");
-//     endTime = moment();
-//     console.log("End time is: ", endTime);
-
-//     var temp = endTime.diff(startTime);
-//     console.log("Temp time: ",temp);
-//     duration = moment(temp).format('mm:ss');
-
-//     console.log("Duration is: ", duration);
-
-//       //creating an object to hold the data, which will be sent to firebase 
-//       var data = {
-//         name: firstName,
-//         memberId: id,
-//         score: interviewQuestions.correctCount,
-//         duration: duration,
-//         testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
-//       }
-    
-//     console.log("Data ", data);
-//     usersRef.push(data);
-
-//   });
-
-//on restart, hide results page and show subject selection page and call its handler to increase the count
-/*$("#rst").on("click", function() {
-  $("#page3").css({ visibility: "hidden"});
-  $("#page2").css({ visibility: "visible"});
-  init();
-  //note down the starting time
-  startTime = moment();
-
-});*/
 
 var questionArray = [];
 var intervalId;
@@ -428,7 +392,7 @@ var interviewQuestions = {
         // console.log(myData);
         // console.log(questionNum);
 
-        var titleLine = $("<h1>");
+        var titleLine = $("<h2>");
         titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
@@ -518,7 +482,7 @@ var interviewQuestions = {
         console.log(myData);
         // console.log(questionNum);
 
-        var titleLine = $("<h1>");
+        var titleLine = $("<h2>");
         titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
@@ -674,7 +638,7 @@ $("body").on("click", "#doneButton", function(event){
             memberId: id,
             score: interviewQuestions.correctCount,
             duration: duration,
-            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
+            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss a')
         }
         
         console.log("Data ", data);
