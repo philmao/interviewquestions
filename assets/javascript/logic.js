@@ -33,8 +33,19 @@ $(document).ready(function() {
 
         initialScreen();
     };
+    if (window.location.href.match('index2.html') != null) {
+        console.log("index2.html ready");
+
+        //function to display user's name, pic and logout button
+        getProfileInfo();
+    };
     if (window.location.href.match('index3.html') != null) {
         console.log("index3.html ready");
+
+        //function to display user's name, pic and logout button
+        getProfileInfo();
+
+        $("#page3").css({ visibility: "hidden"}); 
         interviewQuestions.getJsonData();
 
     };
@@ -67,29 +78,21 @@ function initialScreen() {
 // function for creation of second page with subject options
 function generateSecondHTML() {
 
-  
     window.location.href = "index2.html";
-    
-    // $('.jumbotron').hide();
-
 }
 
 $('body').on('click', '.selector', function(event){
+
     console.log("click subject");
     if(interviewQuestions.processSubject()){
+        startTime = moment();
         generateThirdHTML();
-
     }
-
-    // $('.mainArea').hide();
-
   });
 
 function generateThirdHTML() {
 
     window.location.href = "index3.html";
-
-    // $('.jumbotron').hide();
 
 }
 
@@ -127,15 +130,25 @@ setTimeout(function() { toggleOptions('.selector'); }, 100);
 
 //function to calculate the highest score
 function highScore(lScore) {
-  console.log("Just came to highScore function");
-  if(lScore > hScore)
-    hScore = lScore;
-  $("#hScore").html(hScore);
+    console.log("Just came to highScore function");
+    if(lScore > hScore)
+        hScore = lScore;
+    $("#hScore").html(hScore);
 }
+
+function getProfileInfo() {
+    photo = sessionStorage.setItem('Picture');
+    id = sessionStorage.setItem('MemberId');
+    firstName = sessionStorage.setItem('firstName');
+    $("#name").append(firstName);
+    $('img').attr("src", photo);
+    $("#pic").append(profilePic); 
+}
+
 //Setup linkedIn login
 //linkedIn functions, attaching auth eventhandler
 function OnLinkedInFrameworkLoad() {
-  IN.Event.on(IN, "auth", OnLinkedInAuth);
+    IN.Event.on(IN, "auth", OnLinkedInAuth);
 }
 
 //retrieving user profile
@@ -159,59 +172,43 @@ function getProfileData(profiles) {
     console.log("Last Name:", lastName);
     console.log("Picture", photo);
     console.log("Member Id:",member.id);
-
+    sessionStorage.setItem('Picture',photo);
+    sessionStorage.setItem('MemberId',id);
+    sessionStorage.setItem('firstName', firstName);
     initRefreshScoreData();
 }
 
 //this function, gets user details based on member id
 function initRefreshScoreData() {
-    //usersRef.orderByChild("memberId").equalTo(id).on("child_added", function(snapshot) {
+    
     usersRef.orderByChild("memberId").equalTo(id).on("child_added", function(snapshot) {
-        console.log(snapshot.val());
+    console.log(snapshot.val());
 
-        //get the snapshot of user's score, duration and testDate based on member id
-        var localScore = snapshot.val().score;
-        var localDuration = snapshot.val().duration;
-        var localTestDate = snapshot.val().testDate;
+    //get the snapshot of user's score, duration and testDate based on member id
+    var localScore = snapshot.val().interviewQuestions.correctCount;
+    var localDuration = snapshot.val().duration;
+    var localTestDate = snapshot.val().testDate;
 
-        //highest score
-        highScore(localScore);
-        console.log("Came back to orderByChild");
+    //highest score
+    highScore(localScore);
+    console.log("Came back to orderByChild");
 
-        // Add user's score data into the table
-        $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
-        localTestDate + "</td></tr>");
+    // Add user's score data into the table
+    $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
+    localTestDate + "</td></tr>");
     });
 }
 
-/*var liLogin = function() { // Setup an event listener to make an API call once auth is complete
-    IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
-    IN.Event.on(IN, 'auth', getProfileData);
-}
-
-var getProfileData = function() { // Use the API call wrapper to request the member's basic profile data
-    IN.API.Profile("me").fields("id,firstName,lastName,email-address,picture-urls::(original),public-profile-url,location:(name)").result(function (me) {
-        var profile = me.values[0];
-        var id = profile.id;
-        var firstName = profile.firstName;
-        var lastName = profile.lastName;
-        var emailAddress = profile.emailAddress;
-        var pictureUrl = profile.pictureUrls.values[0];
-        var profileUrl = profile.publicProfileUrl;
-        var country = profile.location.name;
-
-    });
-}*/
 
 // Handle the successful return from the API call
 function onSuccess(data) {
     console.log(data);
-}
+    }   
 
 // Handle an error response from the API call
 function onError(error) {
     console.log(error);
-}
+    }
 
 //function to logout from the session
 var liLogout = function() {
@@ -220,55 +217,56 @@ var liLogout = function() {
 
 function callbackFunction() {
     alert("You have successfully logged out.");
-    init();
+    //init();
     globalInit();
     }
 
 //set all the global variables to zero
 function globalInit() {
-  $("#name").val("");
-  startTime = 0;
-  endTime = 0;
-  duration = 0;
-  profilePic = "";
+    //$("#name").val("");
+    startTime = 0;
+    endTime = 0;
+    duration = 0;
+    profilePic = "";
 
-}
+    }
 
 //on submit button click, the data gathered from the user is pushed to the database
 $("#submit").on("click", function() {
 
-      console.log("Submit button clicked: ");
-      endTime = moment();
-      console.log("End time is: ", endTime);
+    console.log("Submit button clicked: ");
+    endTime = moment();
+    console.log("End time is: ", endTime);
 
-      var temp = endTime.diff(startTime);
-      console.log("Temp time: ",temp);
-      duration = moment(temp).format('mm:ss');
+    var temp = endTime.diff(startTime);
+    console.log("Temp time: ",temp);
+    duration = moment(temp).format('mm:ss');
 
-      console.log("Duration is: ", duration);
+    console.log("Duration is: ", duration);
 
       //creating an object to hold the data, which will be sent to firebase 
       var data = {
-        name: $("#name").val(),
+        name: firstName,
         memberId: id,
-        score: score,
+        score: interviewQuestions.correctCount,
         duration: duration,
         testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
       }
     
-      console.log("Data ", data);
-      usersRef.push(data);
+    console.log("Data ", data);
+    usersRef.push(data);
 
   });
+
 //on restart, hide results page and show subject selection page and call its handler to increase the count
-$("#rst").on("click", function() {
+/*$("#rst").on("click", function() {
   $("#page3").css({ visibility: "hidden"});
   $("#page2").css({ visibility: "visible"});
   init();
   //note down the starting time
   startTime = moment();
 
-});
+});*/
 
 var questionArray = [];
 var intervalId;
@@ -368,6 +366,7 @@ var interviewQuestions = {
             url: queryURL,
             dataType: "json",
             success: function(result) {
+                startTime = moment();
                 myData = result.interview;
 
                 userAnswers = [];
@@ -547,6 +546,7 @@ var interviewQuestions = {
         $(".mainArea").append("<h2>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h2>");
         $(".mainArea").append("<h2>Unanswered: " + interviewQuestions.unansweredCount + "</h2>");
         $(".mainArea").append("<button id='resetButton' class='btn btn-lg btn-primary btn-block'>Reset</button>");
+        $("#page3").css({ visibility: "visible"}); 
 
     }
 
@@ -569,10 +569,28 @@ var interviewQuestions = {
 
 
 $("body").on("click", "#doneButton", function(event){
-
+    endTime = moment();
     event.preventDefault();
     sessionStorage.setItem("queryURL", "");
     interviewQuestions.displayResults();
+
+    var temp = endTime.diff(startTime);
+    console.log("Temp time: ",temp);
+    duration = moment(temp).format('mm:ss');
+
+    console.log("Duration is: ", duration);
+
+      //creating an object to hold the data, which will be sent to firebase 
+      var data = {
+        name: $("#name").val(),
+        memberId: id,
+        score: interviewQuestions.correctCount,
+        duration: duration,
+        testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss')
+      }
+    
+    console.log("Data ", data);
+    usersRef.push(data);
 
 
 }); 
