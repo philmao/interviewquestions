@@ -185,7 +185,7 @@ function initRefreshScoreData() {
     console.log(snapshot.val());
 
     //get the snapshot of user's score, duration and testDate based on member id
-    var localScore = snapshot.val().interviewQuestions.correctCount;
+    var localScore = snapshot.val().score;
     var localDuration = snapshot.val().duration;
     var localTestDate = snapshot.val().testDate;
 
