@@ -554,6 +554,37 @@ $("body").on("click", ".answerBtn", function(event){
     // console.log(userAnswers);
     // console.log("answer button selected");
 
+
+var latitude;
+var longitude;
+
+
+// Googe Map API with location finding code
+
+function initMap() {
+       
+
+$.getJSON("http://freegeoip.net/json/", function(data) {
+    var country_code = data.country_code;
+    var country = data.country_name;
+    var ip = data.ip;
+    var time_zone = data.time_zone;
+    var latitude = data.latitude;
+     var longitude = data.longitude;
+     var city= data.city;
+
+
+         var uluru = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+   
+
 });
 
 $("body").on("click", ".prevBtn", function(event){
