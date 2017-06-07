@@ -19,52 +19,49 @@
             authorize:true
   </script>
 
-
 </head>
 <body>
 
-<!--placeholder to display user name, picture and logout button-->
-<div id = 'profile'>
-  <p><span id = 'name'></span></p>
-  <img id = "pic" alt ="Profile Picture"></img>
-  <button id = "lt" type="logout" onclick="liLogout()">Logout</button>
-</div>
+  <!--placeholder to display user name, picture and logout button-->
+  <div id='profile'>
+    <p><span id='name'></span></p>
+    <img id="pic" alt ="Profile Picture"></img>
+    <button id="lt" type="logout" onclick="liLogout()">Logout</button>
+  </div>
 
-
-<div class='selector'>
-  <ul>
-    <li>
-      <input id='1' type='checkbox' value='html.json'>
-      <label for='1' class="html">HTML</label>
-    </li>
-    <li>
-      <input id='2' type='checkbox' value='css.json'>
-      <label for='2' class="css">CSS</label>
-    </li>
-    <li>
-      <input id='3' type='checkbox' value='javascript.json'>
-      <label for='3' class="javascript">JavaScript</label>
-    </li>
-    <li>
-      <input id='4' type='checkbox' value='jquery.json'>
-      <label for='4' class="jquery">JQuery</label>
-    </li>
-    <li>
-      <input id='5' type='checkbox' value='all.json'>
-      <label for='5' class="all">All Subjects</label>
-    </li>
-    
-  </ul>
-  <button>CHOOSE A SUBJECT</button>
-</div>
+  <div class='selector'>
+    <ul>
+      <li>
+        <input id='1' type='checkbox' value='html.json'>
+        <label for='1' class="html">HTML</label>
+      </li>
+      <li>
+        <input id='2' type='checkbox' value='css.json'>
+        <label for='2' class="css">CSS</label>
+      </li>
+      <li>
+        <input id='3' type='checkbox' value='javascript.json'>
+        <label for='3' class="javascript">JavaScript</label>
+      </li>
+      <li>
+        <input id='4' type='checkbox' value='jquery.json'>
+        <label for='4' class="jquery">JQuery</label>
+      </li>
+      <li>
+        <input id='5' type='checkbox' value='all.json'>
+        <label for='5' class="all">All Subjects</label>
+      </li>
+      
+    </ul>
+    <button>CHOOSE A SUBJECT</button>
+  </div>
    
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <!-- Firebase Referencew -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-    <!-- Script -->
-    <script src="assets/javascript/logic.js"></script>
-
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- Firebase Referencew -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <!-- Script -->
+  <script src="assets/javascript/logic.js"></script>
 
 </body>
 </html>

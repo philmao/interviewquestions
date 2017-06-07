@@ -1,4 +1,5 @@
 // Initialize Firebase
+// ******************************************************************
 var config = {
     apiKey: "AIzaSyD15_MQCpSIeLmOaujqowZkF-djMIi0UlY",
     authDomain: "interviewquestions-ca991.firebaseapp.com",
@@ -10,7 +11,7 @@ var config = {
 firebase.initializeApp(config);
 
 
-//set the database and then set a refernece to the databse
+// Firebase: set the database and then set a refernece to the databse
 var database = firebase.database();
 var usersRef = database.ref('/users');
 var id;
@@ -23,50 +24,57 @@ var photo;
 var score;
 var hScore = 0;
 
-// START COPY OF LOGIC.JS FILE
+// Display pages
 // ******************************************************************
 $(document).ready(function() {
 
-    console.log(window.location.href);
-    // call initial start screen
+    // console.log(window.location.href);
+
+    // Call initial start screen
     if (window.location.href.match('index.html') != null) {
         console.log("index.html ready");
 
         initialScreen();
     };
+
     if (window.location.href.match('index2.html') != null) {
         console.log("index2.html ready");
 
-        //function to display user's name, pic and logout button
+        // LinkedIn: function to display user's name, pic and logout button
         displayProfileInfo();
     };
+
     if (window.location.href.match('index3.html') != null) {
         console.log("index3.html ready");
 
-        //function to display user's name, pic and logout button
+        // LinkedIn: Function to display user's name, pic and logout button
         displayProfileInfo();
         startTime = moment();
 
+        // Hide test results
         $("#page3").css({ visibility: "hidden"}); 
 
+        // Load JSON data
         interviewQuestions.getJsonData();
 
     };
 });
 
-// on mouseclick the new HTML screen is generated
+// Display: Onclick signin button to the second page
 $('body').on('click', '#signin', function(event) {
 
     generateSecondHTML();
 
 });
+
+// Display: Onclick start button to second page 
 $('body').on('click', '#st', function(event) {
 
     generateSecondHTML();
 
 });   
 
-// function for creation of initial start screen
+// Display: Function for creation of initial start screen
 function initialScreen() {
     startScreen = "<div class='container'><form class='form-signin'>"
     startScreen += "<div class='welcome'>Welcome!</div>"
@@ -81,12 +89,13 @@ function initialScreen() {
 
 }
 
-// function for creation of second page with subject options
+// Display: Function for creation of second page with subject options
 function generateSecondHTML() {
 
     window.location.href = "index2.html";
 }
 
+// Display: Onclick second page to third page
 $('body').on('click', '.selector', function(event) {
 
     console.log("click subject");
@@ -96,13 +105,15 @@ $('body').on('click', '.selector', function(event) {
 
 });
 
+// Display: Function for creation of third page with questions/results
 function generateThirdHTML() {
-
 
     window.location.href = "index3.html";
 
 }
 
+// Functions for Subject selector (index2.html)
+// ******************************************************************
 
 var angleStart = -360;
 
@@ -153,17 +164,20 @@ function displayProfileInfo() {
     $("#pic").append(profilePic); 
 }
 
-//Setup linkedIn login
-//linkedIn functions, attaching auth eventhandler
+// Functions for LinkedIn login
+// ******************************************************************
+
+// LinkedIn: Function to attach auth eventhandler
 function OnLinkedInFrameworkLoad() {
     IN.Event.on(IN, "auth", OnLinkedInAuth);
 }
 
-//retrieving user profile
+// LinkedIn: Retrieving user profile
 function OnLinkedInAuth() {
     IN.API.Profile("me").result(getProfileData);
 }
 
+// LinkedIn: 
 function getProfileData(profiles) {
 
     var member = profiles.values[0];
@@ -186,7 +200,7 @@ function getProfileData(profiles) {
     initRefreshScoreData();
 }
 
-//this function, gets user details based on member id
+// LinkedIn: Function gets user details based on member id
 function initRefreshScoreData() {
     
     usersRef.orderByChild("memberId").equalTo(id).on("child_added", function(snapshot) {
@@ -207,31 +221,30 @@ function initRefreshScoreData() {
     });
 }
 
-
-// Handle the successful return from the API call
+// LinkedIn: Handle the successful return from the API call
 function onSuccess(data) {
     console.log(data);
 }   
 
-// Handle an error response from the API call
+// LinkedIn: Handle an error response from the API call
 function onError(error) {
     console.log(error);
 }
 
-//function to logout from the session
+// LinkedIn: Function to logout from the session
 var liLogout = function() {
     IN.User.logout(callbackFunction);
 }
 
+// LinkedIn: callback function
 function callbackFunction() {
     alert("You have successfully logged out.");
-    //init();
     globalInit();
 }
 
-//set all the global variables to zero
+// LinkedIn: Set all the global variables to zero
 function globalInit() {
-    //$("#name").val("");
+
     startTime = 0;
     endTime = 0;
     duration = 0;
@@ -239,7 +252,41 @@ function globalInit() {
 
 }
 
+// Google Map Function
+// ******************************************************************
 
+var latitude;
+var longitude;
+
+// Google Map API with location finding code
+function initMap() {
+       
+    $.getJSON("https://freegeoip.net/json/", function(data) {
+        var country_code = data.country_code;
+        var country = data.country_name;
+        var ip = data.ip;
+        var time_zone = data.time_zone;
+        var latitude = data.latitude;
+        var longitude = data.longitude;
+        var city= data.city;
+
+        var uluru = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    })
+};
+
+initMap();
+
+
+// Class for Interview Questions
+// ******************************************************************
 var questionArray = [];
 var intervalId;
 
@@ -489,6 +536,9 @@ var interviewQuestions = {
     }
 }
 
+// Onclick functions
+// ******************************************************************
+
 $("body").on("click", "#doneButton", function(event){
     endTime = moment();
     event.preventDefault();
@@ -560,41 +610,6 @@ $("body").on("click", ".answerBtn", function(event){
     // console.log("answer button selected");
 
 });
-var latitude;
-var longitude;
-
-
-// Googe Map API with location finding code
-
-function initMap() {
-       
-
-$.getJSON("http://freegeoip.net/json/", function(data) {
-    var country_code = data.country_code;
-    var country = data.country_name;
-    var ip = data.ip;
-    var time_zone = data.time_zone;
-    var latitude = data.latitude;
-     var longitude = data.longitude;
-     var city= data.city;
-
-
-         var uluru = {lat: latitude, lng: longitude};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-   
-
-})
-
-};
-initMap();
-
 
 $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);
