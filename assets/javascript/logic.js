@@ -559,8 +559,7 @@ $("body").on("click", ".answerBtn", function(event){
     // console.log(userAnswers);
     // console.log("answer button selected");
 
-
-
+});
 var latitude;
 var longitude;
 
@@ -591,7 +590,11 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
         });
    
 
-});
+})
+
+};
+initMap();
+
 
 $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);
