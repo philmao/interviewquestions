@@ -12,13 +12,8 @@
         },
         {
             "question": "Which of the following is an example of an empty element?",
-<<<<<<< HEAD
-            "choices": ["'</img>'", "'<img></img>'", "'<img>'", "'<img>empty</img>'"],
-                        "correct": "2"
-=======
             "choices": ["< /img>", "< img></img>", "< img>", "< img>empty</img>"],
             "correct": "2"
->>>>>>> 5a865731de44dd7d2be02f7126f99cbbae4fb555
         },
         {
             "question": "How does an HTML document start?",
