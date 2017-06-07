@@ -9,6 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
 //set the database and then set a refernece to the databse
 var database = firebase.database();
 var usersRef = database.ref('/users');
@@ -92,9 +93,11 @@ $('body').on('click', '.selector', function(event) {
     if(interviewQuestions.processSubject()) {
         generateThirdHTML();
     }
+
 });
 
 function generateThirdHTML() {
+
 
     window.location.href = "index3.html";
 
@@ -251,9 +254,11 @@ var interviewQuestions = {
     incorrectCount: 0,
     unansweredCount: 0,
 
+
     // Timer initialization
     timer: 0,
     maxTime: 30,
+
 
     // Question var
     currentQuestion: 0,
@@ -554,7 +559,7 @@ $("body").on("click", ".answerBtn", function(event){
     // console.log(userAnswers);
     // console.log("answer button selected");
 
-
+});
 var latitude;
 var longitude;
 
@@ -585,7 +590,11 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
         });
    
 
-});
+})
+
+};
+initMap();
+
 
 $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);

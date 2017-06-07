@@ -94,3 +94,7 @@ p {
   float: right;
 }
 /*end LOGIN style*/
+#map {
+        height: 400px;
+        width: 100%;
+       }
