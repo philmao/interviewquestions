@@ -273,14 +273,14 @@ function initMap() {
         var city= data.city;
 
         var uluru = {lat: latitude, lng: longitude};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: uluru
-        });
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
-        });
+        // var map = new google.maps.Map(document.getElementById('map'), {
+        //     zoom: 4,
+        //     center: uluru
+        // });
+        // var marker = new google.maps.Marker({
+        //     position: uluru,
+        //     map: map
+        // });
     })
 };
 
@@ -303,11 +303,9 @@ var interviewQuestions = {
     incorrectCount: 0,
     unansweredCount: 0,
 
-
     // Timer initialization
-    timer: 0,
+    time: 0,
     maxTime: 30,
-
 
     // Question var
     currentQuestion: 0,
@@ -357,7 +355,7 @@ var interviewQuestions = {
                 for(var i = 0; i < myData.length; i++) {
                     userAnswers[i] = 0;
                 }
-
+                interviewQuestions.startTimer();
                 interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
             },
             error: function(result){
@@ -374,9 +372,13 @@ var interviewQuestions = {
         // console.log(questionNum);
 
         var titleLine = $("<h2>");
-        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        titleLine.text(subject + ": Question " + parseInt(questionNum + 1) +" of " + myData.length);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
+
+        var timerLine = $("<div id='timer'>");
+        timerLine.text("Time: " + interviewQuestions.timeConverter(interviewQuestions.time));
+        $(".mainArea").append(timerLine);
 
         var questionLine = $("<p>");
         questionLine.text(myData[questionNum].question);
@@ -536,7 +538,52 @@ var interviewQuestions = {
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
+    },
+    startTimer: function() {
+
+      // Use setInterval to start the count here.
+      intervalId = setInterval(interviewQuestions.count, 1000);
+      // console.log("started timer");
+    },
+    stopTimer: function() {
+
+      // Use clearInterval to stop the count here.
+      clearInterval(intervalId);
+      interviewQuestions.time = 0;
+      // console.log("stopped timer");
+
+      // Change the "display" div to "00:00."
+      $("#timer").text("Time: 00:00");
+    },
+    count: function() {
+
+      // Increment time by 1, remember we cant use "this" here.
+      interviewQuestions.time++;
+
+      // Get the current time, pass that into the timeConverter function,
+      // and save the result in a variable.
+      var converted = interviewQuestions.timeConverter(interviewQuestions.time);
+      // console.log(converted);
+
+      // Use the variable we just created to show the converted time in the "timer" div.
+      $("#timer").text("Time: " + converted);
+    },
+    timeConverter: function(t) {
+
+    var minutes = Math.floor(t / 60);
+    var seconds = t - (minutes * 60);
+
+    if (seconds < 10) {
+      seconds = "0" + seconds;
     }
+    if (minutes === 0) {
+      minutes = "00";
+    }
+    else if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    return minutes + ":" + seconds;
+  }
 }
 
 // Onclick functions
@@ -549,6 +596,7 @@ $("body").on("click", "#doneButton", function(event){
     interviewQuestions.displayResults();
 
     if(!interviewQuestions.reviewFlag) {
+        interviewQuestions.stopTimer();
 
         var temp = endTime.diff(startTime);
         console.log("Temp time: ",temp);
