@@ -9,11 +9,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-var database = firebase.database();
-=======
-=======
+
+
+
 //set the database and then set a refernece to the databse
 var database = firebase.database();
 var usersRef = database.ref('/users');
@@ -27,7 +25,6 @@ var photo;
 var score;
 var hScore = 0;
 
->>>>>>> d6dac9b78ddf85c6105e39b0595cf8d887b10d2e
 // START COPY OF LOGIC.JS FILE
 // ******************************************************************
 $(document).ready(function() {
@@ -100,18 +97,12 @@ $('body').on('click', '.selector', function(event) {
     if(interviewQuestions.processSubject()) {
         generateThirdHTML();
     }
-<<<<<<< HEAD
 
-    // $('.mainArea').hide();
->>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
-
-=======
 });
->>>>>>> d6dac9b78ddf85c6105e39b0595cf8d887b10d2e
 
 
-<<<<<<< HEAD
-=======
+
+
     window.location.href = "index3.html";
 
 }
@@ -271,7 +262,7 @@ var interviewQuestions = {
     unansweredCount: 0,
     timer: 0,
 
-<<<<<<< HEAD
+
     initialScreen: function() {
         startScreen = "<div class='container'><form class='form-signin'>";
         startScreen += "<h2 class='form-signin-heading'>Please sign in</h2>";
@@ -733,7 +724,6 @@ $("body").on("click", ".answerBtn", function(event){
 
 
 
-<<<<<<< HEAD
 var latitude;
 var longitude;
 
