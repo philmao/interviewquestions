@@ -175,7 +175,7 @@ function OnLinkedInFrameworkLoad() {
 // LinkedIn: Retrieving user profile
 function OnLinkedInAuth() {
     IN.API.Profile("me").result(getProfileData);
-    generateSecondHTML();
+    
 }
 
 // LinkedIn: 
@@ -199,6 +199,7 @@ function getProfileData(profiles) {
     sessionStorage.setItem('MemberId',id);
     sessionStorage.setItem('firstName', firstName);
     initRefreshScoreData();
+    generateSecondHTML();
 }
 
 // LinkedIn: Function gets user details based on member id
