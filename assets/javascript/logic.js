@@ -61,18 +61,18 @@ $(document).ready(function() {
 });
 
 // Display: Onclick signin button to the second page
-$('body').on('click', '#signin', function(event) {
+/*$('body').on('click', '#signin', function(event) {
 
     generateSecondHTML();
 
-});
+});*/
 
 // Display: Onclick start button to second page 
-$('body').on('click', '#st', function(event) {
+/*$('body').on('click', '#st', function(event) {
 
     generateSecondHTML();
 
-});  
+}); */ 
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
@@ -198,6 +198,7 @@ function getProfileData(profiles) {
     sessionStorage.setItem('Picture',photo);
     sessionStorage.setItem('MemberId',id);
     sessionStorage.setItem('firstName', firstName);
+    generateSecondHTML();
     initRefreshScoreData();
 
 }
