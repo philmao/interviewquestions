@@ -68,17 +68,17 @@ $('body').on('click', '#signin', function(event) {
 });
 
 // Display: Onclick start button to second page 
-$('body').on('click', '#st', function(event) {
+/*$('body').on('click', '#st', function(event) {
 
     generateSecondHTML();
 
-});   
+});  */ 
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
     startScreen = "<div class='container'><form class='form-signin'>"
-    startScreen += "<div class='welcome'>Welcome!</div>"
-    startScreen += "<h4 class='form-signin-heading'>Please sign in</h4>"
+    startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>"
+    startScreen += "<h5 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h5>"
     startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
     startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
     startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
@@ -175,6 +175,7 @@ function OnLinkedInFrameworkLoad() {
 // LinkedIn: Retrieving user profile
 function OnLinkedInAuth() {
     IN.API.Profile("me").result(getProfileData);
+    generateSecondHTML();
 }
 
 // LinkedIn: 
@@ -530,7 +531,8 @@ var interviewQuestions = {
         $(".mainArea").append("<h3>Correct Answers: " + interviewQuestions.correctCount + "</h3>");
         $(".mainArea").append("<h3>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h3>");
         $(".mainArea").append("<h3>Unanswered: " + interviewQuestions.unansweredCount + "</h3>");
-        $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary btn-block'>Review answers</button>");
+        // $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
+        $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
     }
