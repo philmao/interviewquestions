@@ -81,11 +81,6 @@
             "correct": "2"
         },
         {
-            "question": "Choose the correct HTML tag for the most important heading",
-            "choices": ["h6", "head", "h1", "title"],
-            "correct": "3"
-        },
-        {
             "question": "What HTML version is in current use?",
             "choices": ["HTML5", "HTML4", "HTML7", "HTML3"],
             "correct": "1"
