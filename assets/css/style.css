@@ -15,8 +15,6 @@ body {
   font-size: 45px;
   color:white;
   text-shadow: 2px 2px black;
-
-
 }
 
 
@@ -30,7 +28,9 @@ body {
     /* line-height: 87px; */
     height: 28px;
 
+
 }
+
  .navbar-brand {
     padding: 18px 25px;
  }
@@ -80,5 +80,35 @@ body {
 
 
 
+/* settings for questions */
+.answerBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
+.reviewBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
+.prevBtn {
+  float: left;
+}
+.nextBtn {
+  float: right;
+}
+.doneBtn {
+  float: right;
+}
+p {
+  color: black;
+  font-size: 24px;
+}
+#profile {
+  float: right;
+}
 /*end LOGIN style*/
-
+#map {
+        height: 400px;
+        width: 100%;
+       }
