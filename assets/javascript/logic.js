@@ -68,11 +68,11 @@ $('body').on('click', '#signin', function(event) {
 });
 
 // Display: Onclick start button to second page 
-$('body').on('click', '#st', function(event) {
+/*$('body').on('click', '#st', function(event) {
 
     generateSecondHTML();
 
-});   
+});  */ 
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
@@ -175,6 +175,7 @@ function OnLinkedInFrameworkLoad() {
 // LinkedIn: Retrieving user profile
 function OnLinkedInAuth() {
     IN.API.Profile("me").result(getProfileData);
+    generateSecondHTML();
 }
 
 // LinkedIn: 
