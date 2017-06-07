@@ -5,25 +5,80 @@
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--moment.js file inclusion-->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <title>Interview Questions</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-D9XILkoivXN+bcvB2kSOowkIvIcBbNdoDQvfBNsxYAIieZbx8/SI4NeUvrRGCpDi" crossorigin="anonymous">
+    <!--moment.js file inclusion-->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+
+
+    <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+            api_key:78rln9tbzgak39
+            onLoad: OnLinkedInFrameworkLoad
+            authorize:true
+
+    </script>
 
   </head>
 
-  <body>
+    <body>
 
-  	<h1>page 3</h1>
+    <!--placeholder to display user name, picture and logout button-->
+    <div id='profile'>
+      <p><span id='name'></span></p>
+      <img id="pic" alt = "Profile Picture"></img>
+      <button id="lt" type="logout" onclick="liLogout()">Logout</button>
+    </div>
+
+    <div class="mainArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
+    <div class="buttonArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
 
 
-    <div class="mainArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
- 
+    <div class="container col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" id="page3">
+    <h3> Your highest score so far :<span id ="hScore"></span></h3>
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+        <!-- Current Employees-->
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Your score board</strong></h3>
+            </div>
+            <div id="pic"></div>
+            <div class="panel-body">
+              <table class="table table-hover" id='score-table'>
+                <thead>
+                  <tr>
+                    <th>Score</th>
+                    <th>Duration (mins:secs)</th>
+                    <th>Test Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <button id="restart" class='btn btn-lg btn-primary btn-block' type="submit">Restart</button>
+      </div>
+    
+
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
