@@ -1,81 +1,3 @@
-/*LOGINPAGE*/
-@import url('https://fonts.googleapis.com/css?family=Courgette');
-
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: lightblue;
-}
-
-.welcome {
-  font-family: Courgette;
-  font-size: 45px;
-  color:orange;
-  text-shadow: 2px 2px black;
-
-
-}
-
-.first {
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-  background-color: green;
-}
-
-.jumbotron {
-  background-image: url("https://static.pexels.com/photos/265152/pexels-photo-265152.jpeg");
-  background-size: 250%;
-  margin-top: 50px;
-  
-
-}
-
-.container:before {
-  filter: blur(0px);
-}
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-/*end LOGIN style*/
-
-<<<<<<< HEAD
-
-
-
 /*Begin SECOND PAGE subject choices*/
 
 
@@ -85,9 +7,11 @@ html, body {
 }
 
 body {
+  background-image: url("https://static.pexels.com/photos/65543/pexels-photo-65543.jpeg");
+  background-size: 100%;
   margin: 0;
  /* background: linear-gradient(#eee, #ccc);*/
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
 
 .selector {
@@ -195,35 +119,9 @@ body {
 
 
 
-  #map {
-        height: 400px;
-        width: 100%;
-       }
-
-
-/* settings for questions */
-.answerBtn {
-  display: block;
-  background-color: lightblue;
-  color: black;
-}
-.prevBtn {
-  float: left;
-}
-.nextBtn {
-  float: right;
-}
-.doneBtn {
-  float: right;
-}
-p {
-  color: black;
-  font-size: 24px;
-}
 
 
 /*end SECOND PAGE*/
-
 
 
 
