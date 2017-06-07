@@ -9,6 +9,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+var database = firebase.database();
+=======
+=======
 //set the database and then set a refernece to the databse
 var database = firebase.database();
 var usersRef = database.ref('/users');
@@ -22,6 +27,7 @@ var photo;
 var score;
 var hScore = 0;
 
+>>>>>>> d6dac9b78ddf85c6105e39b0595cf8d887b10d2e
 // START COPY OF LOGIC.JS FILE
 // ******************************************************************
 $(document).ready(function() {
@@ -94,10 +100,18 @@ $('body').on('click', '.selector', function(event) {
     if(interviewQuestions.processSubject()) {
         generateThirdHTML();
     }
+<<<<<<< HEAD
+
+    // $('.mainArea').hide();
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
+
+=======
 });
+>>>>>>> d6dac9b78ddf85c6105e39b0595cf8d887b10d2e
 
-function generateThirdHTML() {
 
+<<<<<<< HEAD
+=======
     window.location.href = "index3.html";
 
 }
@@ -133,6 +147,7 @@ $('.selector button').click(function(e) {
 });
 
 setTimeout(function() { toggleOptions('.selector'); }, 100);
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 //function to calculate the highest score
 function highScore(lScore) {
@@ -248,14 +263,31 @@ var subject;
 
 var interviewQuestions = {
 
-    // Results
+    indexNumber: 0,
+    maxTime: 30,
+    maxQuestions: 10,
     correctCount: 0,
     incorrectCount: 0,
     unansweredCount: 0,
-
-    // Timer initialization
     timer: 0,
-    maxTime: 30,
+
+<<<<<<< HEAD
+    initialScreen: function() {
+        startScreen = "<div class='container'><form class='form-signin'>";
+        startScreen += "<h2 class='form-signin-heading'>Please sign in</h2>";
+        startScreen += "<label for='firstName' class='sr-only'>First Name</label>";
+        startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='First Name' required autofocus>";
+        startScreen += "<label for='lastName' class='sr-only'>Last Name</label>";
+        startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Last Name' required autofocus>";
+        startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>";
+        startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>";
+        startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
+        startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
+        startScreen += "<div class='checkbox'>";
+        startScreen += "<label><input type='checkbox' value='remember-me'> Remember me</label>";
+        startScreen += "</div>";
+        startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+        $(".mainArea").html(startScreen);
 
     // Question var
     currentQuestion: 0,
@@ -264,48 +296,24 @@ var interviewQuestions = {
     maxQuestions: 10,
     reviewFlag: 0,
 
+    },
+    displaySubject: function() {
+        newHTML = "<p>Please choose a subject:</p>";
+        // newHTML += "<input type='button' class='btn btn-default btn-lg answerBtn' name='subject' id='html' value='HTML'>";
+        // newHTML += "<input type='button' class='btn btn-default btn-lg answerBtn' name='subject' id='css' value='CSS'>";
+        // newHTML += "<input type='button' class='btn btn-default btn-lg answerBtn' name='subject' id='javascript' value='Javascript'>";
+        // newHTML += "<input type='button' class='btn btn-default btn-lg answerBtn' name='subject' id='jQuery' value='JQuery'>";
+        newHTML += "<label><input type='radio' name='subject' id='html' value='html.json'>HTML</label><br>";
+        newHTML += "<label><input type='radio' name='subject' id='css' value='css.json'>CSS</label><br>";
+        newHTML += "<label><input type='radio' name='subject' id='javascript' value='javascript.json'>Javascript</label><br>";
+        newHTML += "<label><input type='radio' name='subject' id='jQuery' value='jquery.json'>JQuery</label><br>";
+        newHTML += "<button id='submitSubject' class='btn btn-lg btn-primary btn-block' type='submit'>Submit</button></form></div>";
+        $(".mainArea").html(newHTML);
 
-    // initialScreen: function() {
-    //     startScreen = "<div class='container'><form class='form-signin'>";
-    //     startScreen += "<h2 class='form-signin-heading'>Please sign in</h2>";
-    //     startScreen += "<label for='firstName' class='sr-only'>First Name</label>";
-    //     startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='First Name' required autofocus>";
-    //     startScreen += "<label for='lastName' class='sr-only'>Last Name</label>";
-    //     startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Last Name' required autofocus>";
-    //     startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>";
-    //     startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>";
-    //     startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
-    //     startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
-    //     startScreen += "<div class='checkbox'>";
-    //     startScreen += "<label><input type='checkbox' value='remember-me'> Remember me</label>";
-    //     startScreen += "</div>";
-    //     startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
-    //     $(".mainArea").html(startScreen);
-
-    // },
-    // displaySubject: function() {
-    //     newHTML = "<p>Please choose a subject:</p>";
-
-    //     newHTML += "<div class='btn-group-vertical' role='subject'>";
-
-    //     newHTML += "<button type='button' class='btn btn-default btn-lg subjectBtn' name='subject' id='html' value='html.json'>HTML</button>";
-    //     console.log (newHTML);
-    //     newHTML += "<button type='button' class='btn btn-default btn-lg subjectBtn' name='subject' id='css' value='css.json'>CSS</button>";
-    //     newHTML += "<button type='button' class='btn btn-default btn-lg subjectBtn' name='subject' id='javascript' value='javascript.json'>Javascript</button>";
-    //     newHTML += "<button type='button' class='btn btn-default btn-lg subjectBtn' name='subject' id='jQuery' value='jquery.json'>JQuery</button>";
-    //     newHTML += "</div>";
-
-    //     // newHTML += "<label><input type='radio' name='subject' id='html' value='html.json'>HTML</label><br>";
-    //     // newHTML += "<label><input type='radio' name='subject' id='css' value='css.json'>CSS</label><br>";
-    //     // newHTML += "<label><input type='radio' name='subject' id='javascript' value='javascript.json'>Javascript</label><br>";
-    //     // newHTML += "<label><input type='radio' name='subject' id='jQuery' value='jquery.json'>JQuery</label><br>";
-
-    //     newHTML += "<button id='submitSubject' class='btn btn-lg btn-primary btn-block' type='submit'>Submit</button></form>";
-    //     $(".mainArea").html(newHTML);
-
-    // },
-
+    },
     processSubject: function() {
+
+
 
         var name = $('input[type="checkbox"]:checked').next("label").html();
         var temp = $('input[type="checkbox"]:checked').val();
@@ -340,6 +348,7 @@ var interviewQuestions = {
             success: function(result) {
                 startTime = moment();
                 myData = result.interview;
+
 
                 userAnswers = [];
                 correctAnswers = [];
@@ -397,6 +406,7 @@ var interviewQuestions = {
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
+
         var questionLine = $("<p>");
         questionLine.text(myData[questionNum].question);
         $(".mainArea").append(questionLine);
@@ -434,6 +444,7 @@ var interviewQuestions = {
                     break;
                 default:
             }
+
         }
         correctAnswers[questionNum] = myData[questionNum].correct;
 
@@ -471,7 +482,6 @@ var interviewQuestions = {
         //     }
         // }
         // $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
-
 
     },
     reviewQuestion: function(questionNum) {
@@ -585,6 +595,19 @@ var interviewQuestions = {
             }
         }
 
+
+      //      function initMap() {
+      //   var uluru = {lat: -25.363, lng: 131.044};
+      //   var map = new google.maps.Map(document.getElementById('map'), {
+      //     zoom: 4,
+      //     center: uluru
+      //   });
+      //   var marker = new google.maps.Marker({
+      //     position: uluru,
+      //     map: map
+      //   });
+      // };
+
         $(".mainArea").empty();
         $(".buttonArea").empty();
         console.log("done");
@@ -597,8 +620,8 @@ var interviewQuestions = {
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary btn-block'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
-    }
 
+    }
     // decrement: function() {
 
     //     timer -= 1;
@@ -610,9 +633,15 @@ var interviewQuestions = {
     //       interviewQuestions.displayResults();
     //     }
     // }
-
-
 }
+
+$(document).ready(function() {
+
+    // call initial start screen
+    interviewQuestions.initialScreen ();
+    initMap() ;
+
+});
 
 
 
@@ -622,6 +651,7 @@ $("body").on("click", "#doneButton", function(event){
     event.preventDefault();
     sessionStorage.setItem("queryURL", "");
     interviewQuestions.displayResults();
+
 
     if(!interviewQuestions.reviewFlag) {
 
@@ -658,7 +688,16 @@ $("body").on("click", "#review", function(event){
 
 }); 
 
+
+
+$("body").on("click", "#submitSubject", function(event){
+
+    event.preventDefault();
+
+    interviewQuestions.processSubject(event); 
+
 $("body").on("click", "#restart", function(event){
+
 
     event.preventDefault();
 
@@ -670,15 +709,19 @@ $("body").on("click", "#restart", function(event){
     generateSecondHTML();
 
 
+
 }); 
 
-$("body").on("click", ".subjectBtn", function(event){
+$("body").on("click", "#doneButton", function(event){
+
 
     $('.btn-group-vertical > .btn').removeClass('active');
     $(this).addClass('active');
     // console.log("subject button selected");
 
-});
+
+    interviewQuestions.displayResults();
+
 
 $("body").on("click", ".answerBtn", function(event){
 
@@ -688,7 +731,42 @@ $("body").on("click", ".answerBtn", function(event){
     // console.log(userAnswers);
     // console.log("answer button selected");
 
+
+
+<<<<<<< HEAD
+var latitude;
+var longitude;
+
+
+// Googe Map API with location finding code
+
+function initMap() {
+       
+
+$.getJSON("http://freegeoip.net/json/", function(data) {
+    var country_code = data.country_code;
+    var country = data.country_name;
+    var ip = data.ip;
+    var time_zone = data.time_zone;
+    var latitude = data.latitude;
+     var longitude = data.longitude;
+     var city= data.city;
+
+
+         var uluru = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+   
+
 });
+
+
 
 $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);
@@ -730,4 +808,7 @@ $("body").on("click", ".nextBtn", function(event){
     }
     // console.log("next button pressed");
 
-});
+
+
+ }
+
