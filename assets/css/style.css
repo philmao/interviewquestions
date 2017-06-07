@@ -86,7 +86,7 @@ html, body {
 body {
   margin: 0;
  /* background: linear-gradient(#eee, #ccc);*/
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .selector {
@@ -191,6 +191,7 @@ body {
   font-size: 14px;
 }
 
+<<<<<<< HEAD
 
 
   #map {
@@ -198,6 +199,27 @@ body {
         width: 100%;
        }
 
+=======
+/* settings for questions */
+.answerBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
+.prevBtn {
+  float: left;
+}
+.nextBtn {
+  float: right;
+}
+.doneBtn {
+  float: right;
+}
+p {
+  color: black;
+  font-size: 24px;
+}
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 /*end SECOND PAGE*/
 

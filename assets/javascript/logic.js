@@ -9,10 +9,113 @@ var config = {
 };
 firebase.initializeApp(config);
 
+<<<<<<< HEAD
 var database = firebase.database();
+=======
+// START COPY OF LOGIC.JS FILE
+// ******************************************************************
+$(document).ready(function() {
+
+    console.log(window.location.href);
+    // call initial start screen
+    if (window.location.href.match('index.html') != null) {
+        console.log("index.html ready");
+
+        initialScreen();
+    };
+    if (window.location.href.match('index3.html') != null) {
+        console.log("index3.html ready");
+        interviewQuestions.getJsonData();
+
+    };
+});
+
+// on mouseclick the new HTML screen is generated
+$('body').on('click', '#signin', function(event){
+
+    // $('.mainArea').hide();
+    generateSecondHTML();
+
+});
+    
+
+// function for creation of initial start screen
+function initialScreen() {
+    startScreen = "<div class='container'><form class='form-signin'>"
+    startScreen += "<div class='welcome'>Welcome!</div>"
+    startScreen += "<h4 class='form-signin-heading'>Please sign in</h4>"
+    startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
+    startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
+    startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
+    startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
+    startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
+    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    $('.mainArea').html(startScreen);
+
+}
+
+// function for creation of second page with subject options
+function generateSecondHTML() {
+
+  
+    window.location.href = "index2.html";
+    
+    // $('.jumbotron').hide();
+
+}
+
+$('body').on('click', '.selector', function(event){
+    console.log("click subject");
+    if(interviewQuestions.processSubject()){
+        generateThirdHTML();
+
+    }
+
+    // $('.mainArea').hide();
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 
 
+<<<<<<< HEAD
+=======
+    window.location.href = "index3.html";
+
+    // $('.jumbotron').hide();
+
+}
+
+
+var angleStart = -360;
+
+// jquery rotate animation
+function rotate(li,d) {
+    $({d:angleStart}).animate({d:d}, {
+        step: function(now) {
+            $(li)
+               .css({ transform: 'rotate('+now+'deg)' })
+               .find('label')
+                  .css({ transform: 'rotate('+(-now)+'deg)' });
+        }, duration: 0
+    });
+}
+
+// show / hide the options
+function toggleOptions(s) {
+    $(s).toggleClass('open');
+    var li = $(s).find('li');
+    var deg = $(s).hasClass('half') ? 180/(li.length-1) : 360/li.length;
+    for(var i=0; i<li.length; i++) {
+        var d = $(s).hasClass('half') ? (i*deg)-90 : i*deg;
+        $(s).hasClass('open') ? rotate(li[i],d) : rotate(li[i],angleStart);
+    }
+}
+
+$('.selector button').click(function(e) {
+    toggleOptions($(this).parent());
+});
+
+setTimeout(function() { toggleOptions('.selector'); }, 100);
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 
 //Setup linkedIn login
@@ -67,6 +170,8 @@ var questionArray = [];
 var intervalId;
 
 var myData;
+var queryURL;
+var subject;
 
 var interviewQuestions = {
 
@@ -78,6 +183,7 @@ var interviewQuestions = {
     unansweredCount: 0,
     timer: 0,
 
+<<<<<<< HEAD
     initialScreen: function() {
         startScreen = "<div class='container'><form class='form-signin'>";
         startScreen += "<h2 class='form-signin-heading'>Please sign in</h2>";
@@ -94,6 +200,13 @@ var interviewQuestions = {
         startScreen += "</div>";
         startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
         $(".mainArea").html(startScreen);
+=======
+    // Question var
+    currentQuestion: 0,
+    userAnswers: [],
+    correctAnswers: [],
+    maxQuestions: 10,
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
     },
     displaySubject: function() {
@@ -112,10 +225,37 @@ var interviewQuestions = {
     },
     processSubject: function() {
 
+<<<<<<< HEAD
         var temp = $('input[name="subject"]:checked').val();
         console.log(temp);
 
         var queryURL = "./assets/json/" + temp;
+=======
+        var name = $('input[type="checkbox"]:checked').next("label").html();
+        var temp = $('input[type="checkbox"]:checked').val();
+
+        console.log(name);
+        console.log(temp);
+
+        if(typeof temp == 'undefined') {
+            console.log("temp is undefined");
+            return false;
+        }
+
+        var url = './assets/json/' + temp;
+        sessionStorage.setItem('subject', name);
+        sessionStorage.setItem('queryURL', url);
+        console.log(url);
+
+        return true;
+    },
+    getJsonData: function() {
+
+        subject = sessionStorage.getItem('subject');
+        queryURL = sessionStorage.getItem('queryURL');
+
+        console.log(subject);
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
         console.log(queryURL);
 
         $.ajax({
@@ -124,6 +264,7 @@ var interviewQuestions = {
             dataType: "json",
             success: function(result) {
                 myData = result.interview;
+<<<<<<< HEAD
 
                 $(".mainArea").empty();
 
@@ -156,33 +297,175 @@ var interviewQuestions = {
                     }
                 }
                 $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
+=======
 
+                userAnswers = [];
+                correctAnswers = [];
+                for(var i = 0; i < myData.length; i++) {
+                    userAnswers[i] = 0;
+                }
+
+                interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
             },
             error: function(result){
                 console.log("Unable to get data");
             }
+                
+        });
+
+    },
+    displayQuestion: function(questionNum) {
+        // $(".mainArea2").empty();
+        // console.log(myData);
+        // console.log(questionNum);
+        // var questionLine = $("<p>");
+        // questionLine.text(myData[questionNum].question);
+        // $(".mainArea2").append(questionLine);
+        // console.log(myData[questionNum].question);
+
+        // $(".mainArea2").append("<div class='btn-group-vertical' role='question'>");
+
+        // for(var i = 0; i < myData[questionNum].choices.length; i++) {
+
+
+        //     var answerChoice = "<button type='button' class='btn btn-default btn-lg addressBtn' ";
+        //     answerChoice += "value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+        //     answerChoice += " name='question" + parseInt(questionNum) + "'>";
+        //     answerChoice += myData[questionNum].choices[i];
+        //     answerChoice += "</button>";
+        //     $(".mainArea2").append(answerChoice);
+        //     console.log(answerChoice);
+        //     console.log(myData[questionNum].choices[i]);
+        // }
+        // $(".mainArea2").append("</div>");
+
+        // if(questionNum === "0") {
+        //     $(".mainArea2").append("<button id='prevButton' class='btn btn-sm btn-primary btn-block'>Prev</button>");
+        // }
+        // if(questionNum === myData.length) {
+        //     $(".mainArea2").append("<button id='nextButton' class='btn btn-sm btn-primary btn-block'>Next</button>");
+        // }
+
+        $(".mainArea").empty();
+        console.log(myData);
+        // console.log(questionNum);
+
+        var titleLine = $("<h1>");
+        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        $(".mainArea").append(titleLine);
+        // console.log(titleLine);
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
+
+        var questionLine = $("<p>");
+        questionLine.text(myData[questionNum].question);
+        $(".mainArea").append(questionLine);
+        // console.log(myData[questionNum].question);
+
+        var answerChoice = "<div class='btn-group-vertical' role='question'>";
+
+        for(var i = 0; i < myData[questionNum].choices.length; i++) {
+
+            answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+            answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+            answerChoice += " id=" + parseInt(i + 1);
+            answerChoice += " name='question" + parseInt(questionNum) + "'>";
+            answerChoice += myData[questionNum].choices[i];
+            answerChoice += "</button>";
+            // console.log(answerChoice);
+            // console.log(myData[questionNum].choices[i]);
+
+        }
+        $(".mainArea").append(answerChoice);
+
+        if(userAnswers[questionNum] != 0) {
+            switch (parseInt(userAnswers[questionNum])) {
+                case 1: 
+                    $('#1').addClass('active');
+                    break;
+                case 2:
+                    $('#2').addClass('active');
+                    break;
+                case 3:
+                    $('#3').addClass('active');
+                    break;
+                case 4: 
+                    $('#4').addClass('active');
+                    break;
+                default:
+            }
+<<<<<<< HEAD
 
         });    
+=======
+        }
+        correctAnswers[questionNum] = myData[questionNum].correct;
+
+        $(".buttonArea").empty();
+        if(questionNum > 0) {
+            $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
+        }
+        if(questionNum < (myData.length - 1)) {
+            $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
+        }
+        else {
+            $(".buttonArea").append("<button id='doneButton' class='btn btn-sm btn-primary doneBtn'>Done</button>");
+        }
+
+        // $(".mainArea").empty();
+
+        // for(var j = 0; j < result.interview.length; j++) {
+
+        //     var questionLine = $("<p>");
+        //     questionLine.text(result.interview[j].question);
+        //     $(".mainArea").append(questionLine);
+        //     console.log(result.interview[j].question);
+
+        //     for(var i = 0; i < result.interview[j].choices.length; i++) {
+
+        //         var answerChoice = $("<input>");
+        //         answerChoice.attr("value", i + 1);  // value '0' is unanswered
+        //         answerChoice.attr("type","radio");
+        //         answerChoice.attr("name","question" + j);
+        //         answerChoice.attr("class", "radioButtons");
+        //         $(".mainArea").append(answerChoice);
+        //         $(".mainArea").append("<b> " + result.interview[j].choices[i] + "</b><br>");
+
+        //         console.log(result.interview[j].choices[i]);
+        //     }
+        // }
+        // $(".mainArea").append("<button id='doneButton' class='btn btn-lg btn-primary btn-block'>Done</button>");
+
+
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
     },
     displayResults: function() {
 
         // clearInterval(intervalId);
         // $("#timer").text("");
-        console.log(myData);
-
-        console.log(myData.length);
+        console.log(userAnswers);
+        console.log(correctAnswers);
 
         for(i = 0; i < myData.length; i++) {
 
-            var name = "question" + i;
-            var temp = $('input[name="' + name + '"]:checked').val();
-            console.log(temp);
-            console.log(myData[i].correct);
+            // var name = "question" + i;
+            // var temp = $('input[name="' + name + '"]:checked').val();
+            // console.log(temp);
+            // console.log(myData[i].correct);
 
-            if(isNaN(temp)) {
+            // if(isNaN(temp)) {
+            //     interviewQuestions.unansweredCount++;
+            // }
+            // else if (temp === myData[i].correct) {
+            //     interviewQuestions.correctCount++;
+            // }
+            // else {
+            //     interviewQuestions.incorrectCount++;
+            // }
+
+            if(parseInt(userAnswers[i]) === 0) {
                 interviewQuestions.unansweredCount++;
             }
-            else if (temp === myData[i].correct) {
+            else if(parseInt(userAnswers[i]) === parseInt(correctAnswers[i])) {
                 interviewQuestions.correctCount++;
             }
             else {
@@ -204,6 +487,7 @@ var interviewQuestions = {
       // };
 
         $(".mainArea").empty();
+        $(".buttonArea").empty();
         console.log("done");
 
         $(".mainArea").append("<h2>All Done!</h2>");
@@ -237,31 +521,58 @@ $(document).ready(function() {
 
 
 
+<<<<<<< HEAD
 $("body").on("click", "#signin", function(event){
 
     event.preventDefault();
 
     interviewQuestions.displaySubject();
+=======
+$("body").on("click", "#doneButton", function(event){
+
+    event.preventDefault();
+    sessionStorage.setItem("queryURL", "");
+    interviewQuestions.displayResults();
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 
 }); 
 
+<<<<<<< HEAD
 
 $("body").on("click", "#submitSubject", function(event){
 
     event.preventDefault();
 
     interviewQuestions.processSubject(event); 
+=======
+$("body").on("click", "#resetButton", function(event){
+
+    event.preventDefault();
+
+    interviewQuestions.unansweredCount = 0;
+    interviewQuestions.correctCount = 0;
+    interviewQuestions.incorrectCount = 0;
+
+    generateSecondHTML();
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 
 }); 
 
 $("body").on("click", "#doneButton", function(event){
 
+<<<<<<< HEAD
     event.preventDefault();
+=======
+    $('.btn-group-vertical > .btn').removeClass('active');
+    $(this).addClass('active');
+    // console.log("subject button selected");
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
     interviewQuestions.displayResults();
 
+<<<<<<< HEAD
 
 }); 
 
@@ -277,8 +588,18 @@ $("body").on("click", "#resetButton", function(event){
 
 
 }); 
+=======
+$("body").on("click", ".answerBtn", function(event){
+
+    $('.btn-group-vertical > .answerBtn').removeClass('active');
+    $(this).addClass('active');
+    userAnswers[interviewQuestions.currentQuestion] = $(this).val();
+    // console.log(userAnswers);
+    // console.log("answer button selected");
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 
+<<<<<<< HEAD
 var latitude;
 var longitude;
 
@@ -312,6 +633,35 @@ $.getJSON("http://freegeoip.net/json/", function(data) {
 });
 
 
+=======
+$("body").on("click", ".prevBtn", function(event){
+    // console.log(userAnswers);
+    // console.log(correctAnswers);
+
+    if(interviewQuestions.currentQuestion > 0) {
+        interviewQuestions.currentQuestion--;
+    }
+    else {
+        interviewQuestions.currentQuestion = 0;
+    }
+    interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
+    // console.log("prev button pressed");
+
+});
+
+$("body").on("click", ".nextBtn", function(event){
+    // console.log(userAnswers);
+    // console.log(correctAnswers);
+
+    if(interviewQuestions.currentQuestion <= myData.length) {
+        interviewQuestions.currentQuestion++;
+    }
+    else {
+        interviewQuestions.currentQuestion = myData.length;
+    }
+    interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
+    // console.log("next button pressed");
+>>>>>>> 4c288ac597cb5c326f5408155d41bacfd8eb025d
 
 
  }
