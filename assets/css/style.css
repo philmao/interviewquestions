@@ -12,8 +12,6 @@ body {
   font-size: 45px;
   color:orange;
   text-shadow: 2px 2px black;
-
-
 }
 
 .first {
@@ -27,8 +25,6 @@ body {
   background-image: url("https://static.pexels.com/photos/265152/pexels-photo-265152.jpeg");
   background-size: 250%;
   margin-top: 50px;
-  
-
 }
 
 .container:before {
@@ -70,4 +66,31 @@ body {
   border-top-right-radius: 0;
 }
 
+/* settings for questions */
+.answerBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
+.reviewBtn {
+  display: block;
+  background-color: lightblue;
+  color: black;
+}
+.prevBtn {
+  float: left;
+}
+.nextBtn {
+  float: right;
+}
+.doneBtn {
+  float: right;
+}
+p {
+  color: black;
+  font-size: 24px;
+}
+#profile {
+  float: right;
+}
 /*end LOGIN style*/
