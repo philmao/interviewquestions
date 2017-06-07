@@ -198,6 +198,7 @@ function getProfileData(profiles) {
     sessionStorage.setItem('Picture',photo);
     sessionStorage.setItem('MemberId',id);
     sessionStorage.setItem('firstName', firstName);
+    console.log("Inside getProfileData");
     generateSecondHTML();
     initRefreshScoreData();
 
