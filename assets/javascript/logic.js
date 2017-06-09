@@ -91,7 +91,7 @@ $('body').on('click', '#signin', function(event) {
 // Display: Function for creation of initial start screen
 function initialScreen() {
     var startScreen = "<div class='container1'><form class='form-signin'>";
-    startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>";
+    startScreen += "<div class='welcome'>Welcome!</div>";
     startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>";
     //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>";
     //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>";
