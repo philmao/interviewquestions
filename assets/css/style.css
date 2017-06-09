@@ -15,6 +15,7 @@ body {
   font-size: 45px;
   color:white;
   text-shadow: 2px 2px black;
+  text-align: center;
 }
 
 .container-fluid {
@@ -92,6 +93,7 @@ a.navbar-brand {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  text-align: center;
 }
 /*.form-signin .form-signin-heading,
 .form-signin .checkbox {
