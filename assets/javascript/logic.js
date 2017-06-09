@@ -158,6 +158,7 @@ function displayProfileInfo() {
     photo = sessionStorage.getItem('Picture');
     id = sessionStorage.getItem('MemberId');
     firstName = sessionStorage.getItem('firstName');
+    city = sessionStorage.getItem('city');
 
     $("#name").append(firstName);
     $('#pic').attr("src", photo);
@@ -612,7 +613,7 @@ $("body").on("click", "#doneButton", function(event){
         duration = moment(temp).format('mm:ss');
 
         console.log("Duration is: ", duration);
-        sessionStorage.getItem('city');
+        
 
         //creating an object to hold the data, which will be sent to firebase 
         var data = {
