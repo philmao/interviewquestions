@@ -1,0 +1,60 @@
+body {
+  background-image: url("https://static.pexels.com/photos/65543/pexels-photo-65543.jpeg");
+  background-size: 100%;
+  font-family: Indie Flower, sans-serif;
+}
+
+
+
+
+
+#stack {
+  margin: auto;
+  position: relative;
+  width: 600px;
+}
+
+.card {
+  border: 1px solid #888;
+  position: absolute;
+  width: 600px;
+  height: 360px;
+  transform-origin: 0% 0%;
+}
+.card .front {
+  background: white;
+  font-size: 24pt;
+  position: absolute;
+  width: 600px;
+  height: 360px;
+  z-index: 2;
+}
+.card .front p {
+  line-height: 3em;
+  text-align: center;
+}
+
+
+._1 {
+  top: 0px;
+  right: 0px;
+  z-index: 3;
+}
+
+._2 {
+  top: 3px;
+  right: 2px;
+  z-index: 2;
+}
+
+._3 {
+  top: 6px;
+  right: 4px;
+  z-index: 1;
+}
+
+._4 {
+  top: 9px;
+  right: 6px;
+  z-index: 0;
+}
