@@ -199,9 +199,8 @@ function getProfileData(profiles) {
     sessionStorage.setItem('MemberId',id);
     sessionStorage.setItem('firstName', firstName);
     console.log("Inside getProfileData");
-    generateSecondHTML();
     initRefreshScoreData();
-
+    generateSecondHTML();
 }
 
 // LinkedIn: Function gets user details based on member id
@@ -224,11 +223,7 @@ function initRefreshScoreData() {
     localTestDate + "</td></tr>");
     });
 }
-
-// LinkedIn: Handle the successful return from the API call
-function onSuccess(data) {
-    console.log(data);
-}   
+ 
 
 // LinkedIn: Handle an error response from the API call
 function onError(error) {
@@ -244,6 +239,7 @@ var liLogout = function() {
 function callbackFunction() {
     alert("You have successfully logged out.");
     globalInit();
+    initialScreen();
 }
 
 // LinkedIn: Set all the global variables to zero
