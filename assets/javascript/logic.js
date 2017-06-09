@@ -61,11 +61,11 @@ $(document).ready(function() {
 });
 
 // Display: Onclick signin button to the second page
-/*$('body').on('click', '#signin', function(event) {
+$('body').on('click', '#signin', function(event) {
 
     generateSecondHTML();
 
-});*/
+});
 
 // Display: Onclick start button to second page 
 /*$('body').on('click', '#st', function(event) {
