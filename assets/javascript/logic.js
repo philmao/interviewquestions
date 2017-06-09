@@ -215,6 +215,7 @@ function initRefreshScoreData() {
     var localScore = snapshot.val().score;
     var localDuration = snapshot.val().duration;
     var localTestDate = snapshot.val().testDate;
+    var localTestLocation = snapshot.val().city;
 
     //highest score
     highScore(localScore);
@@ -222,7 +223,7 @@ function initRefreshScoreData() {
 
     // Add user's score data into the table
     $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
-    localTestDate + "</td><td>" + Test Location + "</td></tr>");
+    localTestDate + "</td><td>" + city + "</td></tr>");
     });
 }
  
@@ -603,6 +604,7 @@ $("body").on("click", "#doneButton", function(event){
         duration = moment(temp).format('mm:ss');
 
         console.log("Duration is: ", duration);
+        sessionStorage.getItem('city');
 
         //creating an object to hold the data, which will be sent to firebase 
         var data = {
