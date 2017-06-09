@@ -47,6 +47,17 @@ a.navbar-brand {
  }
 
 
+
+#center{
+
+  margin: 0 auto;
+  width: 960px;
+  text-align: center;
+  padding: 10px;
+}
+
+
+
 /*.container:before {
   filter: blur(0px);
 }*/
