@@ -61,18 +61,18 @@ $(document).ready(function() {
 });
 
 // Display: Onclick signin button to the second page
-$('body').on('click', '#signin', function(event) {
+/*$('body').on('click', '#signin', function(event) {
 
     generateSecondHTML();
 
-});
+});*/
 
 // Display: Onclick start button to second page 
-$('body').on('click', '#st', function(event) {
+/*$('body').on('click', '#st', function(event) {
 
     generateSecondHTML();
 
-});  
+}); */ 
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
@@ -198,8 +198,9 @@ function getProfileData(profiles) {
     sessionStorage.setItem('Picture',photo);
     sessionStorage.setItem('MemberId',id);
     sessionStorage.setItem('firstName', firstName);
-    initRefreshScoreData();
-
+    console.log("Inside getProfileData");
+    //initRefreshScoreData();
+    generateSecondHTML();
 }
 
 // LinkedIn: Function gets user details based on member id
@@ -222,11 +223,7 @@ function initRefreshScoreData() {
     localTestDate + "</td></tr>");
     });
 }
-
-// LinkedIn: Handle the successful return from the API call
-function onSuccess(data) {
-    console.log(data);
-}   
+ 
 
 // LinkedIn: Handle an error response from the API call
 function onError(error) {
@@ -242,6 +239,7 @@ var liLogout = function() {
 function callbackFunction() {
     alert("You have successfully logged out.");
     globalInit();
+    window.location.href = "index.html";
 }
 
 // LinkedIn: Set all the global variables to zero
