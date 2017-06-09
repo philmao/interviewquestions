@@ -170,6 +170,8 @@ function displayProfileInfo() {
 // LinkedIn: Function to attach auth eventhandler
 function OnLinkedInFrameworkLoad() {
     IN.Event.on(IN, "auth", OnLinkedInAuth);
+    $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'})
+   .html('<img src="assets/images/linkedin_signin_large.png" height="31" width="200" border="0" />');
 }
 
 // LinkedIn: Retrieving user profile
@@ -213,6 +215,7 @@ function initRefreshScoreData() {
     var localScore = snapshot.val().score;
     var localDuration = snapshot.val().duration;
     var localTestDate = snapshot.val().testDate;
+    var localTestLocation = snapshot.val().city;
 
     //highest score
     highScore(localScore);
@@ -220,7 +223,7 @@ function initRefreshScoreData() {
 
     // Add user's score data into the table
     $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
-    localTestDate + "</td></tr>");
+    localTestDate + "</td><td>" + localTestLocation + "</td></tr>");
     });
 }
  
@@ -256,7 +259,7 @@ function globalInit() {
 
 var latitude;
 var longitude;
-
+var city;
 // Google Map API with location finding code
 function initMap() {
        
@@ -265,9 +268,9 @@ function initMap() {
         var country = data.country_name;
         var ip = data.ip;
         var time_zone = data.time_zone;
-        var latitude = data.latitude;
-        var longitude = data.longitude;
-        var city= data.city;
+         latitude = data.latitude;
+         longitude = data.longitude;
+         city= data.city;
         sessionStorage.setItem("city", city);
         console.log(city);
         var uluru = {lat: latitude, lng: longitude};
@@ -572,7 +575,7 @@ var interviewQuestions = {
       // console.log(converted);
 
       // Use the variable we just created to show the converted time in the "timer" div.
-      $("#timer").text("Time: " + converted);
+      $("#timer").text("Time Spent: " + converted);
     },
     timeConverter: function(t) {
 
@@ -609,6 +612,7 @@ $("body").on("click", "#doneButton", function(event){
         duration = moment(temp).format('mm:ss');
 
         console.log("Duration is: ", duration);
+        sessionStorage.getItem('city');
 
         //creating an object to hold the data, which will be sent to firebase 
         var data = {
@@ -616,7 +620,8 @@ $("body").on("click", "#doneButton", function(event){
             memberId: id,
             score: interviewQuestions.correctCount,
             duration: duration,
-            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss a')
+            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss a'),
+            city: city
         }
         
         console.log("Data ", data);
