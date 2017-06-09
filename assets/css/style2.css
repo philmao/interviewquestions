@@ -181,12 +181,15 @@ img {
 .navbar-nav li p {
   display: inline-block;
   float: left;
-  padding: 40px 40px;
   color: white;
+}
+.navbar-nav li img {
+  padding: 0 40px;
 }
 
 .navbar-nav li p {
   margin-left: 200px;
+  padding: 40px 40px;
 }
 
 .btn-default {

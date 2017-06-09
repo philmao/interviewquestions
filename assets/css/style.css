@@ -61,12 +61,14 @@ a.navbar-brand {
 .navbar-nav li p {
   display: inline-block;
   float: left;
-  padding: 40px 40px;
   color: white;
 }
-
+.navbar-nav li img {
+  padding: 0 40px;
+}
 .navbar-nav li p {
   margin-left: 300px;
+  padding: 40px 40px;
 }
 #name {
   color: white;
@@ -167,7 +169,7 @@ span {
 #profile {
   float: right;
 }
-.lt {
+#lt {
   margin-top: 30px;
 }
 
