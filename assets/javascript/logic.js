@@ -98,7 +98,10 @@ function initialScreen() {
     //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
     //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
     //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>";
-    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
+    if(location.hostname == "") {
+        startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
+    }
+    console.log(location.hostname);
     startScreen += "<div id='center'><script type='in/Login'></script></div>";
     startScreen += "</form></div>";
     $('.mainArea').html(startScreen);
