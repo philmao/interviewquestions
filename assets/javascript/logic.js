@@ -90,14 +90,14 @@ $('body').on('click', '#signin', function(event) {
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
-    var startScreen = "<div class='container1'><form class='form-signin'>"
-    startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>"
-    startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>"
-    //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
-    //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
-    //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
-    //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
-    //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
+    var startScreen = "<div class='container1'><form class='form-signin'>";
+    startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>";
+    startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>";
+    //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>";
+    //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>";
+    //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
+    //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
+    //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>";
     startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
     startScreen += "<div id='center'><script type='in/Login'></script></div>";
     startScreen += "</form></div>";
@@ -405,23 +405,38 @@ var interviewQuestions = {
         answerChoice += "<div class='card _4'><div class='front'></div></div>";
 
         answerChoice += "<div class='card topCard'><div class='front'>";
+        answerChoice += "<p id='questionStyle'>" + myData[questionNum].question + "</p>";
 
-
-        answerChoice += "<p><span>" + myData[questionNum].question + "</span></p>";
         // console.log(myData[questionNum].question);
 
         answerChoice += "<div class='btn-group-vertical' role='question'>";
 
         for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
-            answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+
+            answerChoice += "<fieldset><input type='radio' class='btn btn-default btn-lg answerBtn'";
             answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
             answerChoice += " id=" + parseInt(i + 1);
             answerChoice += " name='question" + parseInt(questionNum) + "'>";
-            answerChoice += myData[questionNum].choices[i];
-            answerChoice += "</button>";
-            // console.log(answerChoice);
-            // console.log(myData[questionNum].choices[i]);
+            answerChoice += "     " + myData[questionNum].choices[i];
+            answerChoice += "</fieldset>";
+
+// <fieldset>
+//     <legend>Please select one of the following</legend>
+//     <input type="radio" name="action" id="track" value="track" /><label for="track">Track Submission</label><br />
+//     <input type="radio" name="action" id="event" value="event"  /><label for="event">Events and Artist booking</label><br />
+//     <input type="radio" name="action" id="message" value="message" /><label for="message">Message us</label><br />
+// </fieldset>
+
+
+//         //     answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+//         //     answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+//         //     answerChoice += " id=" + parseInt(i + 1);
+//         //     answerChoice += " name='question" + parseInt(questionNum) + "'>";
+//         //     answerChoice += myData[questionNum].choices[i];
+//         //     answerChoice += "</button>";
+        //     // console.log(answerChoice);
+        //     // console.log(myData[questionNum].choices[i]);
 
         }
         answerChoice += "</div></div></div>";
