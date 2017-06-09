@@ -91,7 +91,7 @@ $('body').on('click', '#signin', function(event) {
 function initialScreen() {
     startScreen = "<div class='container1'><form class='form-signin'>"
     startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>"
-    startScreen += "<h5 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h5>"
+    startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>"
     //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
     //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
     //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
