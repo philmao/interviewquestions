@@ -160,7 +160,7 @@ function displayProfileInfo() {
     firstName = sessionStorage.getItem('firstName');
 
     $("#name").append(firstName);
-    $('img').attr("src", photo);
+    $('#pic').attr("src", photo);
     $("#pic").append(profilePic); 
 }
 
@@ -170,6 +170,8 @@ function displayProfileInfo() {
 // LinkedIn: Function to attach auth eventhandler
 function OnLinkedInFrameworkLoad() {
     IN.Event.on(IN, "auth", OnLinkedInAuth);
+    $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'})
+   .html('<img src="assets/images/linkedin_signin_large.png" height="31" width="200" border="0" />');
 }
 
 // LinkedIn: Retrieving user profile
@@ -564,7 +566,7 @@ var interviewQuestions = {
       // console.log(converted);
 
       // Use the variable we just created to show the converted time in the "timer" div.
-      $("#timer").text("Time: " + converted);
+      $("#timer").text("Time Spent: " + converted);
     },
     timeConverter: function(t) {
 
