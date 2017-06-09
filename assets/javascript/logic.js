@@ -223,7 +223,7 @@ function initRefreshScoreData() {
 
     // Add user's score data into the table
     $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
-    localTestDate + "</td><td>" + city + "</td></tr>");
+    localTestDate + "</td><td>" + localTestLocation + "</td></tr>");
     });
 }
  
