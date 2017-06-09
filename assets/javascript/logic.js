@@ -222,7 +222,7 @@ function initRefreshScoreData() {
 
     // Add user's score data into the table
     $("#score-table > tbody").append("<tr><td>" + localScore + "</td><td>" + localDuration + "</td><td>" +
-    localTestDate + "</td></tr>");
+    localTestDate + "</td><td>" + Test Location + "</td></tr>");
     });
 }
  
@@ -258,7 +258,7 @@ function globalInit() {
 
 var latitude;
 var longitude;
-
+var city;
 // Google Map API with location finding code
 function initMap() {
        
@@ -267,9 +267,9 @@ function initMap() {
         var country = data.country_name;
         var ip = data.ip;
         var time_zone = data.time_zone;
-        var latitude = data.latitude;
-        var longitude = data.longitude;
-        var city= data.city;
+         latitude = data.latitude;
+         longitude = data.longitude;
+         city= data.city;
         sessionStorage.setItem("city", city);
         console.log(city);
         var uluru = {lat: latitude, lng: longitude};
@@ -610,7 +610,8 @@ $("body").on("click", "#doneButton", function(event){
             memberId: id,
             score: interviewQuestions.correctCount,
             duration: duration,
-            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss a')
+            testDate: moment().format('dddd, MMMM Do YYYY, hh:mm:ss a'),
+            city: city
         }
         
         console.log("Data ", data);
