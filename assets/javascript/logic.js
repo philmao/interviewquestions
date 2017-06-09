@@ -160,7 +160,7 @@ function displayProfileInfo() {
     firstName = sessionStorage.getItem('firstName');
 
     $("#name").append(firstName);
-    $('img').attr("src", photo);
+    $('#pic').attr("src", photo);
     $("#pic").append(profilePic); 
 }
 
@@ -378,12 +378,19 @@ var interviewQuestions = {
         timerLine.text("Time: " + interviewQuestions.timeConverter(interviewQuestions.time));
         $(".mainArea").append(timerLine);
 
-        var questionLine = $("<p>");
-        questionLine.text(myData[questionNum].question);
-        $(".mainArea").append(questionLine);
+        var answerChoice = "<div id='stack'>";
+        answerChoice += "<div class='card _1'><div class='front'></div></div>";
+        answerChoice += "<div class='card _2'><div class='front'></div></div>";
+        answerChoice += "<div class='card _3'><div class='front'></div></div>";
+        answerChoice += "<div class='card _4'><div class='front'></div></div>";
+
+        answerChoice += "<div class='card topCard'><div class='front'>";
+
+
+        answerChoice += "<p>" + myData[questionNum].question + "</p>";
         // console.log(myData[questionNum].question);
 
-        var answerChoice = "<div class='btn-group-vertical' role='question'>";
+        answerChoice += "<div class='btn-group-vertical' role='question'>";
 
         for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
@@ -397,6 +404,7 @@ var interviewQuestions = {
             // console.log(myData[questionNum].choices[i]);
 
         }
+        answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
 
         if(userAnswers[questionNum] != 0) {
@@ -664,6 +672,13 @@ $("body").on("click", ".prevBtn", function(event){
     // console.log(userAnswers);
     // console.log(correctAnswers);
     // console.log(interviewQuestions.reviewFlag);
+    var maxCards = $('.card').length;
+     
+    for (var i = 0; i <= maxCards; i++) {
+        $(".card").find('.front').css("z-index", 0);
+        $(".card").css("z-index", 5);
+        $(".card").animate({left:'+=1000px'},1000);
+    };
 
     if(interviewQuestions.currentQuestion > 0) {
         interviewQuestions.currentQuestion--;
@@ -685,7 +700,15 @@ $("body").on("click", ".nextBtn", function(event){
     // console.log(userAnswers);
     // console.log(correctAnswers);
     // console.log(interviewQuestions.reviewFlag);
-
+    var maxCards = $('.card').length;
+    console.log(maxCards);
+     
+    for (var i = 0; i <= maxCards; i++) {
+        $("#topCard").find('.front').css("z-index", 0);
+        $("#topCard").css("z-index", 5);
+        $("#topCard").animate({left:'-=1000px'},1000);
+    };
+    
     if(interviewQuestions.currentQuestion <= myData.length) {
         interviewQuestions.currentQuestion++;
     }

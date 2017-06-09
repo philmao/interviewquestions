@@ -124,12 +124,22 @@ body {
 }
 
 /* Navbar */
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
+}
+
 .navbar {
     position: relative;
     min-height: 50px;
     margin-bottom: 20px;
     border: 1px solid transparent;
     display: block;
+    background-color: black;
+    height: 100px;
 }
 
 .navbar-default .navbar-brand {
@@ -149,10 +159,14 @@ body {
     font-size: 18px;
     height: 50px;
     text-decoration: none;
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .navbar-brand>img {
     display: block;
+}
+.navbar-btn {
+  float: left;
 }
 
 img {
