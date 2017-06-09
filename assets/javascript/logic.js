@@ -239,7 +239,7 @@ var liLogout = function() {
 function callbackFunction() {
     alert("You have successfully logged out.");
     globalInit();
-    initialScreen();
+    window.location.href = "index.html";
 }
 
 // LinkedIn: Set all the global variables to zero
