@@ -728,7 +728,7 @@ $("body").on("click", ".prevBtn", function(event){
      
     for (var i = 0; i <= maxCards; i++) {
         $(".card").find('.front').css("z-index", 0);
-        $(".card").css("z-index", 5);
+        $(".card").css("z-index", i);
         $(".card").animate({left:'+=1000px'},1000);
     };
 
@@ -757,7 +757,7 @@ $("body").on("click", ".nextBtn", function(event){
      
     for (var i = 0; i <= maxCards; i++) {
         $("#topCard").find('.front').css("z-index", 0);
-        $("#topCard").css("z-index", 5);
+        $("#topCard").css("z-index", i);
         $("#topCard").animate({left:'-=1000px'},1000);
     };
     
