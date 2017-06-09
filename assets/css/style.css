@@ -85,6 +85,26 @@ a.navbar-brand {
   padding-top: -400px;*/
 }
 
+.navbar-right {
+    margin-top: 30px;
+    float:right !important;
+    margin-right: 40px;
+
+    font-size: 14px;
+  line-height: 1.42857143;
+  
+  font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
+}
+
+#lt {
+
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: white;
+  background: grey;
+  font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
+}
+
 
 
 /*.container:before {
@@ -163,7 +183,7 @@ span {
   padding: 20px;
 }
 #profile {
-  float: right;
+  float: right; 
 }
 #lt {
   margin-top: 30px;
@@ -182,6 +202,7 @@ span {
   width: 600px;
   height: 360px;
   transform-origin: 0% 0%;
+  color: #202020;
 }
 .card .front {
   background: white;
@@ -196,6 +217,9 @@ span {
   text-align: center;
 }
 
+#questionStyle {
+  
+}
 
 ._1 {
   top: 0px;
@@ -231,3 +255,11 @@ h2, #timer {
   color: white;
 
 }
+
+/*navbar page 3 style*/
+
+.navbar-right{
+    margin-top: 30px;
+    
+    margin-right: 10px;
+ }
