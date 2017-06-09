@@ -271,7 +271,8 @@ function initMap() {
         var latitude = data.latitude;
         var longitude = data.longitude;
         var city= data.city;
-
+        sessionStorage.setItem("city", city);
+        console.log(city);
         var uluru = {lat: latitude, lng: longitude};
         // var map = new google.maps.Map(document.getElementById('map'), {
         //     zoom: 4,

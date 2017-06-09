@@ -28,12 +28,26 @@
 
     <body>
 
-    <!--placeholder to display user name, picture and logout button-->
-    <div id='profile'>
-      <p><span id='name'></span></p>
-      <img id="pic" alt = "Profile Picture"></img>
-      <button id="lt" type="logout" onclick="liLogout()">Logout</button>
-    </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html"><img alt="Brand" src="assets/images/iq.PNG" width="60" height="60" style="float:left;"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" href="index.html">Interview Questions</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><p id='name'></p></li>
+            <li><img id="pic" alt="Profile Picture"></li>
+            <li><button id="lt" type="logout" onclick="liLogout()">Logout</button><li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
     <div class="mainArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
     <div class="buttonArea col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"></div>
