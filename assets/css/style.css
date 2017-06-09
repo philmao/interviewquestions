@@ -8,12 +8,13 @@ body {
   background-image: url("../images/loginpagephoto_bw.jpg");
   background-size: 100%;
   /*margin-top: 50px;*/
+  font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
 }
 
 .welcome {
   font-family: Courgette;
   font-size: 45px;
-  color:white;
+  color: white;
   text-shadow: 2px 2px black;
 }
 
@@ -29,7 +30,7 @@ a.navbar-brand {
   padding-top: 0;
 }
 
-.navbar-inverse {
+.navbar-default {
   background: rgba(0, 0, 0, 0.3);
 
 }
@@ -43,7 +44,8 @@ a.navbar-brand {
 }
 
  .navbar-brand {
-    padding: 18px 25px;
+    padding: 0 10px 0 23px;
+    font-size: 24px;
  }
 
 
@@ -67,43 +69,42 @@ a.navbar-brand {
   padding: 15px;
   margin: 0 auto;
 }
-/*.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
+.form-signin-heading {
+  font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
+  line-height: 1.5;
 }
-.form-signin .checkbox {
-  font-weight: normal;
+
+.btn-block  {
+  background: #FF8000;
 }
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
+
+.btn-block:hover {
+  background: #CC6600;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}*/
 
 
 
 /* settings for questions */
+
+fieldset {
+  margin-left: 120px;
+  font-size: 22px;
+  text-overflow: scroll;
+}
+
+#questionStyle{
+  font: italic bold;
+  line-height: 30px;
+  margin-top: 30px;
+  margin-bottom: 70px;
+
+}
+
 .answerBtn {
-  display: block;
+  /*display: block;
   background-color: lightblue;
-  color: black;
+  color: black;*/
+  text-align: center;
 }
 .reviewBtn {
   display: block;
@@ -182,3 +183,9 @@ p {
   z-index: 5;
 }
 /*end LOGIN style*/
+
+h2, #timer {
+  text-align: center;
+  color: white;
+
+}
