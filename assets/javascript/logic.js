@@ -89,7 +89,7 @@ $('body').on('click', '#signin', function(event) {
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
-    startScreen = "<div class='container'><form class='form-signin'>"
+    startScreen = "<div class='container1'><form class='form-signin'>"
     startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>"
     startScreen += "<h5 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h5>"
     startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
@@ -468,12 +468,19 @@ var interviewQuestions = {
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
-        var questionLine = $("<p>");
-        questionLine.text(myData[questionNum].question);
-        $(".mainArea").append(questionLine);
+        var answerChoice = "<div id='stack' col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2>";
+        answerChoice += "<div class='card _1'><div class='front'></div></div>";
+        answerChoice += "<div class='card _2'><div class='front'></div></div>";
+        answerChoice += "<div class='card _3'><div class='front'></div></div>";
+        answerChoice += "<div class='card _4'><div class='front'></div></div>";
+
+        answerChoice += "<div class='card topCard'><div class='front'>";
+
+
+        answerChoice += "<p><span>" + myData[questionNum].question + "</span></p>";
         // console.log(myData[questionNum].question);
 
-        var answerChoice = "<div class='btn-group-vertical' role='question'>";
+        answerChoice += "<div class='btn-group-vertical' role='question'>";
 
         for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
@@ -487,7 +494,15 @@ var interviewQuestions = {
             // console.log(myData[questionNum].choices[i]);
 
         }
+
+        answerChoice += "<p><span>Correct answer:</span></p>";
+        answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+        answerChoice += " name='question" + parseInt(questionNum) + "'>";
+        answerChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
+        answerChoice += "</button>";
+        answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
+        // console.log(questionNum, correctAnswers[questionNum]);
 
         if(userAnswers[questionNum] != 0) {
             switch (parseInt(userAnswers[questionNum])) {
@@ -506,14 +521,6 @@ var interviewQuestions = {
                 default:
             }
         }
-
-        var correctChoice = "<p>Correct answer:</p>";
-        correctChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
-        correctChoice += " name='question" + parseInt(questionNum) + "'>";
-        correctChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
-        correctChoice += "</button>";
-        $(".mainArea").append(correctChoice);
-        // console.log(questionNum, correctAnswers[questionNum]);
 
         $(".buttonArea").empty();
         if(questionNum > 0) {
