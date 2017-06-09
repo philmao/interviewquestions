@@ -390,7 +390,7 @@ var interviewQuestions = {
         // console.log(questionNum);
 
         var titleLine = $("<h2>");
-        titleLine.text(subject + ": Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        titleLine.text(subject + ": Question " + parseInt(questionNum + 1) +" of " + interviewQuestions.maxQuestions);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
@@ -429,14 +429,14 @@ var interviewQuestions = {
 // </fieldset>
 
 
-//         //     answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
-//         //     answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
-//         //     answerChoice += " id=" + parseInt(i + 1);
-//         //     answerChoice += " name='question" + parseInt(questionNum) + "'>";
-//         //     answerChoice += myData[questionNum].choices[i];
-//         //     answerChoice += "</button>";
-        //     // console.log(answerChoice);
-        //     // console.log(myData[questionNum].choices[i]);
+        //     answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+        //     answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+        //     answerChoice += " id=" + parseInt(i + 1);
+        //     answerChoice += " name='question" + parseInt(questionNum) + "'>";
+        //     answerChoice += myData[questionNum].choices[i];
+        //     answerChoice += "</button>";
+            // console.log(answerChoice);
+            // console.log(myData[questionNum].choices[i]);
 
         }
         answerChoice += "</div></div></div>";
@@ -465,7 +465,7 @@ var interviewQuestions = {
         if(questionNum > 0) {
             $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
         }
-        if(questionNum < (myData.length - 1)) {
+        if(questionNum < (interviewQuestions.maxQuestions - 1)) {
             $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
         }
         else {
@@ -482,7 +482,7 @@ var interviewQuestions = {
         console.log(questionNum);
 
         var titleLine = $("<h2>");
-        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + interviewQuestions.maxQuestions);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
@@ -500,7 +500,7 @@ var interviewQuestions = {
 
         answerChoice += "<div class='btn-group-vertical' role='question'>";
 
-        for(var i = 0; i < interviewQuestions.maxQuestions; i++) {
+        for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
             answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
             answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
@@ -544,7 +544,7 @@ var interviewQuestions = {
         if(questionNum > 0) {
             $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
         }
-        if(questionNum < (myData.length - 1)) {
+        if(questionNum < (interviewQuestions.maxQuestions - 1)) {
             $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
         }
         else {
@@ -761,11 +761,11 @@ $("body").on("click", ".nextBtn", function(event){
         $("#topCard").animate({left:'-=1000px'},1000);
     };
     
-    if(interviewQuestions.currentQuestion <= myData.length) {
+    if(interviewQuestions.currentQuestion <= interviewQuestions.maxQuestions) {
         interviewQuestions.currentQuestion++;
     }
     else {
-        interviewQuestions.currentQuestion = myData.length;
+        interviewQuestions.currentQuestion = interviewQuestions.maxQuestions;
     }
     if(interviewQuestions.reviewFlag) {
         interviewQuestions.reviewQuestion(interviewQuestions.currentQuestion);
