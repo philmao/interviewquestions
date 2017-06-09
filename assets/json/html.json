@@ -46,7 +46,7 @@
             "correct": "4"
         },
         {
-            "question": "What file extension should hml files have",
+            "question": "What file extension should html files have?",
             "choices": ["html", "web", "page", "site"],
             "correct": "1"
         },
@@ -61,12 +61,12 @@
             "correct": "2"
         },
         {
-            "question": "To create a link to an anchor, which property in <a> tag is used?",
+            "question": "To create a link to an anchor, which property in < a> tag is used?",
             "choices": ["src", "link", "name", "href"],
             "correct": "4"
         },
         {
-            "question": "Choose the correct HTML tag for the most important heading",
+            "question": "Choose the correct HTML tag for the most important heading.",
             "choices": ["h6", "head", "h1", "title"],
             "correct": "3"
         },
