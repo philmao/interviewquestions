@@ -6,7 +6,7 @@
             "correct": "1"
         },
         {
-            "question": "'< br/>' is what type of tag is this?",
+            "question": "What type of tag is '< br/>'?",
             "choices": ["break tag", "broken tag", "body tag", "bad tag"],
             "correct": "1"
         },
