@@ -77,6 +77,7 @@ $(document).ready(function() {
 $('body').on('click', '#signin', function(event) {
 
     generateSecondHTML();
+    console.log("2nd page");
 
 });
 
@@ -97,7 +98,7 @@ function initialScreen() {
     //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
     //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
     //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
-    // startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
     startScreen += "<div id='center'><script type='in/Login'></script></div>";
     startScreen += "</form></div>";
     $('.mainArea').html(startScreen);
