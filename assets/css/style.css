@@ -49,8 +49,11 @@ a.navbar-brand {
 
 
 #center{
-  width: 960px;
+
   margin: 0 auto;
+  width: 960px;
+  text-align: center;
+  padding: 10px;
 }
 
 
