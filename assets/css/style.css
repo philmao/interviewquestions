@@ -17,6 +17,19 @@ body {
   text-shadow: 2px 2px black;
 }
 
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  max-width: 68em;
+}
+
+.navbar {
+  background: rgba(0,0,0,0.4);
+}
+
 .navbar-brand,
 .navbar-nav li a {
   line-height: 100px;
@@ -38,16 +51,26 @@ a.navbar-brand {
     margin-top: 20px;
     /* line-height: 87px; */
     height: 28px;
-
-
 }
 
- .navbar-brand {
-    padding: 18px 25px;
- }
+.navbar-brand {
+  padding: 18px 25px;
+}
 
+.navbar-nav li img,
+.navbar-nav li p {
+  display: inline-block;
+  float: left;
+  padding: 40px 40px;
+  color: white;
+}
 
-
+.navbar-nav li p {
+  margin-left: 300px;
+}
+#name {
+  color: white;
+}
 #center{
 
   margin: 0 auto;
@@ -96,10 +119,26 @@ a.navbar-brand {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }*/
+.mainArea {
+  height: 600px;
+}
 
+.buttonArea {
+  max-width: 68em;
+}
 
+#timer {
+  color: white;
+  font-size: 24px; 
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 20px;
+}
 
 /* settings for questions */
+.btn-group-vertical {
+  margin-left: 20px;
+}
+
 .answerBtn {
   display: block;
   background-color: lightblue;
@@ -119,18 +158,26 @@ a.navbar-brand {
 .doneBtn {
   float: right;
 }
-p {
+.btn {
+    margin-top: 30px;
+}
+span {
   color: black;
   font-size: 24px;
+  padding: 20px;
 }
 #profile {
   float: right;
+}
+.lt {
+  margin-top: 30px;
 }
 
 #stack {
   margin: auto;
   position: relative;
   width: 600px;
+  display: block;
 }
 
 .card {
@@ -149,7 +196,7 @@ p {
   z-index: 2;
 }
 .card .front p {
-  line-height: 3em;
+  line-height: 1em;
   text-align: center;
 }
 

@@ -26,6 +26,11 @@ var hScore = 0;
 
 // Display pages
 // ******************************************************************
+
+var viewTestResults = 0; 
+sessionStorage.setItem("viewTestResults", viewTestResults);
+console.log("viewTestResults=0");
+
 $(document).ready(function() {
 
     // console.log(window.location.href);
@@ -47,12 +52,20 @@ $(document).ready(function() {
     if (window.location.href.match('index3.html') != null) {
         console.log("index3.html ready");
 
+        viewTestResults = sessionStorage.getItem("viewTestResults");
+        console.log("viewTestResults: ", viewTestResults);
+
         // LinkedIn: Function to display user's name, pic and logout button
         displayProfileInfo();
-        startTime = moment();
 
-        // Hide test results
-        $("#page3").css({ visibility: "hidden"}); 
+        if(parseInt(viewTestResults)) {
+            // Hide test results
+            $("#page3").css({ visibility: "show"}); 
+        }
+        else {
+            startTime = moment();
+            $("#page3").css({ visibility: "hidden"}); 
+        }
 
         // Load JSON data
         interviewQuestions.getJsonData();
@@ -379,10 +392,10 @@ var interviewQuestions = {
         // console.log(titleLine);
 
         var timerLine = $("<div id='timer'>");
-        timerLine.text("Time: " + interviewQuestions.timeConverter(interviewQuestions.time));
+        timerLine.text("Time Spent: " + interviewQuestions.timeConverter(interviewQuestions.time));
         $(".mainArea").append(timerLine);
 
-        var answerChoice = "<div id='stack'>";
+        var answerChoice = "<div id='stack' col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2>";
         answerChoice += "<div class='card _1'><div class='front'></div></div>";
         answerChoice += "<div class='card _2'><div class='front'></div></div>";
         answerChoice += "<div class='card _3'><div class='front'></div></div>";
@@ -391,7 +404,7 @@ var interviewQuestions = {
         answerChoice += "<div class='card topCard'><div class='front'>";
 
 
-        answerChoice += "<p>" + myData[questionNum].question + "</p>";
+        answerChoice += "<p><span>" + myData[questionNum].question + "</span></p>";
         // console.log(myData[questionNum].question);
 
         answerChoice += "<div class='btn-group-vertical' role='question'>";
@@ -605,6 +618,10 @@ $("body").on("click", "#doneButton", function(event){
     sessionStorage.setItem("queryURL", "");
     interviewQuestions.displayResults();
 
+    viewTestResults = 1;
+    sessionStorage.setItem("viewTestResults", viewTestResults);
+    console.log("viewTestResults=1");
+
     if(!interviewQuestions.reviewFlag) {
         interviewQuestions.stopTimer();
 
@@ -650,6 +667,10 @@ $("body").on("click", "#restart", function(event){
     interviewQuestions.correctCount = 0;
     interviewQuestions.incorrectCount = 0;
     interviewQuestions.reviewFlag = 0;
+
+    viewTestResults = 0;
+    sessionStorage.setItem("viewTestResults", viewTestResults);
+    console.log("viewTestResults=0");
 
     generateSecondHTML();
 
