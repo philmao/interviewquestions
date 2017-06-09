@@ -232,13 +232,12 @@ function onError(error) {
 
 // LinkedIn: Function to logout from the session
 var liLogout = function() {
-    IN.User.logout(callbackFunction);
+    IN.User.logout(logoutCallback);
 }
 
 // LinkedIn: callback function
-function callbackFunction() {
+function logoutCallback() {
     alert("You have successfully logged out.");
-    globalInit();
     window.location.href = "index.html";
 }
 
