@@ -370,7 +370,7 @@ var interviewQuestions = {
 
                 userAnswers = [];
                 correctAnswers = [];
-                for(var i = 0; i < myData.length; i++) {
+                for(var i = 0; i < interviewQuestions.maxQuestions; i++) {
                     userAnswers[i] = 0;
                 }
                 interviewQuestions.startTimer();
@@ -500,7 +500,7 @@ var interviewQuestions = {
 
         answerChoice += "<div class='btn-group-vertical' role='question'>";
 
-        for(var i = 0; i < myData[questionNum].choices.length; i++) {
+        for(var i = 0; i < interviewQuestions.maxQuestions; i++) {
 
             answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
             answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
@@ -560,7 +560,7 @@ var interviewQuestions = {
         console.log(correctAnswers);
         if(!interviewQuestions.reviewFlag) {
 
-            for(i = 0; i < myData.length; i++) {
+            for(i = 0; i < interviewQuestions.maxQuestions; i++) {
 
                 if(parseInt(userAnswers[i]) === 0) {
                     interviewQuestions.unansweredCount++;
