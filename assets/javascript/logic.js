@@ -173,9 +173,9 @@ function displayProfileInfo() {
     firstName = sessionStorage.getItem('firstName');
     city = sessionStorage.getItem('city');
 
-    $("#name").append(firstName);
+    $("#name").text(firstName);
     $('#pic').attr("src", photo);
-    $("#pic").append(profilePic); 
+    // $("#pic").append(profilePic); 
 }
 
 // Functions for LinkedIn login
