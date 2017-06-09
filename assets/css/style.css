@@ -16,6 +16,20 @@ body {
   font-size: 45px;
   color: white;
   text-shadow: 2px 2px black;
+  text-align: center;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  max-width: 68em;
+}
+
+.navbar {
+  background: rgba(0,0,0,0.4);
 }
 
 .navbar-brand,
@@ -39,8 +53,6 @@ a.navbar-brand {
     margin-top: 20px;
     /* line-height: 87px; */
     height: 28px;
-
-
 }
 
  .navbar-brand {
@@ -48,14 +60,29 @@ a.navbar-brand {
     font-size: 24px;
  }
 
-
-
+.navbar-nav li img,
+.navbar-nav li p {
+  display: inline-block;
+  float: left;
+  color: white;
+}
+.navbar-nav li img {
+  padding: 0 40px;
+}
+.navbar-nav li p {
+  margin-left: 300px;
+  padding: 40px 40px;
+}
+#name {
+  color: white;
+}
 #center{
 
   margin: 0 auto;
-  width: 960px;
+  /*width: 960px;*/
   text-align: center;
-  padding: 10px;
+/*  padding: 10px;
+  padding-top: -400px;*/
 }
 
 
@@ -64,10 +91,11 @@ a.navbar-brand {
   filter: blur(0px);
 }*/
 
-.form-signin {
+.container1, .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  text-align: center;
 }
 .form-signin-heading {
   font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
@@ -82,7 +110,16 @@ a.navbar-brand {
   background: #CC6600;
 }
 
+.buttonArea {
+  max-width: 68em;
+}
 
+#timer {
+  color: white;
+  font-size: 24px; 
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 20px;
+}
 
 /* settings for questions */
 
@@ -97,7 +134,6 @@ fieldset {
   line-height: 30px;
   margin-top: 30px;
   margin-bottom: 70px;
-
 }
 
 .answerBtn {
@@ -108,7 +144,7 @@ fieldset {
 }
 .reviewBtn {
   display: block;
-  background-color: lightblue;
+  background-color: white;
   color: black;
 }
 .prevBtn {
@@ -120,18 +156,24 @@ fieldset {
 .doneBtn {
   float: right;
 }
-p {
+
+span {
   color: black;
   font-size: 24px;
+  padding: 20px;
 }
 #profile {
   float: right;
+}
+#lt {
+  margin-top: 30px;
 }
 
 #stack {
   margin: auto;
   position: relative;
   width: 600px;
+  display: block;
 }
 
 .card {
@@ -150,7 +192,7 @@ p {
   z-index: 2;
 }
 .card .front p {
-  line-height: 3em;
+  line-height: 1em;
   text-align: center;
 }
 

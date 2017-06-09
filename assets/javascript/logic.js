@@ -26,6 +26,11 @@ var hScore = 0;
 
 // Display pages
 // ******************************************************************
+
+var viewTestResults = 0; 
+sessionStorage.setItem("viewTestResults", viewTestResults);
+console.log("viewTestResults=0");
+
 $(document).ready(function() {
 
     // console.log(window.location.href);
@@ -47,12 +52,20 @@ $(document).ready(function() {
     if (window.location.href.match('index3.html') != null) {
         console.log("index3.html ready");
 
+        viewTestResults = sessionStorage.getItem("viewTestResults");
+        console.log("viewTestResults: ", viewTestResults);
+
         // LinkedIn: Function to display user's name, pic and logout button
         displayProfileInfo();
-        startTime = moment();
 
-        // Hide test results
-        $("#page3").css({ visibility: "hidden"}); 
+        if(parseInt(viewTestResults)) {
+            // Hide test results
+            $("#page3").css({ visibility: "visible"}); 
+        }
+        else {
+            startTime = moment();
+            $("#page3").css({ visibility: "hidden"}); 
+        }
 
         // Load JSON data
         interviewQuestions.getJsonData();
@@ -64,6 +77,7 @@ $(document).ready(function() {
 $('body').on('click', '#signin', function(event) {
 
     generateSecondHTML();
+    console.log("2nd page");
 
 });
 
@@ -76,15 +90,17 @@ $('body').on('click', '#signin', function(event) {
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
-    startScreen = "<div class='container'><form class='form-signin'>"
-    startScreen += "<div class='welcome'>Welcome!</div>"
-    startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue:</h6>"
-    startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
-    startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
-    startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
-    startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
-    startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
-    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    var startScreen = "<div class='container1'><form class='form-signin'>";
+    startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>";
+    startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>";
+    //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>";
+    //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>";
+    //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
+    //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
+    //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>";
+    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
+    startScreen += "<div id='center'><script type='in/Login'></script></div>";
+    startScreen += "</form></div>";
     $('.mainArea').html(startScreen);
 
 }
@@ -160,9 +176,9 @@ function displayProfileInfo() {
     firstName = sessionStorage.getItem('firstName');
     city = sessionStorage.getItem('city');
 
-    $("#name").append(firstName);
+    $("#name").text(firstName);
     $('#pic').attr("src", photo);
-    $("#pic").append(profilePic); 
+    // $("#pic").append(profilePic); 
 }
 
 // Functions for LinkedIn login
@@ -172,7 +188,7 @@ function displayProfileInfo() {
 function OnLinkedInFrameworkLoad() {
     IN.Event.on(IN, "auth", OnLinkedInAuth);
     $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'})
-   .html('<img src="assets/images/linkedin_signin_large.png" height="31" width="200" border="0" />');
+   .html('<img src="assets/images/linkedin_signin_large.png" height="41" width="200" border="0" />');
 }
 
 // LinkedIn: Retrieving user profile
@@ -379,19 +395,18 @@ var interviewQuestions = {
         // console.log(titleLine);
 
         var timerLine = $("<div id='timer'>");
-        timerLine.text("Time: " + interviewQuestions.timeConverter(interviewQuestions.time));
+        timerLine.text("Time Spent: " + interviewQuestions.timeConverter(interviewQuestions.time));
         $(".mainArea").append(timerLine);
 
-        var answerChoice = "<div id='stack'>";
+        var answerChoice = "<div id='stack' col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2>";
         answerChoice += "<div class='card _1'><div class='front'></div></div>";
         answerChoice += "<div class='card _2'><div class='front'></div></div>";
         answerChoice += "<div class='card _3'><div class='front'></div></div>";
         answerChoice += "<div class='card _4'><div class='front'></div></div>";
 
         answerChoice += "<div class='card topCard'><div class='front'>";
-
-
         answerChoice += "<p id='questionStyle'>" + myData[questionNum].question + "</p>";
+
         // console.log(myData[questionNum].question);
 
         answerChoice += "<div class='btn-group-vertical' role='question'>";
@@ -405,13 +420,6 @@ var interviewQuestions = {
             answerChoice += " name='question" + parseInt(questionNum) + "'>";
             answerChoice += "     " + myData[questionNum].choices[i];
             answerChoice += "</fieldset>";
-                
-
-
-
-
-
-
 
 // <fieldset>
 //     <legend>Please select one of the following</legend>
@@ -478,12 +486,19 @@ var interviewQuestions = {
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
-        var questionLine = $("<p>");
-        questionLine.text(myData[questionNum].question);
-        $(".mainArea").append(questionLine);
+        var answerChoice = "<div id='stack' col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2>";
+        answerChoice += "<div class='card _1'><div class='front'></div></div>";
+        answerChoice += "<div class='card _2'><div class='front'></div></div>";
+        answerChoice += "<div class='card _3'><div class='front'></div></div>";
+        answerChoice += "<div class='card _4'><div class='front'></div></div>";
+
+        answerChoice += "<div class='card topCard'><div class='front'>";
+
+
+        answerChoice += "<p><span>" + myData[questionNum].question + "</span></p>";
         // console.log(myData[questionNum].question);
 
-        var answerChoice = "<div class='btn-group-vertical' role='question'>";
+        answerChoice += "<div class='btn-group-vertical' role='question'>";
 
         for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
@@ -497,7 +512,15 @@ var interviewQuestions = {
             // console.log(myData[questionNum].choices[i]);
 
         }
+
+        answerChoice += "<p><span>Correct answer:</span></p>";
+        answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+        answerChoice += " name='question" + parseInt(questionNum) + "'>";
+        answerChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
+        answerChoice += "</button>";
+        answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
+        // console.log(questionNum, correctAnswers[questionNum]);
 
         if(userAnswers[questionNum] != 0) {
             switch (parseInt(userAnswers[questionNum])) {
@@ -516,14 +539,6 @@ var interviewQuestions = {
                 default:
             }
         }
-
-        var correctChoice = "<p>Correct answer:</p>";
-        correctChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
-        correctChoice += " name='question" + parseInt(questionNum) + "'>";
-        correctChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
-        correctChoice += "</button>";
-        $(".mainArea").append(correctChoice);
-        // console.log(questionNum, correctAnswers[questionNum]);
 
         $(".buttonArea").empty();
         if(questionNum > 0) {
@@ -628,6 +643,10 @@ $("body").on("click", "#doneButton", function(event){
     sessionStorage.setItem("queryURL", "");
     interviewQuestions.displayResults();
 
+    viewTestResults = 1;
+    sessionStorage.setItem("viewTestResults", viewTestResults);
+    console.log("viewTestResults=1");
+
     if(!interviewQuestions.reviewFlag) {
         interviewQuestions.stopTimer();
 
@@ -673,6 +692,10 @@ $("body").on("click", "#restart", function(event){
     interviewQuestions.correctCount = 0;
     interviewQuestions.incorrectCount = 0;
     interviewQuestions.reviewFlag = 0;
+
+    viewTestResults = 0;
+    sessionStorage.setItem("viewTestResults", viewTestResults);
+    console.log("viewTestResults=0");
 
     generateSecondHTML();
 
