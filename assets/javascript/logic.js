@@ -89,7 +89,7 @@ $('body').on('click', '#signin', function(event) {
 
 // Display: Function for creation of initial start screen
 function initialScreen() {
-    startScreen = "<div class='container1'><form class='form-signin'>"
+    var startScreen = "<div class='container1'><form class='form-signin'>"
     startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>"
     startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>"
     //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
@@ -97,7 +97,9 @@ function initialScreen() {
     //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
     //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
     //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
-    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    // startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
+    startScreen += "<div id='center'><script type='in/Login'></script></div>";
+    startScreen += "</form></div>";
     $('.mainArea').html(startScreen);
 
 }
