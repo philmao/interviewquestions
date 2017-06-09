@@ -421,20 +421,12 @@ var interviewQuestions = {
             answerChoice += "     " + myData[questionNum].choices[i];
             answerChoice += "</fieldset>";
 
-// <fieldset>
-//     <legend>Please select one of the following</legend>
-//     <input type="radio" name="action" id="track" value="track" /><label for="track">Track Submission</label><br />
-//     <input type="radio" name="action" id="event" value="event"  /><label for="event">Events and Artist booking</label><br />
-//     <input type="radio" name="action" id="message" value="message" /><label for="message">Message us</label><br />
-// </fieldset>
-
-
-        //     answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
-        //     answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
-        //     answerChoice += " id=" + parseInt(i + 1);
-        //     answerChoice += " name='question" + parseInt(questionNum) + "'>";
-        //     answerChoice += myData[questionNum].choices[i];
-        //     answerChoice += "</button>";
+            // answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+            // answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+            // answerChoice += " id=" + parseInt(i + 1);
+            // answerChoice += " name='question" + parseInt(questionNum) + "'>";
+            // answerChoice += myData[questionNum].choices[i];
+            // answerChoice += "</button>";
             // console.log(answerChoice);
             // console.log(myData[questionNum].choices[i]);
 
@@ -442,23 +434,23 @@ var interviewQuestions = {
         answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
 
-        if(userAnswers[questionNum] != 0) {
-            switch (parseInt(userAnswers[questionNum])) {
-                case 1: 
-                    $('#1').addClass('active');
-                    break;
-                case 2:
-                    $('#2').addClass('active');
-                    break;
-                case 3:
-                    $('#3').addClass('active');
-                    break;
-                case 4: 
-                    $('#4').addClass('active');
-                    break;
-                default:
-            }
-        }
+        // if(userAnswers[questionNum] != 0) {
+        //     switch (parseInt(userAnswers[questionNum])) {
+        //         case 1: 
+        //             $('#1').addClass('active');
+        //             break;
+        //         case 2:
+        //             $('#2').addClass('active');
+        //             break;
+        //         case 3:
+        //             $('#3').addClass('active');
+        //             break;
+        //         case 4: 
+        //             $('#4').addClass('active');
+        //             break;
+        //         default:
+        //     }
+        // }
         correctAnswers[questionNum] = myData[questionNum].correct;
 
         $(".buttonArea").empty();
@@ -502,22 +494,27 @@ var interviewQuestions = {
 
         for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
-            answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+            answerChoice += "<fieldset><input type='radio' class='btn btn-default btn-lg answerBtn'";
             answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
             answerChoice += " id=" + parseInt(i + 1);
             answerChoice += " name='question" + parseInt(questionNum) + "'>";
-            answerChoice += myData[questionNum].choices[i];
-            answerChoice += "</button>";
-            // console.log(answerChoice);
-            // console.log(myData[questionNum].choices[i]);
+            answerChoice += "     " + myData[questionNum].choices[i];
+            answerChoice += "</fieldset>";
 
         }
+        if(userAnswers[questionNum] === correctAnswers[questionNum]) {
+            answerChoice += "<p><span id='comment'>Correct!</span></p>";
+        }
+        else {
+           answerChoice += "<p><span id='comment'>Incorrect! The answer is:</span></p>";
+           // answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+           // answerChoice += " name='question" + parseInt(questionNum) + "'>";
+           answerChoice += "<fieldset>";
+           answerChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
+           // answerChoice += "</button>"; 
+           answerChoice += "</fieldset>"
+        }
 
-        answerChoice += "<p><span>Correct answer:</span></p>";
-        answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
-        answerChoice += " name='question" + parseInt(questionNum) + "'>";
-        answerChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
-        answerChoice += "</button>";
         answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
         // console.log(questionNum, correctAnswers[questionNum]);
@@ -525,16 +522,16 @@ var interviewQuestions = {
         if(userAnswers[questionNum] != 0) {
             switch (parseInt(userAnswers[questionNum])) {
                 case 1: 
-                    $('#1').addClass('active');
+                    $('#1').prop( "checked", true );
                     break;
                 case 2:
-                    $('#2').addClass('active');
+                    $('#2').prop( "checked", true );
                     break;
                 case 3:
-                    $('#3').addClass('active');
+                    $('#3').prop( "checked", true );
                     break;
                 case 4: 
-                    $('#4').addClass('active');
+                    $('#4').prop( "checked", true );
                     break;
                 default:
             }
@@ -702,18 +699,18 @@ $("body").on("click", "#restart", function(event){
 
 }); 
 
-$("body").on("click", ".subjectBtn", function(event){
+// $("body").on("click", ".subjectBtn", function(event){
 
-    $('.btn-group-vertical > .btn').removeClass('active');
-    $(this).addClass('active');
-    // console.log("subject button selected");
+//     $('.btn-group-vertical > .btn').removeClass('active');
+//     $(this).addClass('active');
+//     // console.log("subject button selected");
 
-});
+// });
 
 $("body").on("click", ".answerBtn", function(event){
 
-    $('.btn-group-vertical > .answerBtn').removeClass('active');
-    $(this).addClass('active');
+    // $('.btn-group-vertical > .answerBtn').removeClass('active');
+    // $(this).addClass('active');
     userAnswers[interviewQuestions.currentQuestion] = $(this).val();
     // console.log(userAnswers);
     // console.log("answer button selected");
