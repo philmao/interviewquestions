@@ -199,7 +199,7 @@ function getProfileData(profiles) {
     sessionStorage.setItem('MemberId',id);
     sessionStorage.setItem('firstName', firstName);
     console.log("Inside getProfileData");
-    initRefreshScoreData();
+    //initRefreshScoreData();
     generateSecondHTML();
 }
 
