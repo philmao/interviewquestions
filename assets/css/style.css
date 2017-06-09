@@ -79,6 +79,7 @@ a.navbar-brand {
   width: 960px;
   text-align: center;
   padding: 10px;
+  padding-top: -400px;
 }
 
 
