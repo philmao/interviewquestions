@@ -60,7 +60,7 @@ $(document).ready(function() {
 
         if(parseInt(viewTestResults)) {
             // Hide test results
-            $("#page3").css({ visibility: "show"}); 
+            $("#page3").css({ visibility: "visible"}); 
         }
         else {
             startTime = moment();
@@ -92,11 +92,11 @@ function initialScreen() {
     startScreen = "<div class='container1'><form class='form-signin'>"
     startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>"
     startScreen += "<h5 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h5>"
-    startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
-    startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
-    startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
-    startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
-    startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
+    //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>"
+    //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>"
+    //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>"
+    //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>"
+    //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>"
     startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='submit'>Sign in</button></form></div>";
     $('.mainArea').html(startScreen);
 
@@ -185,7 +185,7 @@ function displayProfileInfo() {
 function OnLinkedInFrameworkLoad() {
     IN.Event.on(IN, "auth", OnLinkedInAuth);
     $('a[id*=li_ui_li_gen_]').css({marginBottom:'20px'})
-   .html('<img src="assets/images/linkedin_signin_large.png" height="31" width="200" border="0" />');
+   .html('<img src="assets/images/linkedin_signin_large.png" height="41" width="200" border="0" />');
 }
 
 // LinkedIn: Retrieving user profile
