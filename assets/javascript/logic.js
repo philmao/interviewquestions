@@ -165,7 +165,7 @@ function highScore(lScore) {
     console.log("Just came to highScore function");
     if(lScore > hScore)
         hScore = lScore;
-    $("#hScore").html(hScore);
+    $("#hScore").html(" " + hScore);
 }
 
 function displayProfileInfo() {
@@ -575,7 +575,7 @@ var interviewQuestions = {
         $(".mainArea").append("<h3>Correct Answers: " + interviewQuestions.correctCount + "</h3>");
         $(".mainArea").append("<h3>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h3>");
         $(".mainArea").append("<h3>Unanswered: " + interviewQuestions.unansweredCount + "</h3>");
-        $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
+        $(".mainArea").append("<h3> Your highest score so far:<span id ='hScore'></span></h3>");
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
