@@ -237,3 +237,31 @@ h2, #timer {
     
     margin-right: 10px;
  }
+ .navbar-right {
+     margin-top: 30px;
+     float:right !important;
+     margin-right: 10px;
+
+    font-size: 14px;
+   line-height: 1.42857143;
+   
+  font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
+ }
+
+ #lt {
+
+  font-size: 14px;
+   line-height: 1.42857143;
+   color: white;
+   background: grey;
+   font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
+
+ }
+#name {
+  padding: 0 20px;
+  color: white;
+}
+
+#pic {
+  padding: 0 20px;
+}
