@@ -22,7 +22,7 @@
         },
         {
             "question": "Which of the following is an example of an empty element?",
-            "choices": ["< /img>", "< img></img>", "< img>", "< img>empty</img>"],
+            "choices": ["< /img>", "< img>< /img>", "< img>", "< img>empty</img>"],
             "correct": "2"
         },
         {
