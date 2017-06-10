@@ -260,7 +260,7 @@ var liLogout = function() {
 
 // LinkedIn: callback function
 function logoutCallback() {
-    alert("You have successfully logged out.");
+    //alert("You have successfully logged out.");
     window.location.href = "index.html";
 }
 
@@ -582,7 +582,7 @@ var interviewQuestions = {
         $(".mainArea").append("<h3>Correct Answers: " + interviewQuestions.correctCount + "</h3>");
         $(".mainArea").append("<h3>Incorrect Answers: " + interviewQuestions.incorrectCount + "</h3>");
         $(".mainArea").append("<h3>Unanswered: " + interviewQuestions.unansweredCount + "</h3>");
-        // $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
+        $(".mainArea").append("<h3> Your highest score so far :<span id ='hScore'></span></h3>");
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
