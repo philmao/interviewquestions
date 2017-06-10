@@ -81,13 +81,6 @@ $('body').on('click', '#signin', function(event) {
 
 });
 
-// Display: Onclick start button to second page 
-/*$('body').on('click', '#st', function(event) {
-
-    generateSecondHTML();
-
-}); */ 
-
 // Display: Function for creation of initial start screen
 function initialScreen() {
     var startScreen = "<div class='container1'><form class='form-signin'>";
@@ -98,6 +91,8 @@ function initialScreen() {
     //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
     //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
     //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>";
+
+    // if testing locally, show signin button
     if(location.hostname == "") {
         startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
     }
@@ -488,9 +483,7 @@ var interviewQuestions = {
         answerChoice += "<div class='card _4'><div class='front'></div></div>";
 
         answerChoice += "<div class='card topCard'><div class='front'>";
-
-
-        answerChoice += "<p><span>" + myData[questionNum].question + "</span></p>";
+        answerChoice += "<p id='reviewStyle'>" + myData[questionNum].question + "</p>";
         // console.log(myData[questionNum].question);
 
         answerChoice += "<div class='btn-group-vertical' role='question'>";
@@ -506,10 +499,10 @@ var interviewQuestions = {
 
         }
         if(userAnswers[questionNum] === correctAnswers[questionNum]) {
-            answerChoice += "<p><span id='comment'>Correct!</span></p>";
+            answerChoice += "<p id='comment'Correct!</p>";
         }
         else {
-           answerChoice += "<p><span id='comment'>Incorrect! The answer is:</span></p>";
+           answerChoice += "<p id='comment'>Incorrect! The answer is:</p>";
            // answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
            // answerChoice += " name='question" + parseInt(questionNum) + "'>";
            answerChoice += "<fieldset>";
@@ -727,8 +720,8 @@ $("body").on("click", ".prevBtn", function(event){
     var maxCards = $('.card').length;
      
     for (var i = 0; i <= maxCards; i++) {
-        $(".card").find('.front').css("z-index", 0);
-        $(".card").css("z-index", i);
+        // $(".card").find('.front').css("z-index", 0);
+        $(".card").css("z-index", 5);
         $(".card").animate({left:'+=1000px'},1000);
     };
 
@@ -744,7 +737,7 @@ $("body").on("click", ".prevBtn", function(event){
     else {
         interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
     }
-    // console.log("prev button pressed");
+    console.log("prev button pressed");
 
 });
 
@@ -756,8 +749,8 @@ $("body").on("click", ".nextBtn", function(event){
     console.log(maxCards);
      
     for (var i = 0; i <= maxCards; i++) {
-        $("#topCard").find('.front').css("z-index", 0);
-        $("#topCard").css("z-index", i);
+        // $("#topCard").find('.front').css("z-index", 0);
+        $("#topCard").css("z-index", 5);
         $("#topCard").animate({left:'-=1000px'},1000);
     };
     
@@ -773,6 +766,6 @@ $("body").on("click", ".nextBtn", function(event){
     else {
         interviewQuestions.displayQuestion(interviewQuestions.currentQuestion);
     }
-    // console.log("next button pressed");
+    console.log("next button pressed");
 
 });

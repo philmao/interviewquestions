@@ -122,6 +122,17 @@ fieldset {
   margin-bottom: 70px;
 
 }
+#reviewStyle{
+  font: italic bold;
+  line-height: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+}
+
+#review {
+  margin-bottom: 20px;
+}
 
 .answerBtn {
   /*display: block;
@@ -137,6 +148,7 @@ fieldset {
 #comment {
   color: black;
   font-size: 24px;
+  margin: 0 90px;
 }
 .prevBtn {
   float: left;
@@ -178,7 +190,7 @@ p {
   z-index: 2;
 }
 .card .front p {
-  line-height: 3em;
+  line-height: 2em;
   text-align: center;
 }
 
