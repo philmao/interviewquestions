@@ -91,14 +91,17 @@ $('body').on('click', '#signin', function(event) {
 // Display: Function for creation of initial start screen
 function initialScreen() {
     var startScreen = "<div class='container1'><form class='form-signin'>";
-    startScreen += "<div class='welcome'>Welcome to Interview Questions!</div>";
+    startScreen += "<div class='welcome'>Welcome!</div>";
     startScreen += "<h6 class='form-signin-heading'>Please sign in with your LinkedIn account to continue</h6>";
     //startScreen += "<label for='inputEmail' class='sr-only'>Email address</label>";
     //startScreen += "<input type='email' id='inputEmail' class='form-control' placeholder='Email address' required autofocus>";
     //startScreen += "<label for='inputPassword' class='sr-only'>Password</label>";
     //startScreen += "<input type='password' id='inputPassword' class='form-control' placeholder='Password'>";
     //startScreen += "<div class='checkbox'><label><input type='checkbox' value='remember-me'> Remember me</label></div>";
-    startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
+    if(location.hostname == "") {
+        startScreen += "<button id='signin' class='btn btn-lg btn-primary btn-block' type='button'>Sign in</button>";
+    }
+    console.log(location.hostname);
     startScreen += "<div id='center'><script type='in/Login'></script></div>";
     startScreen += "</form></div>";
     $('.mainArea').html(startScreen);
@@ -370,7 +373,7 @@ var interviewQuestions = {
 
                 userAnswers = [];
                 correctAnswers = [];
-                for(var i = 0; i < myData.length; i++) {
+                for(var i = 0; i < interviewQuestions.maxQuestions; i++) {
                     userAnswers[i] = 0;
                 }
                 interviewQuestions.startTimer();
@@ -390,7 +393,7 @@ var interviewQuestions = {
         // console.log(questionNum);
 
         var titleLine = $("<h2>");
-        titleLine.text(subject + ": Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        titleLine.text(subject + ": Question " + parseInt(questionNum + 1) +" of " + interviewQuestions.maxQuestions);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
@@ -421,51 +424,43 @@ var interviewQuestions = {
             answerChoice += "     " + myData[questionNum].choices[i];
             answerChoice += "</fieldset>";
 
-// <fieldset>
-//     <legend>Please select one of the following</legend>
-//     <input type="radio" name="action" id="track" value="track" /><label for="track">Track Submission</label><br />
-//     <input type="radio" name="action" id="event" value="event"  /><label for="event">Events and Artist booking</label><br />
-//     <input type="radio" name="action" id="message" value="message" /><label for="message">Message us</label><br />
-// </fieldset>
-
-
-//         //     answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
-//         //     answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
-//         //     answerChoice += " id=" + parseInt(i + 1);
-//         //     answerChoice += " name='question" + parseInt(questionNum) + "'>";
-//         //     answerChoice += myData[questionNum].choices[i];
-//         //     answerChoice += "</button>";
-        //     // console.log(answerChoice);
-        //     // console.log(myData[questionNum].choices[i]);
+            // answerChoice += "<button type='button' class='btn btn-default btn-lg answerBtn'";
+            // answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
+            // answerChoice += " id=" + parseInt(i + 1);
+            // answerChoice += " name='question" + parseInt(questionNum) + "'>";
+            // answerChoice += myData[questionNum].choices[i];
+            // answerChoice += "</button>";
+            // console.log(answerChoice);
+            // console.log(myData[questionNum].choices[i]);
 
         }
         answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
 
-        if(userAnswers[questionNum] != 0) {
-            switch (parseInt(userAnswers[questionNum])) {
-                case 1: 
-                    $('#1').addClass('active');
-                    break;
-                case 2:
-                    $('#2').addClass('active');
-                    break;
-                case 3:
-                    $('#3').addClass('active');
-                    break;
-                case 4: 
-                    $('#4').addClass('active');
-                    break;
-                default:
-            }
-        }
+        // if(userAnswers[questionNum] != 0) {
+        //     switch (parseInt(userAnswers[questionNum])) {
+        //         case 1: 
+        //             $('#1').addClass('active');
+        //             break;
+        //         case 2:
+        //             $('#2').addClass('active');
+        //             break;
+        //         case 3:
+        //             $('#3').addClass('active');
+        //             break;
+        //         case 4: 
+        //             $('#4').addClass('active');
+        //             break;
+        //         default:
+        //     }
+        // }
         correctAnswers[questionNum] = myData[questionNum].correct;
 
         $(".buttonArea").empty();
         if(questionNum > 0) {
             $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
         }
-        if(questionNum < (myData.length - 1)) {
+        if(questionNum < (interviewQuestions.maxQuestions - 1)) {
             $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
         }
         else {
@@ -482,7 +477,7 @@ var interviewQuestions = {
         console.log(questionNum);
 
         var titleLine = $("<h2>");
-        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + myData.length);
+        titleLine.text(subject + " Question " + parseInt(questionNum + 1) +" of " + interviewQuestions.maxQuestions);
         $(".mainArea").append(titleLine);
         // console.log(titleLine);
 
@@ -502,22 +497,27 @@ var interviewQuestions = {
 
         for(var i = 0; i < myData[questionNum].choices.length; i++) {
 
-            answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+            answerChoice += "<fieldset><input type='radio' class='btn btn-default btn-lg answerBtn'";
             answerChoice += " value='" + parseInt(i + 1) + "'";  // value '0' is unanswered
             answerChoice += " id=" + parseInt(i + 1);
             answerChoice += " name='question" + parseInt(questionNum) + "'>";
-            answerChoice += myData[questionNum].choices[i];
-            answerChoice += "</button>";
-            // console.log(answerChoice);
-            // console.log(myData[questionNum].choices[i]);
+            answerChoice += "     " + myData[questionNum].choices[i];
+            answerChoice += "</fieldset>";
 
         }
+        if(userAnswers[questionNum] === correctAnswers[questionNum]) {
+            answerChoice += "<p><span id='comment'>Correct!</span></p>";
+        }
+        else {
+           answerChoice += "<p><span id='comment'>Incorrect! The answer is:</span></p>";
+           // answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
+           // answerChoice += " name='question" + parseInt(questionNum) + "'>";
+           answerChoice += "<fieldset>";
+           answerChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
+           // answerChoice += "</button>"; 
+           answerChoice += "</fieldset>"
+        }
 
-        answerChoice += "<p><span>Correct answer:</span></p>";
-        answerChoice += "<button type='button' class='btn btn-default btn-lg reviewBtn'";
-        answerChoice += " name='question" + parseInt(questionNum) + "'>";
-        answerChoice += myData[questionNum].choices[correctAnswers[questionNum] - 1];
-        answerChoice += "</button>";
         answerChoice += "</div></div></div>";
         $(".mainArea").append(answerChoice);
         // console.log(questionNum, correctAnswers[questionNum]);
@@ -525,16 +525,16 @@ var interviewQuestions = {
         if(userAnswers[questionNum] != 0) {
             switch (parseInt(userAnswers[questionNum])) {
                 case 1: 
-                    $('#1').addClass('active');
+                    $('#1').prop( "checked", true );
                     break;
                 case 2:
-                    $('#2').addClass('active');
+                    $('#2').prop( "checked", true );
                     break;
                 case 3:
-                    $('#3').addClass('active');
+                    $('#3').prop( "checked", true );
                     break;
                 case 4: 
-                    $('#4').addClass('active');
+                    $('#4').prop( "checked", true );
                     break;
                 default:
             }
@@ -544,7 +544,7 @@ var interviewQuestions = {
         if(questionNum > 0) {
             $(".buttonArea").append("<button id='prevButton' class='btn btn-sm btn-primary prevBtn'>Prev</button>");
         }
-        if(questionNum < (myData.length - 1)) {
+        if(questionNum < (interviewQuestions.maxQuestions - 1)) {
             $(".buttonArea").append("<button id='nextButton' class='btn btn-sm btn-primary nextBtn'>Next</button>");
         }
         else {
@@ -560,7 +560,7 @@ var interviewQuestions = {
         console.log(correctAnswers);
         if(!interviewQuestions.reviewFlag) {
 
-            for(i = 0; i < myData.length; i++) {
+            for(i = 0; i < interviewQuestions.maxQuestions; i++) {
 
                 if(parseInt(userAnswers[i]) === 0) {
                     interviewQuestions.unansweredCount++;
@@ -702,18 +702,18 @@ $("body").on("click", "#restart", function(event){
 
 }); 
 
-$("body").on("click", ".subjectBtn", function(event){
+// $("body").on("click", ".subjectBtn", function(event){
 
-    $('.btn-group-vertical > .btn').removeClass('active');
-    $(this).addClass('active');
-    // console.log("subject button selected");
+//     $('.btn-group-vertical > .btn').removeClass('active');
+//     $(this).addClass('active');
+//     // console.log("subject button selected");
 
-});
+// });
 
 $("body").on("click", ".answerBtn", function(event){
 
-    $('.btn-group-vertical > .answerBtn').removeClass('active');
-    $(this).addClass('active');
+    // $('.btn-group-vertical > .answerBtn').removeClass('active');
+    // $(this).addClass('active');
     userAnswers[interviewQuestions.currentQuestion] = $(this).val();
     // console.log(userAnswers);
     // console.log("answer button selected");
@@ -761,11 +761,11 @@ $("body").on("click", ".nextBtn", function(event){
         $("#topCard").animate({left:'-=1000px'},1000);
     };
     
-    if(interviewQuestions.currentQuestion <= myData.length) {
+    if(interviewQuestions.currentQuestion <= interviewQuestions.maxQuestions) {
         interviewQuestions.currentQuestion++;
     }
     else {
-        interviewQuestions.currentQuestion = myData.length;
+        interviewQuestions.currentQuestion = interviewQuestions.maxQuestions;
     }
     if(interviewQuestions.reviewFlag) {
         interviewQuestions.reviewQuestion(interviewQuestions.currentQuestion);
