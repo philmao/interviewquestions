@@ -234,6 +234,7 @@ function initRefreshScoreData() {
 
     //highest score
     highScore(localScore);
+    sessionStorage.setItem("localScore", localScore);
     console.log("Came back to orderByChild");
 
     // Add user's score data into the table
@@ -578,6 +579,11 @@ var interviewQuestions = {
         $(".mainArea").append("<h3> Your highest score so far:<span id ='hScore'></span></h3>");
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
+
+        if(reviewFlag) {
+            var x = sessionStorage.getItem("localScore");
+            $("#hScore").html(" " + x);
+        }
 
     },
     startTimer: function() {
