@@ -42,8 +42,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 10px;
-  /*background: #202020;*/
-  background: #FF8000;
+  background: #0080FF;
   border-radius: 50%;
   border: 0;
   color: white;
@@ -55,7 +54,7 @@ body {
 
 .selector button:hover {
   /*background: #3071a9;*/
-  background: #FF8000;
+  background: #0080FF;
 }
 
 .selector button:focus {
