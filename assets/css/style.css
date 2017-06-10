@@ -57,6 +57,10 @@ a.navbar-brand {
   
 }
 
+#hScore{
+  color:white;
+}
+
 .navbar-right {
     margin-top: 30px;
     float:right !important;
