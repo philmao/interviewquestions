@@ -79,6 +79,7 @@ a.navbar-brand {
   color: white;
   background: grey;
   font-family: "Open Sans", "Helvetica Neue", "Liberation Sans", Arial, sans-serif;
+
 }
 
 
@@ -144,6 +145,7 @@ fieldset {
 /*  display: block;
   background-color: lightblue;*/
   color: black;
+  text-align: center;
 }
 #comment {
   color: black;
@@ -171,6 +173,7 @@ p {
   margin: auto;
   position: relative;
   width: 600px;
+
 }
 
 .card {
@@ -180,7 +183,9 @@ p {
   height: 360px;
   transform-origin: 0% 0%;
   color: #202020;
+
 }
+
 .card .front {
   background: white;
   font-size: 24pt;
@@ -236,7 +241,29 @@ h2, #timer {
     margin-top: 30px;
     
     margin-right: 10px;
+
+
  }
+
+
+
+ /*&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+#statement, #forbes {
+  color: white;
+
+}
+
+#statement {
+  text-align: center;
+  font-size: 24px;
+}
+
+#forbes {
+  text-align: right;
+  font-size: 16px;
+}
+
  .navbar-right {
      margin-top: 30px;
      float:right !important;
@@ -267,3 +294,4 @@ h2, #timer {
   padding: 0 20px;
   height: 60px;
 }
+
