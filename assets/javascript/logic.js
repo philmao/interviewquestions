@@ -234,7 +234,7 @@ function initRefreshScoreData() {
 
     //highest score
     highScore(localScore);
-    sessionStorage.setItem("localScore", localScore);
+    // sessionStorage.setItem("localScore", localScore);
     console.log("Came back to orderByChild");
 
     // Add user's score data into the table
@@ -580,10 +580,10 @@ var interviewQuestions = {
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
-        if(interviewQuestions.reviewFlag) {
-            var x = sessionStorage.getItem("localScore");
-            $("#hScore").html(" " + x);
-        }
+        // if(interviewQuestions.reviewFlag) {
+        //     var x = sessionStorage.getItem("localScore");
+        //     $("#hScore").html(" " + x);
+        // }
 
     },
     startTimer: function() {
