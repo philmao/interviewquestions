@@ -499,7 +499,7 @@ var interviewQuestions = {
 
         }
         if(userAnswers[questionNum] === correctAnswers[questionNum]) {
-            answerChoice += "<p id='comment'Correct!</p>";
+            answerChoice += "<p id='comment'>Correct!</p>";
         }
         else {
            answerChoice += "<p id='comment'>Incorrect! The answer is:</p>";
