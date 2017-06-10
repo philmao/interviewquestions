@@ -1,0 +1,54 @@
+{
+    "interview": [     
+        {
+            "question": "What does CSS mean?",
+            "choices": ["Creative Style Sheet", "Cascading Style Sheet", "Computer Style Sheet", "Colorful Style Sheet"],
+            "correct": "2"
+        },
+        {
+            "question": "Where in an HTML document is the correct place to refer to an external style sheet?",
+            "choices": ["At the top of the document", "In the section", "At the end of the document", "In the body"],
+            "correct": "1"
+        },
+        {
+            "question": "Which is the correct CSS syntax?",
+            "choices": ["{body:color=black(body}", "{body;color:black}", "Body:color=black", "Body {color: black}"],
+            "correct": "2"
+        },
+        {
+            "question": "What does HTML mean?",
+            "choices": ["Hyper Text Markup Language", "Hidden Text Markup Langauge", "Hyper Text Manage Language", "How To Make Lasagna"],
+            "correct": "1"
+        },
+        {
+            "question": "Which of the following is an example of an empty element?",
+            "choices": ["< /img>", "< img>< /img>", "< img>", "< img>empty</img>"],
+            "correct": "2"
+        },
+        {
+            "question": "What is the output of '10'+20+30 in JavaScript?",
+            "choices": ["102030", "1050", "60", "5010"],
+            "correct": "1"
+        },
+        {
+            "question": "What does the isNaN() function do?",
+            "choices": ["Returns true, if the variable value is not a number.", "Returns false, if the variable value is not a number"],
+            "correct": "1"
+        },
+        {
+            "question": "Which of the following gives undefined value when executed?",
+            "choices": ["var num;", "var num = '20'", "var num=10", "var num='apple'"],
+            "correct": "1"
+        },
+        {
+            "question": "jQuery is a ...",
+            "choices": [ "JavaScript Library", "JavaScript Language", "JavaScript Method", "PHP Method" ],
+            "correct": "1"
+        },
+        {
+            "question": "jQuery uses CSS selectors to select elements?",
+            "choices": [ "False", "True" ],
+            "correct": "2"
+        }
+    ]
+}
