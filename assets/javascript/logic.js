@@ -580,7 +580,7 @@ var interviewQuestions = {
         $(".mainArea").append("<button id='review' class='btn btn-lg btn-primary'>Review answers</button>");
         $("#page3").css({ visibility: "visible"}); 
 
-        if(reviewFlag) {
+        if(interviewQuestions.reviewFlag) {
             var x = sessionStorage.getItem("localScore");
             $("#hScore").html(" " + x);
         }
