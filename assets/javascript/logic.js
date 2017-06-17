@@ -99,6 +99,9 @@ function initialScreen() {
     console.log(location.hostname);
     startScreen += "<div id='center'><script type='in/Login'></script></div>";
     startScreen += "</form></div>";
+    startScreen += "<br><br><br>";
+    startScreen += "<div id='statement' class='animated slideInLeft'>\"Your first technical interview starts here...\"</div></div>";
+    startScreen += "<div id='forbes' class='animated slideInRight'>-Forbes Magazine</div></div>";
     $('.mainArea').html(startScreen);
 
 }
