@@ -1,0 +1,43 @@
+
+Project: Interview Questions Web Site
+
+Team: The A Team
+Members: 
+-Phil Mao
+-Kira Z
+-Jaya Arasalike
+-Nicholas Nociforo
+
+Proposal: Provide an interview question web site for potential employers/future employees. User will provide login information for LinkedIn login.  Interview questions subjects will appear in the next page.  After user selects subject, a set number of random questions will appear. User will answer the questions. Results will be listed at the end and stored in Firebase. 
+
+APIs: 
+-Linkedin APIs
+-SASS
+-Firebase
+-Wikipedia (AJAX)
+
+Audience: potential employers/future employees
+
+Roles: 
+- Project Manager: Phil
+- QA: All 
+- Front-end: Kira, Nicholas
+- Back-end: Jaya, Phil
+
+Resposibilities (updated): 
+- html,css: Kira Z, Nicholas
+- firebase: Nicholas
+- linkedin: Jaya
+- backend: Jaya, Phil
+- wikipedia: Nicholas
+- json: Nicholas
+
+- html questions: Nicholas
+- javascript questions: Jaya
+- css questions: Kira 
+- jquery questions: Phil
+
+
+
+
+
